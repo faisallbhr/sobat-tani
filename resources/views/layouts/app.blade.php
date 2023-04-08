@@ -15,6 +15,24 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        {{-- Font Awesome --}}
+        <script src="https://kit.fontawesome.com/516b6a89c8.js" crossorigin="anonymous"></script>
+
+        {{-- Trix Editor --}}
+        <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+        <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+        <style>
+            trix-toolbar [data-trix-button-group='file-tools']{
+                display: none
+            }
+            trix-editor{
+                background: white
+            }
+            trix-toolbar [data-trix-button-group]{ 
+                background: white
+            }
+        </style>
     </head>
     <body
         class="font-inter antialiased bg-slate-100 text-slate-600"

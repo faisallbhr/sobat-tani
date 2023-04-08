@@ -9,7 +9,7 @@
 
     <x-slot name="form">
         <!-- Profile Photo -->
-        @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+        {{-- @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
             <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
                 <!-- Profile Photo File Input -->
                 <input type="file" class="hidden"
@@ -50,7 +50,7 @@
 
                 <x-jet-input-error for="photo" class="mt-2" />
             </div>
-        @endif
+        @endif --}}
 
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
@@ -61,9 +61,9 @@
 
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="email" value="{{ __('Email') }}" />
-            <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
-            <x-jet-input-error for="email" class="mt-2" />
+            <x-jet-label for="no_hp" value="{{ __('No. Handphone') }}" />
+            <x-jet-input disabled id="no_hp" type="text" class="mt-1 block w-full" wire:model.defer="state.no_hp" />
+            <x-jet-input-error for="no_hp" class="mt-2" />
         </div>
     </x-slot>
 

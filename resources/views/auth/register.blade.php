@@ -1,7 +1,7 @@
 <x-authentication-layout>
-    <h1 class="text-3xl text-slate-800 font-bold mb-6">{{ __('Create your Account') }} ✨</h1>
+    <h1 class="text-3xl text-slate-800 font-bold mb-6">{{ __('Daftar akun') }} ✨</h1>
     <!-- Form -->
-    <form method="POST" action="{{ route('register') }}">
+    {{-- <form method="POST" action="{{ route('register') }}">
         @csrf
         <div class="space-y-4">
             <div>
@@ -25,35 +25,67 @@
             </div>
         </div>
         <div class="flex items-center justify-between mt-6">
-            <div class="mr-1">
-                <label class="flex items-center" name="newsletter" id="newsletter">
-                    <input type="checkbox" class="form-checkbox" />
-                    <span class="text-sm ml-2">Email me about product news.</span>
-                </label>
-            </div>
-            <x-jet-button>
+           <x-jet-button>
                 {{ __('Sign Up') }}
             </x-jet-button>                
         </div>
-            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                <div class="mt-6">
-                    <label class="flex items-start">
-                        <input type="checkbox" class="form-checkbox mt-1" name="terms" id="terms" />
-                        <span class="text-sm ml-2">
-                            {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="text-sm underline hover:no-underline">'.__('Terms of Service').'</a>',
-                                'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="text-sm underline hover:no-underline">'.__('Privacy Policy').'</a>',
-                            ]) !!}                        
-                        </span>
-                    </label>
-                </div>
-            @endif        
+        
+    </form> --}}
+    <form method="POST" action="{{ route('register') }}">
+        @csrf
+        <div class='mb-4'>
+            <label htmlFor='name' class='ml-1'>Nama</label>
+            <input
+                type='text'
+                class='w-full p-2 border rounded-md outline-none shadow-sm'
+                id='name'
+                name="name"
+                />
+        </div>
+        <div class=' mb-4'>
+            <label htmlFor='no_hp' class='ml-1'>No. Handphone</label>
+            <input
+                type='number'
+                class='w-full p-2 border rounded-md outline-none shadow-sm'
+                id='no_hp'
+                name="no_hp"
+            />
+        </div>
+        <div class=' mb-4 flex flex-col'>
+            <label htmlFor='no_hp' class='ml-1'>Profesi</label>
+            <select name="profesi" id="profesi" class="w-full p-2 border rounded-md outline-none shadow-sm">
+                <option value="Petani">Petani</option>
+            </select>
+        </div>
+        <div class=' mb-4'>
+            <label htmlFor='password' class='ml-1'>Password</label>
+            <input
+                type='password'
+                class='w-full p-2 border rounded-md outline-none shadow-sm'
+                id='password'
+                name='password'
+            />
+        </div>
+        <div class=' mb-4'>
+            <label htmlFor='password_confirmation' class='ml-1'>Konfirmasi Password</label>
+            <input
+                type='password'
+                class='w-full p-2 border rounded-md outline-none shadow-sm'
+                id='password_confirmation'
+                name='password_confirmation'
+            />
+        </div>
+        <div class="flex items-center justify-center mt-6">
+           <x-jet-button>
+                {{ __('Daftar') }}
+            </x-jet-button>                
+        </div>
     </form>
     <x-jet-validation-errors class="mt-4" />  
     <!-- Footer -->
     <div class="pt-5 mt-6 border-t border-slate-200">
         <div class="text-sm">
-            {{ __('Have an account?') }} <a class="font-medium text-indigo-500 hover:text-indigo-600" href="{{ route('login') }}">{{ __('Sign In') }}</a>
+            {{ __('Sudah punya akun?') }} <a class="font-medium text-indigo-500 hover:text-indigo-600" href="{{ route('login') }}">{{ __('Masuk sekarang!') }}</a>
         </div>
     </div>
 </x-authentication-layout>

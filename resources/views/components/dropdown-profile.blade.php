@@ -39,6 +39,12 @@
                 <a class="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3" href="{{ route('profile.show') }}" @click="open = false" @focus="open = true" @focusout="open = false">Settings</a>
             </li>
             <li>
+                <a class="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3" href="{{ route('dashboard') }}" @click="open = false" @focus="open = true" @focusout="open = false">Dashboard</a>
+            </li>
+            <li>
+                <a class="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3" href="/" @click="open = false" @focus="open = true" @focusout="open = false">Semua lowongan</a>
+            </li>
+            <li>
                 <form method="POST" action="{{ route('logout') }}" x-data>
                     @csrf
 

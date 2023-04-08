@@ -1,23 +1,15 @@
 <x-app-layout>
-    <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
+    {{-- <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
         
         <!-- Welcome banner -->
-        <x-dashboard.welcome-banner />
 
         <!-- Dashboard actions -->
         <div class="sm:flex sm:justify-between sm:items-center mb-8">
 
             <!-- Left: Avatars -->
-            <x-dashboard.dashboard-avatars />
 
             <!-- Right: Actions -->
             <div class="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">
-
-                <!-- Filter button -->
-                <x-dropdown-filter align="right" />
-
-                <!-- Datepicker built with flatpickr -->
-                <x-datepicker />
 
                 <!-- Add view button -->
                 <button class="btn bg-indigo-500 hover:bg-indigo-600 text-white">
@@ -32,48 +24,53 @@
         </div>
         
         <!-- Cards -->
-        <div class="grid grid-cols-12 gap-6">
-
-            <!-- Line chart (Acme Plus) -->
-            <x-dashboard.dashboard-card-01 :dataFeed="$dataFeed" />
-
-            <!-- Line chart (Acme Advanced) -->
-            <x-dashboard.dashboard-card-02 :dataFeed="$dataFeed" />
-
-            <!-- Line chart (Acme Professional) -->
-            <x-dashboard.dashboard-card-03 :dataFeed="$dataFeed" />
-
-            <!-- Bar chart (Direct vs Indirect) -->
-            <x-dashboard.dashboard-card-04 />
-
-            <!-- Line chart (Real Time Value) -->
-            <x-dashboard.dashboard-card-05 />
-
-            <!-- Doughnut chart (Top Countries) -->
-            <x-dashboard.dashboard-card-06 />
-
-            <!-- Table (Top Channels) -->
-            <x-dashboard.dashboard-card-07 />
-
-            <!-- Line chart (Sales Over Time)  -->
-            <x-dashboard.dashboard-card-08 />
-
-            <!-- Stacked bar chart (Sales VS Refunds) -->
-            <x-dashboard.dashboard-card-09 />
-
-            <!-- Card (Customers)  -->
-            <x-dashboard.dashboard-card-10 />
-
-            <!-- Card (Reasons for Refunds)   -->
-            <x-dashboard.dashboard-card-11 />             
-
-            <!-- Card (Recent Activity) -->
-            <x-dashboard.dashboard-card-12 />
-            
-            <!-- Card (Income/Expenses) -->
-            <x-dashboard.dashboard-card-13 />
-
+        <div class="py-6 relative">
+            <table class="text-left text-sm font-light overflow-hidden rounded-md w-full max-w-5xl">
+            <thead
+                class="border-b bg-white font-medium">
+                <tr>
+                    <th class="px-6 py-4">No</th>
+                    <th class="px-6 py-4">Judul</th>
+                    <th class="px-6 py-4">Category</th>
+                    <th class="flex justify-center py-4">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($posts as $post)
+                    <tr 
+                    class="border-b bg-neutral-100">
+                        <td class="px-6 py-4 font-medium">{{ $loop->iteration }}</td>
+                        <td class="px-6 py-4">{{ $post->title }}</td>
+                        <td class="px-6 py-4">{{ $post->category->name }}</td>
+                        <td class="py-4 flex flex-col md:flex-row gap-2 items-center justify-center">
+                            <div>
+                                <x-jet-button>
+                                    <a href="/petani/posts/{{ $post->slug }}" class="fa-solid fa-eye mx-auto"></a>
+                                </x-jet-button>
+                            </div>
+                            <div>
+                                <x-jet-secondary-button>
+                                    <a href="/petani/posts/{{ $post->slug }}/edit" class="fa-solid fa-edit mx-auto "></a>
+                                </x-jet-secondary-button>
+                            </div>
+                                <form action="/petani/posts/{{ $post->slug }}" method="post">
+                                    @method('delete')
+                                @csrf
+                                <x-jet-danger-button                  
+                                onclick="return confirm('Apakah anda yakin akan menghapus postingan?')">
+                                    <i class="fa-solid fa-trash mx-auto"></i>
+                                </x-jet-danger-button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <div class="mt-4">
+            {{ $posts->links() }}
+        </div>
         </div>
 
-    </div>
+    </div> --}}
+    
 </x-app-layout>

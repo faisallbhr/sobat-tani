@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataFeedController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +17,8 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::redirect('/', 'login');
+Route::get('/', [UserController::class, 'index']);
+Route::get('/detail/{post:slug}', [UserController::class, 'show']);
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
@@ -27,3 +30,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         return view('pages/utility/404');
     });    
 });
+
+Route::resource('/petani/posts', DashboardPostController::class)->middleware(['auth']);
