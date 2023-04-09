@@ -12,7 +12,14 @@
             </div>                    
             <div class="flex items-center space-x-3">
               <!-- User button -->
-              <x-dropdown-profile/>
+                @if (auth()->user())
+                    <x-dropdown-profile/>
+                @else
+                <ul class="flex gap-2">
+                    <li><a href="/login">Masuk</a></li>
+                    <li><a href="/register">Daftar</a></li>
+                </ul>
+                @endif
             </div>
         </div>
     </div>

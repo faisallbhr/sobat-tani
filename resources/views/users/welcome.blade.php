@@ -33,9 +33,9 @@
                         {{ $post->title }}
                     </h1>
 
-                    <p class="mt-4 text-gray-500 dark:text-gray-400 h-40 overflow-y-hidden">
-                        {{ $post->body }}
-                    </p>
+                    <div class="mt-4 text-gray-500 h-40 overflow-y-hidden">
+                        {!! $post->body !!}
+                    </div>
 
                     <div class="flex items-center justify-end mt-6">
                         <a href="/detail/{{ $post->slug }}" class="inline-block text-sky-500 underline hover:text-sky-400">Read more</a>

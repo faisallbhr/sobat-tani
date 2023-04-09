@@ -3,14 +3,22 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use Laravel\Jetstream\Jetstream;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
-use Laravel\Jetstream\Jetstream;
 
 class CreateNewUser implements CreatesNewUsers
 {
     use PasswordValidationRules;
+
+    protected function buruhTani(User $user){
+        $user->assignRole('buruh tani');
+    }
+    protected function petani(User $user){
+        $user->assignRole('petani');
+    }
 
     /**
      * Validate and create a newly registered user.
@@ -23,17 +31,33 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'no_hp' => ['required', 'integer', 'unique:users'],
-            'profesi' => ['required', 'string'],
+            'profesi' => ['required'],
             'password' => $this->passwordRules(),
-            // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            // 'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
-        ]);
+        ])->validate();
 
-        return User::create([
-            'name' => $input['name'],
-            'no_hp' => $input['no_hp'],
-            'profesi' => $input['profesi'],
-            'password' => Hash::make($input['password']),
-        ]);
+        $role = $input['profesi'];
+
+        if($role==='buruh tani'){
+            return DB::transaction(function () use ($input) {
+                return tap(User::create([
+                    'name' => $input['name'],
+                    'no_hp' => $input['no_hp'],
+                    'password' => Hash::make($input['password']),
+                ]), function (User $user) {
+                    $this->buruhTani($user);
+                });
+            });
+        }else{
+            return DB::transaction(function () use ($input) {
+                return tap(User::create([
+                    'name' => $input['name'],
+                    'no_hp' => $input['no_hp'],
+                    'password' => Hash::make($input['password']),
+                ]), function (User $user) {
+                    $this->petani($user);
+                });
+            });
+        }
+        
     }
 }

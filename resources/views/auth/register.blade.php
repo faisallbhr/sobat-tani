@@ -54,7 +54,8 @@
         <div class=' mb-4 flex flex-col'>
             <label htmlFor='no_hp' class='ml-1'>Profesi</label>
             <select name="profesi" id="profesi" class="w-full p-2 border rounded-md outline-none shadow-sm">
-                <option value="Petani">Petani</option>
+                <option value="buruh tani">Buruh tani</option>
+                <option value="petani">Petani</option>
             </select>
         </div>
         <div class=' mb-4'>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataFeedController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\DashboardPostController;
 
 Route::get('/', [UserController::class, 'index']);
 Route::get('/detail/{post:slug}', [UserController::class, 'show']);
+
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 

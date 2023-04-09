@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class DashboardPostController extends Controller
 {
+    public function __construct() {
+        $this->middleware('can:petani post');
+    }
     /**
      * Display a listing of the resource.
      */

@@ -25,16 +25,18 @@ class DatabaseSeeder extends Seeder
 
         // User::factory(5)->create();
 
-        // Category::create([
-        //     'name' => 'Padi',
-        //     'slug' =>'padi'
-        // ]);
+        Category::create([
+            'name' => 'Padi',
+            'slug' =>'padi'
+        ]);
 
-        // Category::create([
-        //     'name' => 'Jagung',
-        //     'slug' =>'jagung'
-        // ]);
+        Category::create([
+            'name' => 'Jagung',
+            'slug' =>'jagung'
+        ]);
 
         Post::factory(20)->create();
+
+        $this->call([UserRolePermissionSeeder::class]);
     }
 }

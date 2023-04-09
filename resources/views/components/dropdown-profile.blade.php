@@ -35,15 +35,25 @@
             <div class="text-xs text-slate-500 italic">Administrator</div>
         </div>
         <ul>
-            <li>
-                <a class="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3" href="{{ route('profile.show') }}" @click="open = false" @focus="open = true" @focusout="open = false">Settings</a>
-            </li>
-            <li>
+            @if (Gate::allows('admin') || Gate::allows('petani post'))
+            <li class="@if(in_array(Request::segment(1), ['dashboard']) || in_array(Request::segment(1), ['petani'])){{ 'hidden' }}@endif">
                 <a class="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3" href="{{ route('dashboard') }}" @click="open = false" @focus="open = true" @focusout="open = false">Dashboard</a>
             </li>
-            <li>
-                <a class="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3" href="/" @click="open = false" @focus="open = true" @focusout="open = false">Semua lowongan</a>
+                
+            @endif
+            {{-- @can('petani post')
+            @endcan
+            @can('admin')
+            <li class="@if(in_array(Request::segment(1), ['dashboard']) || in_array(Request::segment(1), ['petani'])){{ 'hidden' }}@endif">
+                <a class="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3" href="{{ route('dashboard') }}" @click="open = false" @focus="open = true" @focusout="open = false">Dashboard</a>
             </li>
+            @endcan --}}
+        <li class="@if(in_array(Request::segment(1), [''])){{ 'hidden' }}@endif">
+            <a class="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3" href="/" @click="open = false" @focus="open = true" @focusout="open = false">Semua lowongan</a>
+        </li>
+        <li>
+            <a class="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3" href="{{ route('profile.show') }}" @click="open = false" @focus="open = true" @focusout="open = false">Settings</a>
+        </li>
             <li>
                 <form method="POST" action="{{ route('logout') }}" x-data>
                     @csrf

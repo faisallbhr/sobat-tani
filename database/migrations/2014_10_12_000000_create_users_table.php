@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->biginteger('no_hp')->unique();
             $table->timestamp('no_hp_verified_at')->nullable();
-            $table->string('profesi');
+            // $table->string('profesi');
             $table->string('password');
             $table->rememberToken();
             // $table->foreignId('current_team_id')->nullable();
