@@ -8,6 +8,9 @@
             <div class="w-1/2">
                 <p class="pb-2">Title</p>
                 <input class="w-full rounded-md dark:text-dark-eval-0" type="text" name="title" value="{{ old('title', $post->title) }}" id="title">
+                @error('title')
+                    <small class="text-rose-600">{{ $message }}</small>
+                @enderror
             </div>
             <div class="w-1/2 py-4">
                 <p class="pb-2">Slug</p>
@@ -29,6 +32,9 @@
                 <p>Jobdesk</p>
                 <input type="hidden" name="body" value="{{ old('body', $post->body) }}" id="body">
                 <trix-editor input="body"></trix-editor>
+                @error('body')
+                    <small class="text-rose-600">{{ $message }}</small>
+                @enderror
             </div>
             <div class="flex justify-end gap-2">
                 <button class="mt-4 bg-gray-400 px-4 text-gray-700 font-medium rounded text-sm hover:bg-gray-500 hover:text-gray-300"><a href="/petani/posts">Batal</a></button>

@@ -5,25 +5,7 @@
             {{ session('status') }}
         </div>
     @endif   
-    <!-- Form -->
-    {{-- <form method="POST" action="{{ route('login') }}">
-        @csrf
-        <div class="space-y-4">
-            <div>
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" type="email" name="email" :value="old('email')" required autofocus />                
-            </div>
-            <div>
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" type="password" name="password" required autocomplete="current-password" />                
-            </div>
-        </div>
-        <div class="flex items-center justify-between mt-6">       
-            <x-jet-button class="ml-3">
-                {{ __('Sign in') }}
-            </x-jet-button>            
-        </div>
-    </form> --}}
+
     <form method="POST" action="{{ route('login') }}">
     @csrf
     <div class='mb-4'>
@@ -49,6 +31,7 @@
             {{ __('Masuk') }}
         </x-jet-button>            
     </div>
+    <x-jet-validation-errors class="mt-4" />   
 </form>
     <!-- Footer -->
     <div class="pt-5 mt-6 border-t border-slate-200">

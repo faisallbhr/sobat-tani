@@ -21,11 +21,6 @@ use Illuminate\Support\Facades\Http;
          */
         public function index()
         {
-            if(Gate::allows('admin') || Gate::allows('petani post')){
-                return view('pages.dashboard.dashboard', [
-                    'posts' => Post::where('user_id', auth()->user()->id)->paginate(7)
-                ]);
-            }
-            return abort(403);
+            return view('pages.dashboard.dashboard');
         }
     }

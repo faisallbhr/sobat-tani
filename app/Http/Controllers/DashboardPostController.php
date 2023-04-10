@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class DashboardPostController extends Controller
 {
     public function __construct() {
-        $this->middleware('can:petani post');
+        $this->middleware('can:petani');
     }
     /**
      * Display a listing of the resource.
@@ -94,7 +94,7 @@ class DashboardPostController extends Controller
         Post::where('id', $post->id)
             ->update($validatedData);
 
-        return redirect('/petani/posts');
+        return redirect('/petani/posts')->with('status', 'Berhasil mengubah lowongan!');
     }
 
     /**
@@ -104,7 +104,7 @@ class DashboardPostController extends Controller
     {
         Post::destroy($post->id);
 
-        return redirect('/petani/posts');
+        return redirect('/petani/posts')->with('status', 'Berhasil menghapus lowongan!');
 
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use Laravel\Fortify\Fortify;
 use Laravel\Jetstream\Jetstream;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -34,7 +35,7 @@ class CreateNewUser implements CreatesNewUsers
             'no_hp' => ['required', 'integer', 'unique:users'],
             'profesi' => ['required'],
             'password' => $this->passwordRules(),
-        ]);
+        ])->validate();
 
         $role = $input['profesi'];
 
@@ -44,8 +45,10 @@ class CreateNewUser implements CreatesNewUsers
                     'name' => $input['name'],
                     'no_hp' => $input['no_hp'],
                     'password' => Hash::make($input['password']),
-                ]), function (User $user) {
+                ]), 
+                function (User $user) {
                     $this->buruhTani($user);
+                    return redirect()->intended(Fortify::redirects('login'))->with('success', 'ssssss');
                 });
             });
         }else{
@@ -54,7 +57,8 @@ class CreateNewUser implements CreatesNewUsers
                     'name' => $input['name'],
                     'no_hp' => $input['no_hp'],
                     'password' => Hash::make($input['password']),
-                ]), function (User $user) {
+                ]), 
+                function (User $user) {
                     $this->petani($user);
                 });
             });

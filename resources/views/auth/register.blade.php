@@ -46,6 +46,8 @@
             <label htmlFor='no_hp' class='ml-1'>No. Handphone</label>
             <input
                 type='number'
+                step="1"
+                onchange="this.value = parseInt(this.value);"
                 class='w-full p-2 border rounded-md outline-none shadow-sm'
                 id='no_hp'
                 name="no_hp"

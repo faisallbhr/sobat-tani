@@ -43,11 +43,12 @@ class UserRolePermissionSeeder extends Seeder
         $role_petani = Role::create(['name' => 'petani']);
         $role_admin = Role::create(['name' => 'admin']);
 
-        Permission::create(['name' => 'petani post']);
-        Permission::create(['name' => 'read petani konfigurasi']);
+        Permission::create(['name' => 'buruh tani']);
+        Permission::create(['name' => 'petani']);
         Permission::create(['name' => 'admin']);
 
-        $role_petani->givePermissionTo(['petani post', 'read petani konfigurasi']);
+        $role_buruh_tani->givePermissionTo('buruh tani');
+        $role_petani->givePermissionTo('petani');
         $role_admin->givePermissionTo('admin');
 
         $buruh_tani->assignRole('buruh tani');
