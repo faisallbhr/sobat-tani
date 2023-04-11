@@ -32,7 +32,9 @@ class CreateNewUser implements CreatesNewUsers
         // dd()
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-            'no_hp' => ['required', 'integer', 'unique:users'],
+            'no_handphone' => ['required', 'integer', 'unique:users'],
+            'no_rekening' => ['required', 'integer', 'unique:users'],
+            'gender_id' => ['required'],
             'profesi' => ['required'],
             'password' => $this->passwordRules(),
         ])->validate();
@@ -43,7 +45,9 @@ class CreateNewUser implements CreatesNewUsers
             return DB::transaction(function () use ($input) {
                 return tap(User::create([
                     'name' => $input['name'],
-                    'no_hp' => $input['no_hp'],
+                    'no_handphone' => $input['no_handphone'],
+                    'no_rekening' => $input['no_rekening'],
+                    'gender_id' => $input['gender_id'],
                     'password' => Hash::make($input['password']),
                 ]), 
                 function (User $user) {
@@ -55,7 +59,9 @@ class CreateNewUser implements CreatesNewUsers
             return DB::transaction(function () use ($input) {
                 return tap(User::create([
                     'name' => $input['name'],
-                    'no_hp' => $input['no_hp'],
+                    'no_handphone' => $input['no_handphone'],
+                    'no_rekening' => $input['no_rekening'],
+                    'gender_id' => $input['gender_id'],
                     'password' => Hash::make($input['password']),
                 ]), 
                 function (User $user) {

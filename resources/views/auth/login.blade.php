@@ -9,12 +9,12 @@
     <form method="POST" action="{{ route('login') }}">
     @csrf
     <div class='mb-4'>
-        <label for='no_hp' class='ml-1'>No. Handphone</label>
+        <label for='no_handphone' class='ml-1'>No. Handphone</label>
         <input
             type='number'
             class='w-full p-2 border rounded-md outline-none shadow-sm'
-            id='no_hp'
-            name='no_hp'
+            id='no_handphone'
+            name='no_handphone'
         />
     </div>
     <div class='mb-4'>

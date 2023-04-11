@@ -20,6 +20,7 @@ use App\Http\Controllers\DashboardPostController;
 */
 Route::get('/', [UserController::class, 'index']);
 Route::get('/detail/{post:slug}', [UserController::class, 'show']);
+Route::post('/detail/{post:slug}', [UserController::class, 'store']);
 
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {

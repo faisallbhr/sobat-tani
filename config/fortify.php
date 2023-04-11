@@ -46,9 +46,9 @@ return [
     |
     */
 
-    'username' => 'no_hp',
+    'username' => 'no_handphone',
 
-    'no_hp' => 'no_hp',
+    'no_handphone' => 'no_handphone',
 
     /*
     |--------------------------------------------------------------------------

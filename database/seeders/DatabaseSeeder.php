@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Post;
+use App\Models\Gender;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Vacancies;
 use Illuminate\Database\Seeder;
 use Database\Seeders\DashboardTableSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -35,7 +36,15 @@ class DatabaseSeeder extends Seeder
             'slug' =>'jagung'
         ]);
 
-        Post::factory(20)->create();
+        Gender::create([
+            'name' => 'L',
+        ]);
+
+        Gender::create([
+            'name' => 'P',
+        ]);
+
+        Vacancies::factory(20)->create();
 
         $this->call([UserRolePermissionSeeder::class]);
     }

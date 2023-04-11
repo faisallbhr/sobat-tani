@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use App\Models\Category;
+use App\Models\Vacancies;
 use Illuminate\Http\Request;
 
 class DashboardPostController extends Controller
@@ -14,11 +14,10 @@ class DashboardPostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         return view('petani.index', [
-            'posts' => Post::where('user_id', auth()->user()->id)->latest()->paginate(7)
-        ]);
+            'posts' => Vacancies::where('user_id', auth()->user()->id)->latest()->paginate(7)        ]);
     }
 
     /**
@@ -45,7 +44,7 @@ class DashboardPostController extends Controller
 
         $validatedData['user_id'] = auth()->user()->id;
 
-        Post::create($validatedData);
+        Vacancies::create($validatedData);
 
         return redirect('/petani/posts');
   
@@ -54,7 +53,7 @@ class DashboardPostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(Vacancies $post)
     {
         return view('petani.show', [
             'post' => $post
@@ -64,7 +63,7 @@ class DashboardPostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit(Vacancies $post)
     {
         return view('petani.edit', [
             'post' => $post,
@@ -75,7 +74,7 @@ class DashboardPostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Vacancies $post)
     {
         $rules = [
             'title' => 'required|max:255',
@@ -91,7 +90,7 @@ class DashboardPostController extends Controller
 
         $validatedData['user_id'] = auth()->user()->id;
 
-        Post::where('id', $post->id)
+        Vacancies::where('id', $post->id)
             ->update($validatedData);
 
         return redirect('/petani/posts')->with('status', 'Berhasil mengubah lowongan!');
@@ -100,9 +99,9 @@ class DashboardPostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy(Vacancies $post)
     {
-        Post::destroy($post->id);
+        Vacancies::destroy($post->id);
 
         return redirect('/petani/posts')->with('status', 'Berhasil menghapus lowongan!');
 

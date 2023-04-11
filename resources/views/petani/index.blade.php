@@ -40,11 +40,11 @@
                                 </div>
                                     <form action="/petani/posts/{{ $post->slug }}" method="post">
                                         @method('delete')
-                                    @csrf
-                                    <button class="bg-red-500 px-4 py-2 rounded text-white hover:bg-red-600"           
-                                    onclick="return confirm('Apakah anda yakin akan menghapus postingan?')">
-                                        <i class="fa-solid fa-trash mx-auto"></i>
-                                    </button>
+                                        @csrf
+                                        <button class="bg-red-500 px-4 py-2 rounded text-white hover:bg-red-600"           
+                                        onclick="return confirm('Apakah anda yakin akan menghapus postingan?')">
+                                            <i class="fa-solid fa-trash mx-auto"></i>
+                                        </button>
                                 </form>
                             </td>
                         </tr>

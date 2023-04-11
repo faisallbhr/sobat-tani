@@ -19,24 +19,30 @@ class UserRolePermissionSeeder extends Seeder
     public function run()
     {
         $default_user_value = [
-            'no_hp_verified_at' => now(),
+            'no_handphone_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10)
         ];
 
         $buruh_tani = User::create(array_merge([
             'name' => 'buruh_tani',
-            'no_hp' => 81,
+            'no_handphone' => 81,
+            'no_rekening' => 32423421,
+            'gender_id' => mt_rand(1,2)
         ], $default_user_value));
 
         $petani = User::create(array_merge([
             'name' => 'petani',
-            'no_hp' => 82,
+            'no_handphone' => 82,
+            'no_rekening' => 8324231,
+            'gender_id' => mt_rand(1,2)
         ], $default_user_value));
 
         $admin = User::create(array_merge([
             'name' => 'admin',
-            'no_hp' => 83,
+            'no_handphone' => 83,
+            'no_rekening' => 3203211,
+            'gender_id' => mt_rand(1,2)
         ], $default_user_value));
 
         $role_buruh_tani = Role::create(['name' => 'buruh tani']);

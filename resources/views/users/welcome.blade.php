@@ -21,29 +21,24 @@
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
           @foreach ($posts as $post)
-              
-          
-            <div class="max-w-sm border border-slate-200 rounded-md">
-              <div class="p-4 shadow-lg ">
-                <img class="object-cover object-center rounded-md" src="https://images.unsplash.com/photo-1624996379697-f01d168b1a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">
+            <a href="/detail/{{ $post->slug }}">
+                <div class="max-w-sm border border-slate-200 rounded-md">
+                <div class="p-4 shadow-lg ">
+                    <img class="object-cover object-center rounded-md" src="https://images.unsplash.com/photo-1624996379697-f01d168b1a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">
 
-                <div class="mt-8">
+                    <div class="mt-8">
 
-                    <h1 class="mt-4 text-xl font-semibold text-gray-800 h-10 md:h-20 overflow-y-hidden">
-                        {{ $post->title }}
-                    </h1>
+                        <h1 class="mt-4 text-xl font-semibold text-gray-800 h-10 md:h-20 overflow-y-hidden">
+                            {{ $post->title }}
+                        </h1>
 
-                    <div class="mt-4 text-gray-500 h-40 overflow-y-hidden">
-                        {!! $post->body !!}
+                        <div class="mt-4 text-gray-500 h-40 overflow-y-hidden">
+                            {!! $post->body !!}
+                        </div>
                     </div>
-
-                    <div class="flex items-center justify-end mt-6">
-                        <a href="/detail/{{ $post->slug }}" class="inline-block text-sky-500 underline hover:text-sky-400">Read more</a>
-                    </div>
-
                 </div>
-              </div>
-            </div>
+                </div>
+            </a>
             @endforeach
         </div>
         <div class="mt-10">

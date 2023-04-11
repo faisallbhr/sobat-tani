@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Validation\Rules\Unique;
 
 return new class extends Migration
 {
@@ -13,15 +14,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('vacancies', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->biginteger('no_handphone')->unique();
-            $table->biginteger('no_rekening')->unique();
-            $table->timestamp('no_handphone_verified_at')->nullable();
-            $table->foreignId('gender_id');
-            $table->string('password');
-            $table->rememberToken();
+            $table->foreignId('category_id');
+            $table->foreignId('user_id');
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->bigInteger('salary');
+            $table->text('body');
+            $table->text('address');
             $table->timestamps();
         });
     }
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('vacancies');
     }
 };

@@ -43,18 +43,36 @@
                 />
         </div>
         <div class=' mb-4'>
-            <label htmlFor='no_hp' class='ml-1'>No. Handphone</label>
+            <label htmlFor='no_handphone' class='ml-1'>No. Handphone</label>
             <input
                 type='number'
                 step="1"
                 onchange="this.value = parseInt(this.value);"
                 class='w-full p-2 border rounded-md outline-none shadow-sm'
-                id='no_hp'
-                name="no_hp"
+                id='no_handphone'
+                name="no_handphone"
+            />
+        </div>
+        <div class=' mb-4'>
+            <label htmlFor='no_rekening' class='ml-1'>No. Rekening</label>
+            <input
+                type='number'
+                step="1"
+                onchange="this.value = parseInt(this.value);"
+                class='w-full p-2 border rounded-md outline-none shadow-sm'
+                id='no_rekening'
+                name="no_rekening"
             />
         </div>
         <div class=' mb-4 flex flex-col'>
-            <label htmlFor='no_hp' class='ml-1'>Profesi</label>
+            <label htmlFor='gender_id' class='ml-1'>Gender</label>
+            <select name="gender_id" id="gender_id" class="w-full p-2 border rounded-md outline-none shadow-sm">
+                <option value="1" onchange="this.value = parseInt(this.value);">Laki-laki</option>
+                <option value="2" onchange="this.value = parseInt(this.value);">Perempuan</option>
+            </select>
+        </div>
+        <div class=' mb-4 flex flex-col'>
+            <label htmlFor='profesi' class='ml-1'>Profesi</label>
             <select name="profesi" id="profesi" class="w-full p-2 border rounded-md outline-none shadow-sm">
                 <option value="buruh tani">Buruh tani</option>
                 <option value="petani">Petani</option>
