@@ -17,7 +17,8 @@ class DashboardPostController extends Controller
     public function index(Request $request)
     {
         return view('petani.index', [
-            'posts' => Vacancies::where('user_id', auth()->user()->id)->latest()->paginate(7)        ]);
+            'posts' => Vacancies::where('user_id', auth()->user()->id)->latest()->paginate(7)
+        ]);
     }
 
     /**
@@ -37,12 +38,16 @@ class DashboardPostController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|max:255',
-            'slug' => 'required|unique:posts',
+            'slug' => 'required|unique:vacancies',
             'category_id' => 'required',
-            'body' => 'required'
+            'salary' => 'required|integer',
+            'body' => 'required',
+            'address' => 'required'
         ]);
+        // dd($validatedData);
 
         $validatedData['user_id'] = auth()->user()->id;
+
 
         Vacancies::create($validatedData);
 
@@ -83,7 +88,7 @@ class DashboardPostController extends Controller
         ];
 
         if($request->slug != $post->slug){
-            $rules['slug'] = 'required|unique:posts';
+            $rules['slug'] = 'required|unique:vacancies';
         }
 
         $validatedData = $request->validate($rules);

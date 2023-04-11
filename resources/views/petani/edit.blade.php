@@ -16,6 +16,17 @@
                 <p class="pb-2">Slug</p>
                 <input class="w-full rounded-md dark:text-dark-eval-0" type="text" name="slug" value="{{ old('slug', $post->slug) }}" id="slug">
             </div>
+            <div class="w-1/2 py-4">
+                <label htmlFor='salary' class='ml-1'>Gaji</label>
+                <input
+                    type='number'
+                    step="1"
+                    onchange="this.value = parseInt(this.value);"
+                    class='w-full p-2 border rounded-md outline-none shadow-sm'
+                    id='salary'
+                    name="salary"
+                />
+            </div>
             <div class="w-1/2">
                 <p class="pb-2">Category</p>
                 <select name="category_id" class="w-full rounded-md dark:text-dark-eval-0">

@@ -43,7 +43,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'no_hp_verified_at' => 'datetime',
+        'no_handphone_verified_at' => 'datetime',
     ];
 
     /**
