@@ -30,7 +30,7 @@
                             <td class="px-6 py-4  text-slate-800 flex flex-col md:flex-row gap-2 items-center justify-center">
                                 <div>
                                     <button class="bg-blue-600 px-4 py-2 rounded text-white hover:bg-blue-700">
-                                        <a href="/petani/posts/{{ $post->slug }}" class="fa-solid fa-eye mx-auto"></a>
+                                        <a href="{{ url('/petani/posts/'.$post->slug) }}" class="fa-solid fa-eye mx-auto"></a>
                                     </button>
                                 </div>
                                 <div>
