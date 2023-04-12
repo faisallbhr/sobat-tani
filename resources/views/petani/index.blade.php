@@ -29,22 +29,24 @@
                             <td class="px-6 py-4 text-slate-800">{{ $post->category->name }}</td>
                             <td class="px-6 py-4  text-slate-800 flex flex-col md:flex-row gap-2 items-center justify-center">
                                 <div>
-                                    <button class="bg-blue-600 px-4 py-2 rounded text-white hover:bg-blue-700">
-                                        <a href="{{ url('/petani/posts/'.$post->slug) }}" class="fa-solid fa-eye mx-auto"></a>
+                                    <a href="{{ url('/petani/posts/'.$post->slug) }}" >
+                                    <button class="bg-blue-600 px-4 py-2 rounded text-white hover:bg-blue-700"><span class="fa-solid fa-eye mx-auto"></span>
                                     </button>
+                                </a>
                                 </div>
                                 <div>
+                                    <a href="/petani/posts/{{ $post->slug }}/edit" >
                                     <button class="bg-yellow-400 px-4 py-2 rounded hover:bg-yellow-500">
-                                        <a href="/petani/posts/{{ $post->slug }}/edit" class="fa-solid fa-edit mx-auto "></a>
+                                        <span class="fa-solid fa-edit mx-auto "></span>
                                     </button>
+                                </a>
                                 </div>
                                     <form action="/petani/posts/{{ $post->slug }}" method="post">
                                         @method('delete')
                                         @csrf
                                         <button class="bg-red-500 px-4 py-2 rounded text-white hover:bg-red-600"           
-                                        onclick="return confirm('Apakah anda yakin akan menghapus postingan?')">
-                                            <i class="fa-solid fa-trash mx-auto"></i>
-                                        </button>
+                                        onclick="return confirm('Apakah anda yakin akan menghapus postingan?')"><span class="fa-solid fa-trash mx-auto"></span>
+                                    </button>
                                 </form>
                             </td>
                         </tr>

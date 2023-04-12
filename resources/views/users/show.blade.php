@@ -24,13 +24,11 @@
                             @if ($i->vacancy_id == $post->id and $i->user_id == $check_user[0]['id'])
                                 <p class="mt-4 bg-gray-200 flex items-center px-4 py-2 rounded font-semibold text-gray-400">Daftar Lowongan</p>                           
                                 <p class="hidden">{{ $counter = false }}</p>
-                                {{-- {{ dd($counter) }} --}}
                                 @endif
-                                @endforeach 
-                                @if ($counter)
+                        @endforeach 
+                            @if ($counter)
                                 <x-jet-button class="mt-4" type='submit'>Daftar Lowongan</x-jet-button>   
-                            
-                        @endif
+                            @endif
                     @endcan
                 </form>
             </div>

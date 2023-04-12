@@ -25,7 +25,12 @@
                     class='w-full p-2 border rounded-md outline-none shadow-sm'
                     id='salary'
                     name="salary"
+                    value="{{ old('salary', $post->salary) }}"
                 />
+            </div>
+            <div class="py-4">
+                <p>Alamat</p>
+                <input type="text" name="address" id="address" class='w-3/4 h-20 p-2 border rounded-md outline-none shadow-sm' value="{{ old('address', $post->address) }}">
             </div>
             <div class="w-1/2">
                 <p class="pb-2">Category</p>

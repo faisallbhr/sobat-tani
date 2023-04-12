@@ -17,17 +17,6 @@ class UserController extends Controller
     }
     public function show(Vacancies $post)
     {
-        // $check_id = User::where('id', auth()->user()->id)->get('id');
-        // dd($post->id);
-        // $cek_user = StatVacancies::where('user_id', $check_id[0]['id'])->get('id');
-        // $cek_post = StatVacancies::where('post_id', $post->user_id)->get();
-        // 'registered' => DaftarLowongan::where('user_id', $check_id[0]['id'])->andWhere('post_id', $post->id)->get()
-        // dd($cek_post);
-        // if(empty($registered)){
-        //     dd('kosong');
-        // }else{
-        //     dd('ada isinya');
-        // }
         if(Auth::user()){
             return view('users.show', [
                 'post' => $post,
