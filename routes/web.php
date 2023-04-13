@@ -21,6 +21,8 @@ use App\Http\Controllers\DashboardPostController;
 Route::get('/', [UserController::class, 'index']);
 Route::get('/detail/{post:slug}', [UserController::class, 'show']);
 Route::post('/detail/{post:slug}', [UserController::class, 'store']);
+Route::resource('/petani/posts', DashboardPostController::class);
+// Route::get('/petani/posts/checkSlug', [DashboardPostController::class, 'checkSlug']);
 
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
@@ -33,5 +35,3 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         return view('pages/utility/404');
     });    
 });
-
-Route::resource('/petani/posts', DashboardPostController::class)->middleware(['auth']);

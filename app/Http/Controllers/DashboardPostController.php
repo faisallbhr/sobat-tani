@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Vacancies;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DashboardPostController extends Controller
 {
@@ -38,16 +40,14 @@ class DashboardPostController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|max:255',
-            'slug' => 'required|unique:vacancies',
             'category_id' => 'required',
             'salary' => 'required|integer',
             'body' => 'required',
             'address' => 'required'
         ]);
-        // dd($validatedData);
 
         $validatedData['user_id'] = auth()->user()->id;
-
+        $validatedData['slug'] = SlugService::createSlug(Vacancies::class, 'slug', $request->title);    
 
         Vacancies::create($validatedData);
 
@@ -87,9 +87,6 @@ class DashboardPostController extends Controller
             'body' => 'required'
         ];
 
-        if($request->slug != $post->slug){
-            $rules['slug'] = 'required|unique:vacancies';
-        }
 
         $validatedData = $request->validate($rules);
 
@@ -109,6 +106,5 @@ class DashboardPostController extends Controller
         Vacancies::destroy($post->id);
 
         return redirect('/petani/posts')->with('status', 'Berhasil menghapus lowongan!');
-
     }
 }

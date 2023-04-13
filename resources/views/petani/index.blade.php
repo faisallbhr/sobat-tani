@@ -56,7 +56,7 @@
         <div class="mt-4">
             {{ $posts->links() }}
         </div>
-        <x-jet-button class="absolute right-0 mt-4"><a href="posts/create">Tambah postingan</a></x-jet-button>
+        <a href="{{ url('/petani/posts/create') }}"><x-jet-button class="absolute right-0 mt-4">Tambah postingan</x-jet-button></a>
 
     </div>
     

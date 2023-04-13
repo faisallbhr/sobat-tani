@@ -1,15 +1,11 @@
 <x-app-layout>
 <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
     <div class="py-6 max-w-4xl relative">
-        <form action="{{ url('/petani/posts') }}" method="post">
+        <form action="{{ url('/petani/posts') }}" method="post" id="form">
             @csrf
             <div class="w-1/2">
                 <p class="pb-2">Title</p>
                 <input class="w-full rounded-md" type="text" name="title" value="{{ old('title') }}" id="title">
-            </div>
-            <div class="w-1/2 py-4">
-                <p class="pb-2">Slug</p>
-                <input class="w-full rounded-md" type="text" name="slug" value="{{ old('slug') }}" id="slug">
             </div>
             <div class="w-1/2">
                 <p class="pb-2">Category</p>
@@ -42,17 +38,17 @@
                 <input type="hidden" name="body" value="{{ old('body') }}" id="body">
                 <trix-editor input="body"></trix-editor>
             </div>
-            <div class="flex justify-end gap-2">
-                <button class="mt-4 bg-gray-400 px-4 py-2 text-gray-700 font-medium rounded text-sm hover:bg-gray-500 hover:text-gray-300"><a href="/petani/posts">Batal</a></button>
-                <x-jet-button class="mt-4" type='submit'>Buat postingan</x-jet-button>
-            </div>
         </form>
+        <div class="flex justify-end gap-2">
+            <a href="{{ url('/petani/posts') }}"><button class="mt-4 bg-gray-400 px-4 py-2 text-gray-700 font-medium rounded text-sm hover:bg-gray-500 hover:text-gray-300">Batal</button></a>
+            <x-jet-button class="mt-4" type='submit' form='form'>Buat postingan</x-jet-button>
+        </div>
     </div>
 </div>
 
 <script>
     document.addEventListener('trix-file-accept', function(e){
         e.preventDefault()
-    })
+    });
 </script>
 </x-app-layout>
