@@ -35,15 +35,15 @@
             <div class="text-xs text-slate-500 italic">Administrator</div>
         </div>
         <ul>
-            <li class="@if(in_array(Request::segment(1), ['dashboard']) || in_array(Request::segment(1), ['petani'])){{ 'hidden' }}@endif">
+            <li class="@if(in_array(Request::segment(1), ['dashboard']) || in_array(Request::segment(1), ['petani']) || in_array(Request::segment(1), ['buruhtani'])){{ 'hidden' }}@endif">
                 <a class="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3" href="{{ route('dashboard') }}" @click="open = false" @focus="open = true" @focusout="open = false">Dashboard</a>
             </li>
-        <li class="@if(in_array(Request::segment(1), [''])){{ 'hidden' }}@endif">
-            <a class="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3" href="/" @click="open = false" @focus="open = true" @focusout="open = false">Semua lowongan</a>
-        </li>
-        <li>
-            <a class="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3" href="{{ route('profile.show') }}" @click="open = false" @focus="open = true" @focusout="open = false">Settings</a>
-        </li>
+            <li class="@if(in_array(Request::segment(1), ['']) || in_array(Request::segment(1), ['detail'])){{ 'hidden' }}@endif">
+                <a class="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3" href="/" @click="open = false" @focus="open = true" @focusout="open = false">Semua lowongan</a>
+            </li>
+            <li>
+                <a class="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3" href="{{ route('profile.show') }}" @click="open = false" @focus="open = true" @focusout="open = false">Settings</a>
+            </li>
             <li>
                 <form method="POST" action="{{ route('logout') }}" x-data>
                     @csrf

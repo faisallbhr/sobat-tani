@@ -45,9 +45,7 @@
         <div class=' mb-4'>
             <label htmlFor='no_handphone' class='ml-1'>No. Handphone</label>
             <input
-                type='number'
-                step="1"
-                onchange="this.value = parseInt(this.value);"
+                type='text'
                 class='w-full p-2 border rounded-md outline-none shadow-sm'
                 id='no_handphone'
                 name="no_handphone"
@@ -56,9 +54,7 @@
         <div class=' mb-4'>
             <label htmlFor='no_rekening' class='ml-1'>No. Rekening</label>
             <input
-                type='number'
-                step="1"
-                onchange="this.value = parseInt(this.value);"
+                type='text'
                 class='w-full p-2 border rounded-md outline-none shadow-sm'
                 id='no_rekening'
                 name="no_rekening"

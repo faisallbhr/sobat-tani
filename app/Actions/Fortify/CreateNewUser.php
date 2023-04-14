@@ -32,8 +32,8 @@ class CreateNewUser implements CreatesNewUsers
         // dd()
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-            'no_handphone' => ['required', 'integer', 'unique:users'],
-            'no_rekening' => ['required', 'integer', 'unique:users'],
+            'no_handphone' => ['required', 'numeric', 'unique:users'],
+            'no_rekening' => ['required', 'numeric', 'unique:users'],
             'gender_id' => ['required'],
             'profesi' => ['required'],
             'password' => $this->passwordRules(),

@@ -32,14 +32,14 @@
                                     <a href="{{ url('/petani/posts/'.$post->slug) }}" >
                                     <button class="bg-blue-600 px-4 py-2 rounded text-white hover:bg-blue-700"><span class="fa-solid fa-eye mx-auto"></span>
                                     </button>
-                                </a>
+                                    </a>
                                 </div>
                                 <div>
                                     <a href="/petani/posts/{{ $post->slug }}/edit" >
                                     <button class="bg-yellow-400 px-4 py-2 rounded hover:bg-yellow-500">
                                         <span class="fa-solid fa-edit mx-auto "></span>
                                     </button>
-                                </a>
+                                    </a>
                                 </div>
                                     <form action="/petani/posts/{{ $post->slug }}" method="post">
                                         @method('delete')
@@ -53,11 +53,11 @@
                     @endforeach
                 </tbody>
             </table>
-        <div class="mt-4">
-            {{ $posts->links() }}
+            <div class="mt-4">
+                {{ $posts->links() }}
+            </div>
+            <a href="{{ url('/petani/posts/create') }}"><x-jet-button class="absolute right-0 mt-4">Tambah postingan</x-jet-button></a>
         </div>
-        <a href="{{ url('/petani/posts/create') }}"><x-jet-button class="absolute right-0 mt-4">Tambah postingan</x-jet-button></a>
-
     </div>
     
 </x-app-layout>

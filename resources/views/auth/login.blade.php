@@ -11,7 +11,7 @@
     <div class='mb-4'>
         <label for='no_handphone' class='ml-1'>No. Handphone</label>
         <input
-            type='number'
+            type='text'
             class='w-full p-2 border rounded-md outline-none shadow-sm'
             id='no_handphone'
             name='no_handphone'

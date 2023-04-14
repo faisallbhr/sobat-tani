@@ -26,22 +26,22 @@ class UserRolePermissionSeeder extends Seeder
 
         $buruh_tani = User::create(array_merge([
             'name' => 'buruh_tani',
-            'no_handphone' => 81,
-            'no_rekening' => 32423421,
+            'no_handphone' => '081',
+            'no_rekening' => '32423421',
             'gender_id' => mt_rand(1,2)
         ], $default_user_value));
 
         $petani = User::create(array_merge([
             'name' => 'petani',
-            'no_handphone' => 82,
-            'no_rekening' => 8324231,
+            'no_handphone' => '082',
+            'no_rekening' => '8324231',
             'gender_id' => mt_rand(1,2)
         ], $default_user_value));
 
         $admin = User::create(array_merge([
             'name' => 'admin',
-            'no_handphone' => 83,
-            'no_rekening' => 3203211,
+            'no_handphone' => '083',
+            'no_rekening' => '3203211',
             'gender_id' => mt_rand(1,2)
         ], $default_user_value));
 

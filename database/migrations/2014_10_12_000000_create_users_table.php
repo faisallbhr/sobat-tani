@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->biginteger('no_handphone')->unique();
-            $table->biginteger('no_rekening')->unique();
+            $table->string('no_handphone')->unique();
+            $table->string('no_rekening')->unique();
             $table->timestamp('no_handphone_verified_at')->nullable();
             $table->foreignId('gender_id');
             $table->string('password');

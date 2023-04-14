@@ -61,9 +61,9 @@
 
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="no_hp" value="{{ __('No. Handphone') }}" />
-            <x-jet-input disabled id="no_hp" type="text" class="mt-1 block w-full" wire:model.defer="state.no_hp" />
-            <x-jet-input-error for="no_hp" class="mt-2" />
+            <x-jet-label for="no_handphone" value="{{ __('No. Handphone') }}" />
+            <x-jet-input id="no_handphone" type="text" class="mt-1 block w-full" wire:model.defer="state.no_handphone" />
+            <x-jet-input-error for="no_handphone" class="mt-2" />
         </div>
     </x-slot>
 

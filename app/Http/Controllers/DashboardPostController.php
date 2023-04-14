@@ -16,7 +16,7 @@ class DashboardPostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
         return view('petani.index', [
             'posts' => Vacancies::where('user_id', auth()->user()->id)->latest()->paginate(7)
@@ -48,11 +48,11 @@ class DashboardPostController extends Controller
 
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['slug'] = SlugService::createSlug(Vacancies::class, 'slug', $request->title);    
-
+        
         Vacancies::create($validatedData);
-
+        
         return redirect('/petani/posts');
-  
+        
     }
 
     /**
@@ -86,15 +86,16 @@ class DashboardPostController extends Controller
             'category_id' => 'required',
             'body' => 'required'
         ];
-
-
+        
         $validatedData = $request->validate($rules);
-
+        
+        $validatedData['slug'] = SlugService::createSlug(Vacancies::class, 'slug', $request->title);    
+        
         $validatedData['user_id'] = auth()->user()->id;
 
         Vacancies::where('id', $post->id)
             ->update($validatedData);
-
+            
         return redirect('/petani/posts')->with('status', 'Berhasil mengubah lowongan!');
     }
 

@@ -9,7 +9,7 @@
             </div>
         </div>
 
-        <x-jet-button class="absolute right-0 mt-4"><a href="/petani/posts">Kembali</a></x-jet-button>
+        <a href="{{ url('/petani/posts') }}"><x-jet-button class="absolute right-0 mt-4">Kembali</x-jet-button></a>
     </div>
 </div>
 </x-app-layout>
