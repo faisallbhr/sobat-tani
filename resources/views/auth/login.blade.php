@@ -15,6 +15,7 @@
             class='w-full p-2 border rounded-md outline-none shadow-sm'
             id='no_handphone'
             name='no_handphone'
+            autofocus
         />
     </div>
     <div class='mb-4'>

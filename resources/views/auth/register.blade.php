@@ -40,6 +40,7 @@
                 class='w-full p-2 border rounded-md outline-none shadow-sm'
                 id='name'
                 name="name"
+                autofocus
                 />
         </div>
         <div class=' mb-4'>

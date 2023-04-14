@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Vacancies;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\StatVacancies;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DashboardPostController extends Controller
@@ -60,8 +61,15 @@ class DashboardPostController extends Controller
      */
     public function show(Vacancies $post)
     {
+        $waiting = StatVacancies::where('vacancy_id', $post->id)->get();
+
+        $vacancies = array();
+        foreach($waiting as $wait){
+           array_push($vacancies, $wait->vacancy_id);
+        }
         return view('petani.show', [
-            'post' => $post
+            'post' => $post,
+            'waiting' => Vacancies::whereIn('id', $vacancies)->get()
         ]);
     }
 
