@@ -13,6 +13,6 @@ class StatVacancies extends Model
         return $this->hasMany(User::class);
     }
     public function vacancies(){
-        return $this->belongsToMany(Vacancies::class);
+        return $this->belongsTo(Vacancies::class);
     }
 }

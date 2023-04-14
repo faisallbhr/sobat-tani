@@ -16,12 +16,13 @@ class DaftarLowonganController extends Controller
         $waiting = StatVacancies::where('user_id', auth()->user()->id)
                                 ->where('status', false)->get();
 
+        $vacancies = array();
         foreach($waiting as $wait){
-            $vacancies = $wait->vacancy_id;
+           array_push($vacancies, $wait->vacancy_id);
         }
 
         return view('buruh_tani.index', [
-            'waiting' => Vacancies::where('id', $vacancies)->get()
+            'waiting' => Vacancies::whereIn('id', $vacancies)->get()
         ]);
     }
 }
