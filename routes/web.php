@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DaftarLowonganController;
+use App\Http\Controllers\DaftarPekerjaanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -23,7 +24,8 @@ Route::get('/', [UserController::class, 'index']);
 Route::get('/detail/{post:slug}', [UserController::class, 'show']);
 Route::post('/detail/{post:slug}', [UserController::class, 'store']);
 Route::resource('/petani/posts', DashboardPostController::class);
-Route::resource('/buruhtani/list', DaftarLowonganController::class);
+Route::resource('/buruhtani/wait', DaftarLowonganController::class);
+Route::resource('/buruhtani/accept', DaftarPekerjaanController::class);
 
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
