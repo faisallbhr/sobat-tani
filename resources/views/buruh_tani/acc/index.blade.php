@@ -12,13 +12,12 @@
             </thead>
             <tbody>
                 @foreach ($waiting as $wait)
-                    <tr 
-                    class="border-b border-neutral-500 bg-neutral-200">
+                    <tr class="border-b border-neutral-500 bg-neutral-200">
                         <td class="px-6 py-4 text-slate-800 font-medium ">{{ $loop->iteration }}</td>
                         <td class="px-6 py-4 text-slate-800">{{ $wait->title }}</td>
                         <td class="px-6 py-4 text-slate-800">{{ $wait->category->name }}</td>
                         <td class="py-4  text-slate-800 flex justify-center">
-                            <p class="bg-yellow-500 text-xs px-4 py-2 font-semibold rounded">Menunggu persetujuan</p>
+                            <p class="bg-green-400 text-xs px-4 py-2 font-semibold rounded">Telah disetujui</p>
                         </td>
                     </tr>
                 @endforeach

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Category;
 use App\Models\Vacancies;
 use Illuminate\Support\Str;
@@ -61,15 +62,15 @@ class DashboardPostController extends Controller
      */
     public function show(Vacancies $post)
     {
-        $waiting = StatVacancies::where('vacancy_id', $post->id)->get();
+        $waiting = StatVacancies::where('vacancy_id', $post->id)
+                    ->where('status', false)->get();
+        $accept = StatVacancies::where('vacancy_id', $post->id)
+                    ->where('status', true)->get();
 
-        $vacancies = array();
-        foreach($waiting as $wait){
-           array_push($vacancies, $wait->vacancy_id);
-        }
         return view('petani.show', [
             'post' => $post,
-            'waiting' => Vacancies::whereIn('id', $vacancies)->get()
+            'waiting' => $waiting,
+            'accept' => $accept
         ]);
     }
 
@@ -101,8 +102,9 @@ class DashboardPostController extends Controller
         
         $validatedData['user_id'] = auth()->user()->id;
 
-        Vacancies::where('id', $post->id)
-            ->update($validatedData);
+        Vacancies::where('id', $post->id)->update($validatedData);
+
+        StatVacancies::where('vacancy_id', $post->id)->delete();
             
         return redirect('/petani/posts')->with('status', 'Berhasil mengubah lowongan!');
     }

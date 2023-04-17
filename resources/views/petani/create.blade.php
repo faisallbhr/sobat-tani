@@ -20,7 +20,7 @@
                 </select>
             </div>
             <div class="w-1/2 py-4">
-                <p class="pb-2">Gaji</p>
+                <p class="pb-2">Gaji/perorang</p>
                 <input
                     type='number'
                     onchange="this.value = parseInt(this.value);"
