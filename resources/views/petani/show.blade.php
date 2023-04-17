@@ -58,15 +58,13 @@
                             <form action="{{ url('/petani/accept/'. $wait->id) }}">
                                 @method('put')
                                 @csrf
-                                <input type="checkbox" id="acc" name="acc" class="hidden">
                                 <button id="btn-acc" class="bg-green-500 px-4 py-2 rounded text-white hover:bg-green-600"           
-                                onclick="return confirm('Apakah anda yakin akan menerima pemdaftar?')"><span class="fa-solid fa-check mx-auto"></span>
+                                onclick="return confirm('Apakah anda yakin akan menerima pendaftar?')"><span class="fa-solid fa-check mx-auto"></span>
                                 </button>
                             </form>                        
-                            <form action="#" >
+                            <form action="{{ url('/petani/reject/'. $wait->id) }}" >
                                 @method('delete')
                                 @csrf
-                                <input type="checkbox" id="reject" name="reject" class="hidden">
                                 <button id="btn-reject" class="bg-red-500 px-4 py-2 rounded text-white hover:bg-red-600"           
                                 onclick="return confirm('Apakah anda yakin akan menolak pendaftar?')"><span class="fa-solid fa-x mx-auto"></span>
                                 </button>
@@ -82,7 +80,7 @@
     </div>
 </div>
 
-<script>
+{{-- <script>
     const acc = document.getElementById('acc')
     const btnAcc = document.getElementById('btn-acc')
     btnAcc.addEventListener('click', function(){
@@ -94,5 +92,5 @@
     btnReject.addEventListener('click', function(){
         reject.checked = true
     })
-</script>
+</script> --}}
 </x-app-layout>

@@ -27,6 +27,7 @@ Route::get('/detail/{post:slug}', [UserController::class, 'show']);
 Route::post('/detail/{post:slug}', [UserController::class, 'store']);
 Route::resource('/petani/posts', DashboardPostController::class);
 Route::get('/petani/accept/{wait:id}', [PetaniAccController::class, 'update']);
+Route::get('/petani/reject/{wait:id}', [PetaniAccController::class, 'destroy']);
 Route::resource('/buruhtani/wait', DaftarLowonganController::class);
 Route::resource('/buruhtani/accept', DaftarPekerjaanController::class);
 Route::resource('/admin', AdminController::class);

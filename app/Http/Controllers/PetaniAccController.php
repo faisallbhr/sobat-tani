@@ -19,11 +19,11 @@ class PetaniAccController extends Controller
     {          
         $data['status'] = true;
 
-
         StatVacancies::where('id', $wait->id)->update($data);
+        return redirect()->back();            
+    }
+    public function destroy(StatVacancies $wait){
+        StatVacancies::destroy($wait->id);
         return redirect()->back();
-
-            
-        // return redirect('/petani/posts')->with('status', 'Berhasil mengubah lowongan!');
     }
 }
