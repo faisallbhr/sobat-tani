@@ -21,6 +21,9 @@ class Vacancies extends Model
     public function stat_vacancy(){
         return $this->hasMany(StatVacancies::class);
     }
+    public function address(){
+        return $this->belongsTo(Village::class);
+    }
     public function getRouteKeyName(){
         return 'slug';
     }

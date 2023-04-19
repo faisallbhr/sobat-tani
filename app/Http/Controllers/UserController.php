@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function index(){
         return view('users.welcome', [
-            'posts' => Vacancies::latest()->paginate(10)
+            'posts' => Vacancies::latest()->paginate(12)
         ]);
     }
     public function show(Vacancies $post)

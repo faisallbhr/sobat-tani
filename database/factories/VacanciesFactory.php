@@ -22,7 +22,7 @@ class VacanciesFactory extends Factory
             'body' =>$this->faker->paragraph(mt_rand(2,8)),
             'salary' => mt_rand(10000,100000),
             'address' => $this->faker->paragraph(mt_rand(1,2)),
-            'user_id' => mt_rand(1,2),
+            'user_id' => 2,
             'category_id' => mt_rand(1,2),
         ];
     }

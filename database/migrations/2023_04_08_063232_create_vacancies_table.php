@@ -18,11 +18,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id');
             $table->foreignId('user_id');
+            $table->foreignId('address_id');
             $table->string('title');
             $table->string('slug')->unique();
             $table->bigInteger('salary');
             $table->text('body');
-            $table->text('address');
+            $table->text('address_detail');
             $table->timestamps();
         });
     }

@@ -44,8 +44,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'P',
         ]);
 
-        Vacancies::factory(20)->create();
-
         $this->call([UserRolePermissionSeeder::class]);
+        
+        // Vacancies::factory(20)->create();
     }
 }

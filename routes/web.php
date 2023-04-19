@@ -32,6 +32,10 @@ Route::resource('/buruhtani/wait', DaftarLowonganController::class);
 Route::resource('/buruhtani/accept', DaftarPekerjaanController::class);
 Route::resource('/admin', AdminController::class);
 
+// ADDRESS 
+Route::post('/getregency', [DashboardPostController::class, 'getregency'])->name('getregency');
+Route::post('/getdistrict', [DashboardPostController::class, 'getdistrict'])->name('getdistrict');
+Route::post('/getvillage', [DashboardPostController::class, 'getvillage'])->name('getvillage');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
