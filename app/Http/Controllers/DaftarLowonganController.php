@@ -21,7 +21,7 @@ class DaftarLowonganController extends Controller
            array_push($vacancies, $wait->vacancy_id);
         }
 
-        return view('buruh_tani.index', [
+        return view('buruh_tani.waiting', [
             'waiting' => Vacancies::whereIn('id', $vacancies)->get()
         ]);
     }

@@ -20,7 +20,7 @@ class DaftarPekerjaanController extends Controller
            array_push($vacancies, $wait->vacancy_id);
         }
 
-        return view('buruh_tani.acc.index', [
+        return view('buruh_tani.accepted', [
             'waiting' => Vacancies::whereIn('id', $vacancies)->get()
         ]);
     }

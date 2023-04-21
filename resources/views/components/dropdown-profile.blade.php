@@ -32,7 +32,7 @@
     >
         <div class="pt-0.5 pb-2 px-3 mb-1 border-b border-slate-200">
             <div class="font-medium text-slate-800">{{ Auth::user()->name }}</div>
-            <div class="text-xs text-slate-500 italic">Administrator</div>
+            <div class="text-xs text-slate-500 italic">{{ Auth::user()->getRoleNames()[0] }}</div>
         </div>
         <ul>
             <li class="@if(in_array(Request::segment(1), ['dashboard']) || in_array(Request::segment(1), ['petani']) || in_array(Request::segment(1), ['buruhtani'])){{ 'hidden' }}@endif">

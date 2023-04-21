@@ -44,7 +44,7 @@
                 <p>Alamat</p>
                 <div>
                     <select name="province" id="province" class="w-1/2 rounded">
-                        <option>{{ old('regency', $post->address->district->regency->province->name) }}</option>
+                        <option value="{{ old('province', $post->address->district->regency->province->id) }}">{{ old('province', $post->address->district->regency->province->name) }}</option>
                         @foreach ($provinces as $province)
                             <option value="{{ $province->id }}">{{ $province->name }}</option>
                         @endforeach
