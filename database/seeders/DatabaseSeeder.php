@@ -26,25 +26,25 @@ class DatabaseSeeder extends Seeder
 
         // User::factory(5)->create();
 
-        // Category::create([
-        //     'name' => 'Padi',
-        //     'slug' =>'padi'
-        // ]);
+        Category::create([
+            'name' => 'Padi',
+            'slug' =>'padi'
+        ]);
 
-        // Category::create([
-        //     'name' => 'Jagung',
-        //     'slug' =>'jagung'
-        // ]);
+        Category::create([
+            'name' => 'Jagung',
+            'slug' =>'jagung'
+        ]);
 
-        // Gender::create([
-        //     'name' => 'L',
-        // ]);
+        Gender::create([
+            'name' => 'L',
+        ]);
 
-        // Gender::create([
-        //     'name' => 'P',
-        // ]);
+        Gender::create([
+            'name' => 'P',
+        ]);
 
-        // $this->call([UserRolePermissionSeeder::class]);
+        $this->call([UserRolePermissionSeeder::class]);
         
         Vacancies::factory(20)->create();
     }

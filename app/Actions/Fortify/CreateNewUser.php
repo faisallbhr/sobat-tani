@@ -4,7 +4,6 @@ namespace App\Actions\Fortify;
 
 use App\Models\User;
 use Laravel\Fortify\Fortify;
-use Laravel\Jetstream\Jetstream;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -29,7 +28,6 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
-        // dd()
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'no_handphone' => ['required', 'numeric', 'unique:users'],
@@ -52,7 +50,7 @@ class CreateNewUser implements CreatesNewUsers
                 ]), 
                 function (User $user) {
                     $this->buruhTani($user);
-                    return redirect()->intended(Fortify::redirects('login'))->with('success', 'ssssss');
+                    return redirect()->intended(Fortify::redirects('login'));
                 });
             });
         }else{
@@ -66,6 +64,7 @@ class CreateNewUser implements CreatesNewUsers
                 ]), 
                 function (User $user) {
                     $this->petani($user);
+                    return redirect()->intended(Fortify::redirects('login'));
                 });
             });
         }
