@@ -12,7 +12,7 @@
         <label for='no_handphone' class='ml-1'>No. Handphone</label>
         <input
             type='text'
-            class='w-full p-2 border rounded-md outline-none shadow-sm'
+            class='w-full p-2 border rounded-md shadow-sm focus:border-green-400'
             id='no_handphone'
             name='no_handphone'
             autofocus
@@ -22,15 +22,13 @@
         <label for='password' class='ml-1'>Password</label>
         <input
             type='password'
-            class='w-full p-2 border rounded-md outline-none shadow-sm'
+            class='w-full p-2 border rounded-md shadow-sm focus:border-green-400'
             id='password'
             name='password'
             />
     </div>
     <div class="flex items-center justify-center mt-6">       
-        <x-jet-button class="">
-            {{ __('Masuk') }}
-        </x-jet-button>            
+        <button class="btn bg-[#56964C] px-3 py-2 rounded hover:bg-[#4D8C43]">Masuk</button>            
     </div>
     <x-jet-validation-errors class="mt-4" />   
 </form>

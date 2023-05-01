@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\StatVacancies;
+use App\Models\User;
 use App\Models\Vacancies;
 use Illuminate\Http\Request;
+use App\Models\StatVacancies;
 
 class DaftarLowonganController extends Controller
 {
@@ -12,7 +13,6 @@ class DaftarLowonganController extends Controller
         $this->middleware('can:buruh tani');
     }
     public function index(){
-        // $vacancy = StatVacancies::where('vacancy_id', )
         $waiting = StatVacancies::where('user_id', auth()->user()->id)
                                 ->where('status', false)->get();
 
@@ -20,12 +20,16 @@ class DaftarLowonganController extends Controller
         foreach($waiting as $wait){
            array_push($vacancies, $wait->vacancy_id);
         }
-
-        return view('buruh_tani.waiting', [
+        return view('buruh_tani.waiting.waiting', [
             'waiting' => Vacancies::whereIn('id', $vacancies)->get()
         ]);
     }
-    public function show(){
-        
+    public function show(Vacancies $wait){
+        return view('buruh_tani.waiting.show', [
+            'wait' => $wait,
+            'check_post' => StatVacancies::where('vacancy_id', $wait->id)->get(),
+            'check_user' => User::where('id', auth()->user()->id)->get('id'),
+            'counter' => true
+        ]);
     }
 }

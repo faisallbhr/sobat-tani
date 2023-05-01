@@ -3,12 +3,12 @@
     <div class="py-6 max-w-4xl relative">
         <form action="{{ url('/petani/posts') }}" method="post" id="form">
             @csrf
-            <div class="w-1/2">
-                <p class="pb-2">Title</p>
+            <div class="w-1/2 py-2">
+                <p>Title</p>
                 <input class="w-full rounded" type="text" name="title" value="{{ old('title') }}" id="title">
             </div>
-            <div class="w-1/2">
-                <p class="pb-2">Category</p>
+            <div class="w-1/2 py-2">
+                <p>Category</p>
                 <select name="category_id" class="w-full rounded">
                     @foreach ($categories as $category)
                         @if (old('category_id') == $category->id)
@@ -19,8 +19,8 @@
                     @endforeach
                 </select>
             </div>
-            <div class="w-1/2 py-4">
-                <p class="pb-2">Gaji/perorang</p>
+            <div class="w-1/2 py-2">
+                <p>Gaji/perorang</p>
                 <input
                     type='text'
                     class='w-full p-2 border rounded outline-none shadow-sm'
@@ -29,39 +29,41 @@
                     value="{{ old('salary') }}"
                 />
             </div>
-            <div class=" flex flex-col gap-2">
+            <div class="py-2">
                 <p>Alamat</p>
-                <div>
-                    <select name="province" id="province" class="w-1/2 rounded">
-                        <option>Pilih provinsi ...</option>
-                        @foreach ($provinces as $province)
-                            <option value="{{ $province->id }}">{{ $province->name }}</option>
-                        @endforeach
-                    </select>
+                <div class="flex flex-col gap-4">
+                    <div>
+                        <select name="province" id="province" class="w-1/2 rounded">
+                            <option>Pilih provinsi ...</option>
+                            @foreach ($provinces as $province)
+                                <option value="{{ $province->id }}">{{ $province->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div>
+                        <select name="regency" id="regency" class="w-1/2 rounded">
+                            <option>Pilih kabupaten/kota ...</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select name="district" id="district" class="w-1/2 rounded">
+                            <option>Pilih kecamatan ...</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select name="address_id" id="village" class="w-1/2 rounded">
+                            <option value="">Pilih desa ...</option>
+                        </select>
+                    </div>
+                    <input type="text" 
+                    name="address_detail" 
+                    id="address_detail" 
+                    placeholder="Detail lainnya (Cth: jalan, blok, dll)" 
+                    value="{{ old('address_detail') }}"
+                    class='w-3/4 h-20 p-2 border rounded outline-none shadow-sm'>
                 </div>
-                <div>
-                    <select name="regency" id="regency" class="w-1/2 rounded">
-                        <option>Pilih kabupaten/kota ...</option>
-                    </select>
-                </div>
-                <div>
-                    <select name="district" id="district" class="w-1/2 rounded">
-                        <option>Pilih kecamatan ...</option>
-                    </select>
-                </div>
-                <div>
-                    <select name="address_id" id="village" class="w-1/2 rounded">
-                        <option value="">Pilih desa ...</option>
-                    </select>
-                </div>
-                <input type="text" 
-                name="address_detail" 
-                id="address_detail" 
-                placeholder="Detail lainnya (Cth: jalan, blok, dll)" 
-                value="{{ old('address_detail') }}"
-                class='w-3/4 h-20 p-2 border rounded outline-none shadow-sm'>
             </div>
-            <div class="py-4">
+            <div class="py-2">
                 <p>Jobdesk</p>
                 <input type="hidden" name="body" value="{{ old('body') }}" id="body">
                 <trix-editor input="body"></trix-editor>

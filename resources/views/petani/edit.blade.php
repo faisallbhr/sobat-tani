@@ -5,19 +5,19 @@
         <form action="/petani/posts/{{ $post->slug }}" method="post" id="form">
             @method('put')
             @csrf
-            <div class="w-1/2">
-                <p class="ml-1">Title</p>
+            <div class="w-1/2 py-2">
+                <p>Title</p>
                 <input class="w-full rounded-md dark:text-dark-eval-0" type="text" name="title" value="{{ old('title', $post->title) }}" id="title">
                 @error('title')
                     <small class="text-rose-600">{{ $message }}</small>
                 @enderror
             </div>
-            <div class="w-1/2 py-4 hidden">
+            <div class="w-1/2 hidden">
                 <p class="pb-2">Slug</p>
                 <input class="w-full rounded-md dark:text-dark-eval-0" type="text" name="slug" value="{{ old('slug', $post->slug) }}" id="slug">
             </div>
-            <div class="w-1/2 py-4">
-                <label htmlFor='salary' class='ml-1'>Gaji</label>
+            <div class="w-1/2 py-2">
+                <label htmlFor='salary'>Gaji</label>
                 <input
                     type='number'
                     step="1"
@@ -28,8 +28,8 @@
                     value="{{ old('salary', $post->salary) }}"
                 />
             </div>
-            <div class="w-1/2">
-                <p class="ml-1">Category</p>
+            <div class="w-1/2 py-2">
+                <p>Category</p>
                 <select name="category_id" class="w-full rounded-md dark:text-dark-eval-0">
                     @foreach ($categories as $category)
                         @if (old('category_id') == $category->id)
@@ -40,39 +40,41 @@
                     @endforeach
                 </select>
             </div>
-            <div class=" flex flex-col gap-2">
+            <div class="py-2">
                 <p>Alamat</p>
-                <div>
-                    <select name="province" id="province" class="w-1/2 rounded">
-                        <option value="{{ old('province', $post->address->district->regency->province->id) }}">{{ old('province', $post->address->district->regency->province->name) }}</option>
-                        @foreach ($provinces as $province)
-                            <option value="{{ $province->id }}">{{ $province->name }}</option>
-                        @endforeach
-                    </select>
+                <div class=" flex flex-col gap-4">
+                    <div>
+                        <select name="province" id="province" class="w-1/2 rounded">
+                            <option value="{{ old('province', $post->address->district->regency->province->id) }}">{{ old('province', $post->address->district->regency->province->name) }}</option>
+                            @foreach ($provinces as $province)
+                                <option value="{{ $province->id }}">{{ $province->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div>
+                        <select name="regency" id="regency" class="w-1/2 rounded">
+                            <option>{{ old('regency', $post->address->district->regency->name) }}</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select name="district" id="district" class="w-1/2 rounded">
+                            <option>{{ old('district', $post->address->district->name) }}</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select name="address_id" id="village" class="w-1/2 rounded">
+                            <option value="{{ old('address_id', $post->address->id) }}">{{ old('address_id', $post->address->name) }}</option>
+                        </select>
+                    </div>
+                    <input type="text" 
+                    name="address_detail" 
+                    id="address_detail" 
+                    placeholder="Detail lainnya (Cth: jalan, blok, dll)" 
+                    value="{{ old('address_detail', $post->address_detail) }}"
+                    class='w-3/4 h-20 p-2 border rounded outline-none shadow-sm'>
                 </div>
-                <div>
-                    <select name="regency" id="regency" class="w-1/2 rounded">
-                        <option>{{ old('regency', $post->address->district->regency->name) }}</option>
-                    </select>
-                </div>
-                <div>
-                    <select name="district" id="district" class="w-1/2 rounded">
-                        <option>{{ old('district', $post->address->district->name) }}</option>
-                    </select>
-                </div>
-                <div>
-                    <select name="address_id" id="village" class="w-1/2 rounded">
-                        <option value="{{ old('address_id', $post->address->id) }}">{{ old('address_id', $post->address->name) }}</option>
-                    </select>
-                </div>
-                <input type="text" 
-                name="address_detail" 
-                id="address_detail" 
-                placeholder="Detail lainnya (Cth: jalan, blok, dll)" 
-                value="{{ old('address_detail', $post->address_detail) }}"
-                class='w-3/4 h-20 p-2 border rounded outline-none shadow-sm'>
             </div>
-            <div class="py-4">
+            <div class="py-2">
                 <p>Jobdesk</p>
                 <input type="hidden" name="body" value="{{ old('body', $post->body) }}" id="body">
                 <trix-editor input="body"></trix-editor>
