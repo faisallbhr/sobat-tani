@@ -45,6 +45,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([UserRolePermissionSeeder::class]);
+        $this->call([IndoRegionSeeder::class]);
         
         Vacancies::factory(20)->create();
     }

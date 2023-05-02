@@ -50,7 +50,7 @@ class CreateNewUser implements CreatesNewUsers
                 ]), 
                 function (User $user) {
                     $this->buruhTani($user);
-                    return redirect()->intended(Fortify::redirects('login'));
+                    return redirect('/login');
                 });
             });
         }else{
@@ -64,7 +64,7 @@ class CreateNewUser implements CreatesNewUsers
                 ]), 
                 function (User $user) {
                     $this->petani($user);
-                    return redirect()->intended(Fortify::redirects('login'));
+                    return redirect('/login');
                 });
             });
         }

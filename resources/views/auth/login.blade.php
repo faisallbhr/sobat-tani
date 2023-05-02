@@ -1,11 +1,5 @@
 <x-authentication-layout>
     <h1 class="text-3xl text-slate-800 font-bold mb-6">{{ __('Selamat datang!') }} ✨</h1>
-    @if (session('status'))
-        <div class="mb-4 font-medium text-sm text-green-600">
-            {{ session('status') }}
-        </div>
-    @endif   
-
     <form method="POST" action="{{ route('login') }}">
     @csrf
     <div class='mb-4'>
@@ -28,14 +22,8 @@
             />
     </div>
     <div class="flex items-center justify-center mt-6">       
-        <button class="btn bg-[#56964C] px-3 py-2 rounded hover:bg-[#4D8C43]">Masuk</button>            
+        <button class="btn bg-[#56964C] px-3 py-2 rounded hover:bg-[#4D8C43]">Login</button>            
     </div>
     <x-jet-validation-errors class="mt-4" />   
 </form>
-    <!-- Footer -->
-    <div class="pt-5 mt-6 border-t border-slate-200">
-        <div class="text-sm">
-            {{ __('Belum punya akun?') }} <a class="font-medium text-indigo-500 hover:text-indigo-600" href="{{ route('register') }}">{{ __('Daftar sekarang!') }}</a>
-        </div>
-    </div>
 </x-authentication-layout>

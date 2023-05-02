@@ -79,18 +79,4 @@
         <a href="{{ url('/petani/posts') }}"><x-jet-button class="absolute right-0 mt-4">Kembali</x-jet-button></a>
     </div>
 </div>
-
-{{-- <script>
-    const acc = document.getElementById('acc')
-    const btnAcc = document.getElementById('btn-acc')
-    btnAcc.addEventListener('click', function(){
-        acc.checked = true
-    })
-
-    const reject = document.getElementById('reject')
-    const btnReject = document.getElementById('btn-reject')
-    btnReject.addEventListener('click', function(){
-        reject.checked = true
-    })
-</script> --}}
 </x-app-layout>

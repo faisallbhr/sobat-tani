@@ -27,7 +27,7 @@
                                 @endif
                         @endforeach 
                             @if ($counter)
-                                <x-jet-button class="mt-4" type='submit'>Daftar Lowongan</x-jet-button>   
+                                <x-jet-button onclick="return confirm('Apakah anda yakin akan mendaftar?')" class="mt-4" type='submit'>Daftar Lowongan</x-jet-button>   
                             @endif
                     @endcan
                 </form>

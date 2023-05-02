@@ -20,22 +20,19 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-            'no_handphone' => ['required', 'string', Rule::unique('users')->ignore($user->id)],
+            'no_handphone' => ['required', 'numeric', Rule::unique('users')->ignore($user->id)],
+            'no_rekening' => ['required', 'numeric', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
         ])->validateWithBag('updateProfileInformation');
 
-        if (isset($input['photo'])) {
-            $user->updateProfilePhoto($input['photo']);
-        }
-
-        if ($input['no_handphone'] !== $user->no_handphone ){
-            $this->updateVerifiedUser($user, $input);
-        } else {
+        // if ($input['no_handphone'] !== $user->no_handphone ){
+        //     $this->updateVerifiedUser($user, $input);
+        // } else {
             $user->forceFill([
                 'name' => $input['name'],
                 'no_handphone' => $input['no_handphone'],
+                'no_rekening' => $input['no_rekening'],
             ])->save();
-        }
     }
 
     /**

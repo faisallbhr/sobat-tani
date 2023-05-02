@@ -2,17 +2,18 @@
 
 @section('content')
 
-    <header class=" h-[28rem] bg-slate-100">
-        <div class=" container mx-auto px-4 flex h-full py-6 items-center">
-            <div class=" max-w-xl">
-                <p class=" text-sky-500 uppercase tracking-wider">knowleddge base</p>
-
-                <h2 class=" text-3xl xl:text-4xl font-bold mt-4 text-gray-800 capitalize">All Resurece You Need to grow</h2>
-
-                <p class=" text-gray-500 mt-4 text-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta error odit vel minima optio consequuntur atque omnis, repellendus eos, rerum totam quas vitae voluptatibus, facere distinctio fugit? Nam, iure expedita!</p>
+    <section class="bg-slate-100">
+        <div class=" container px-4 flex justify-between mx-auto py-6 items-center max-w-9xl">
+            <div class=" max-w-xl border border-black">
+                <h1 class=" text-3xl xl:text-4xl font-bold mt-4 text-gray-800 capitalize">SO-NI</h1>
+                <p class="text-xl">SO-NI merupakan sistem uang kami rancang untuk <br> memudahkan para petani dan buruh tani guna mempemudah <br> keberlangsungan pekerjaan.</p>
+                <p class="flex justify-end">~ Petani Milenial Aset Negeri ~</p>
+            </div>
+            <div>
+                <img src="{{ asset('images/logo.png') }}" alt="logo" class="h-40">
             </div>
         </div>
-    </header>
+    </section>
 
     <section class=" container mx-auto px-10 py-16">
         <div class=" flex items-center justify-between">

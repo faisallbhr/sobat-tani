@@ -1,14 +1,17 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\DaftarLowonganController;
-use App\Http\Controllers\DaftarPekerjaanController;
-use App\Http\Controllers\PetaniAccController;
+use Laravel\Fortify\Features;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DataFeedController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PetaniAccController;
 use App\Http\Controllers\DashboardPostController;
+use App\Http\Controllers\DaftarLowonganController;
+use App\Http\Controllers\RegisteredUserController;
+use App\Http\Controllers\DaftarPekerjaanController;
+use App\Http\Controllers\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,4 +47,28 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::fallback(function() {
         return view('pages/utility/404');
     });    
+});
+
+Route::group(['middleware' => config('fortify.middleware', ['web'])], function () {
+    $enableViews = config('fortify.views', true);
+
+    // Authentication...
+    if ($enableViews) {
+        Route::get('/login', [AuthenticatedSessionController::class, 'create'])
+            ->middleware(['guest:'.config('fortify.guard')])
+            ->name('login');
+    }
+
+
+    // Registration...
+    if (Features::enabled(Features::registration())) {
+        if ($enableViews) {
+            Route::get('/register', [RegisteredUserController::class, 'create'])
+                ->middleware(['guest:'.config('fortify.guard')])
+                ->name('register');
+        }
+
+        Route::post('/register', [RegisteredUserController::class, 'store'])
+            ->middleware(['guest:'.config('fortify.guard')]);
+    }
 });

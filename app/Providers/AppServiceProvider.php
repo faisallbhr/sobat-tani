@@ -25,4 +25,8 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+    public $bindings = [
+        \Laravel\Fortify\Http\Controllers\RegisteredUserController::class => \App\Http\Controllers\RegisteredUserController::class,
+        \Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::class => \App\Http\Controllers\AuthenticatedSessionController::class,
+    ];
 }

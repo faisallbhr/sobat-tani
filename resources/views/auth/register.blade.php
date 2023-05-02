@@ -31,7 +31,7 @@
         </div>
         
     </form> --}}
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('register') }}" id="myForm">
         @csrf
         <div class='mb-4'>
             <label htmlFor='name' class='ml-1'>Nama</label>
@@ -93,15 +93,10 @@
                 name='password_confirmation'
             />
         </div>
-        <div class="flex items-center justify-center mt-6">
-           <button class="btn bg-[#56964C] px-3 py-2 rounded hover:bg-[#4D8C43]">Daftar</button>              
-        </div>
     </form>
-    <x-jet-validation-errors class="mt-4" />  
-    <!-- Footer -->
-    <div class="pt-5 mt-6 border-t border-slate-200">
-        <div class="text-sm">
-            {{ __('Sudah punya akun?') }} <a class="font-medium text-indigo-500 hover:text-indigo-600" href="{{ route('login') }}">{{ __('Masuk sekarang!') }}</a>
-        </div>
+    <div class="flex items-center justify-center mt-6 gap-20">
+        <a href="{{ url('/') }}"><button class="btn bg-red-500 px-6 py-2 rounded hover:bg-red-600">Batal</button></a>
+       <button form="myForm" type="submit" class="btn bg-[#56964C] px-6 py-2 rounded hover:bg-[#4D8C43]">Daftar</button>              
     </div>
+    <x-jet-validation-errors class="mt-4" />  
 </x-authentication-layout>

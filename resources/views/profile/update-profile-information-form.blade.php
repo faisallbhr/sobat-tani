@@ -59,11 +59,18 @@
             <x-jet-input-error for="name" class="mt-2" />
         </div>
 
-        <!-- Email -->
+        <!-- No Handphone -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="no_handphone" value="{{ __('No. Handphone') }}" />
             <x-jet-input id="no_handphone" type="text" class="mt-1 block w-full" wire:model.defer="state.no_handphone" />
             <x-jet-input-error for="no_handphone" class="mt-2" />
+        </div>
+
+        <!-- No Rekening -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="no_rekening" value="{{ __('No. Rekening') }}" />
+            <x-jet-input id="no_rekening" type="text" class="mt-1 block w-full" wire:model.defer="state.no_rekening" />
+            <x-jet-input-error for="no_rekening" class="mt-2" />
         </div>
     </x-slot>
 
