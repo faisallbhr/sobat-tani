@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
-        <link rel="icon" href="{{ asset('images/logo.png') }}">
+        <link rel="icon" href="{{ asset('assets/logo.png') }}">
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -19,9 +19,8 @@
 
         {{-- Font Awesome --}}
         <script src="https://kit.fontawesome.com/516b6a89c8.js" crossorigin="anonymous"></script>
-
     </head>
-    <body>
+    <body class="bg-[#F5F5F5]">
         @include('layouts.header')
 
 
@@ -38,7 +37,8 @@
             </div>
 
         </div>
-
+        {{-- FLOWBITE JS --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
         @livewireScripts
     </body>
 </html>

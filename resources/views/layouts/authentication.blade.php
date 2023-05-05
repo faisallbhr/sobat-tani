@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
-        <link rel="icon" href="{{ asset('images/logo.png') }}">
+        <link rel="icon" href="{{ asset('assets/logo.png') }}">
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -14,9 +14,9 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="h-screen flex bg-[#B6CFBD]">
+    <body class="h-screen flex" style="background-image: url('{{ asset('assets/bg-auth.svg') }}')">
 
-        <main class="w-full max-w-md m-auto bg-[#84B68C] rounded-lg shadow-xl py-10 px-16">
+        <main class="w-full max-w-md m-auto rounded-lg shadow-xl py-10 px-16 bg-white">
             {{ $slot }}
         </main>        
     </body>

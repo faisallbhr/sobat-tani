@@ -48,8 +48,8 @@ class DashboardPostController extends Controller
             'category_id' => 'required',
             'salary' => 'required|numeric',
             'address_id' => 'required',
-            'body' => 'required|',
-            'address_detail' => 'max:255'
+            'body' => 'required',
+            'address_detail' => 'nullable'
         ]);
 
         $validatedData['user_id'] = auth()->user()->id;

@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->bigInteger('salary');
             $table->text('body');
-            $table->text('address_detail');
+            $table->text('address_detail')->nullable();
             $table->timestamps();
         });
     }

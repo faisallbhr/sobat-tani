@@ -1,19 +1,18 @@
-<nav x-data="{ isOpen: false }" class="relative bg-[#84B68C] border-b">
+<nav x-data="{ isOpen: false }" class="relative bg-white border-b">
     <div class="container px-4 py-3 mx-auto">
         <div class="flex items-center justify-between">
-            <div class="">
-                <a href="/">
-                    <img src="{{ asset('images/logo.png') }}" alt="" class="w-16">
-                </a>
-            </div>                    
+            <a href="/" class="flex items-center gap-4">
+                <img src="{{ asset('assets/logo.png') }}" alt="" class="w-16">
+                <p class="font-extrabold text-3xl text-primary">Sobat Tani</p>
+            </a>                  
             <div class="flex items-center space-x-3">
               <!-- User button -->
                 @if (auth()->user())
                     <x-dropdown-profile/>
                 @else
-                <ul class="flex gap-2">
-                    <li><a href="/login">Masuk</a></li>
-                    <li><a href="/register">Daftar</a></li>
+                <ul class="flex gap-5">
+                    <a  href="/register" class="border border-primary px-24 py-3 rounded-lg font-semibold"><button>Daftar</button></a>
+                    <a  href="/login" class="bg-primary px-24 py-3 rounded-lg text-white font-semibold"><button>Masuk</button></a>
                 </ul>
                 @endif
             </div>

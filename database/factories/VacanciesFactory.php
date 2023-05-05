@@ -17,7 +17,7 @@ class VacanciesFactory extends Factory
     public function definition()
     {
         return [
-            'title' =>$this->faker->sentence(mt_rand(2,8)),
+            'title' =>$this->faker->sentence(2),
             'category_id' => mt_rand(1,2),
             'user_id' => 2,
             'address_id' => 1101020039,

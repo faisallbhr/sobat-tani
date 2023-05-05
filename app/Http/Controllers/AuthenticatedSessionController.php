@@ -11,7 +11,6 @@ class AuthenticatedSessionController extends OriginalAuth
     public function store(LoginRequest $request)
     {
         return $this->loginPipeline($request)->then(function ($request) {
-            // return app(LoginResponse::class);
             return redirect('/');
         });
     }

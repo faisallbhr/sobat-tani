@@ -9,8 +9,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PetaniAccController;
 use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\DaftarLowonganController;
+use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\DaftarPekerjaanController;
-use App\Overrides\RegisteredUserController;
+use App\Http\Controllers\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
