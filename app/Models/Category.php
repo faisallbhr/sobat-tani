@@ -11,4 +11,7 @@ class Category extends Model
     public function vacancies(){
         return $this->hasMany(Post::class);
     }
+    public function book(){
+        return $this->hasMany(BookKeeping::class);
+    }
 }

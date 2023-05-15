@@ -44,7 +44,6 @@ class DashboardController extends Controller
                                     ->where('status', true)->get();
         // PETANI END
 
-        
         return view('pages.dashboard.dashboard', [
             'vacancies' => count($vacancies),
             'registered' => count($registered),

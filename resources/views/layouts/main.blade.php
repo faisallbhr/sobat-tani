@@ -19,6 +19,24 @@
 
         {{-- Font Awesome --}}
         <script src="https://kit.fontawesome.com/516b6a89c8.js" crossorigin="anonymous"></script>
+
+        {{-- FlowBite --}}
+        {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" /> --}}
+
+        {{-- Trix Editor --}}
+        <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+        <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+        <style>
+            trix-toolbar [data-trix-button-group='file-tools']{
+                display: none
+            }
+            trix-editor{
+                background: white
+            }
+            trix-toolbar [data-trix-button-group]{ 
+                background: white
+            }
+        </style>
     </head>
     <body class="bg-[#F5F5F5]">
         @include('layouts.header')
@@ -28,7 +46,7 @@
         <div class="flex">
 
             <!-- Content area -->
-            <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden " x-ref="contentarea">
+            <div class="flex flex-col flex-1 overflow-y-auto overflow-x-hidden " x-ref="contentarea">
 
                 <main>
                     @yield('content')

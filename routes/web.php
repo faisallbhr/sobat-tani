@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\BookKeepingController;
 use Laravel\Fortify\Features;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\DataFeedController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PetaniAccController;
 use App\Http\Controllers\DashboardPostController;
@@ -26,11 +26,18 @@ use App\Http\Controllers\AuthenticatedSessionController;
 Route::get('/', [UserController::class, 'index']);
 Route::get('/detail/{post:slug}', [UserController::class, 'show']);
 Route::post('/detail/{post:slug}', [UserController::class, 'store']);
+
+// PETANI
 Route::resource('/petani/posts', DashboardPostController::class);
 Route::get('/petani/accept/{wait:id}', [PetaniAccController::class, 'update']);
 Route::get('/petani/reject/{wait:id}', [PetaniAccController::class, 'destroy']);
+Route::resource('/petani/books', BookKeepingController::class);
+
+// BURUH TANI
 Route::resource('/buruhtani/wait', DaftarLowonganController::class);
 Route::resource('/buruhtani/accept', DaftarPekerjaanController::class);
+
+// ADMIN
 Route::resource('/admin', AdminController::class);
 
 // ADDRESS 
@@ -38,10 +45,8 @@ Route::post('/getregency', [DashboardPostController::class, 'getregency'])->name
 Route::post('/getdistrict', [DashboardPostController::class, 'getdistrict'])->name('getdistrict');
 Route::post('/getvillage', [DashboardPostController::class, 'getvillage'])->name('getvillage');
 
+// MIDDLEWARE
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-
-    // Route for the getting the data feed
-    Route::get('/json-data-feed', [DataFeedController::class, 'getDataFeed'])->name('json_data_feed');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::fallback(function() {

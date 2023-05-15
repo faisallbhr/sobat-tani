@@ -113,19 +113,23 @@ class DashboardPostController extends Controller
         Vacancies::where('id', $post->id)->update($validatedData);
 
         StatVacancies::where('vacancy_id', $post->id)->delete();
-            
+        
         return redirect('/petani/posts')->with('status', 'Berhasil mengubah lowongan!');
     }
-
+    
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Vacancies $post)
     {
+        StatVacancies::where('vacancy_id', $post->id)->delete();
         Vacancies::destroy($post->id);
 
         return redirect('/petani/posts')->with('status', 'Berhasil menghapus lowongan!');
     }
+
+
+    // ADDRESS CONTROLLER
     public function getregency(Request $request)
     {
         $provinceId = $request->provinceId;

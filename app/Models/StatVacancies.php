@@ -15,4 +15,7 @@ class StatVacancies extends Model
     public function vacancy(){
         return $this->belongsTo(Vacancies::class);
     }
+    public function report(){
+        return $this->belongsTo(Report::class);
+    }
 }
