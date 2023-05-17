@@ -26,21 +26,26 @@ class DaftarPekerjaanController extends Controller
         ]);
     }
     public function show(Vacancies $accept){
+        $data = $accept->id;
+        session()->put('data', $data); //mengirim id postingan ke controller store
         return view('buruh_tani.accepted.show', [
             'accept' => $accept
-        ]);
+        ])->with($data);
     }
-    public function store(Request $request, Vacancies $accept){ //bug kontol
-        dd($accept);
+    public function store(Request $request){
+        $data = session()->get('data'); //mengambil id dari postingan
+
         $validatedData = $request->validate([
             'deskripsi' => 'required|max:255',
-            'image' => 'image|file|max:2048'
+            'image' => 'required|image|file|max:2048'
         ]);
-        $validatedData['stat_vacancy_id'] = StatVacancies::where('vacancy_id', $accept->id)
-                                                        ->where('user_id', auth()->user()->id)->get('id');
+        $vacancy_id = StatVacancies::where('vacancy_id', $data)
+                            ->where('user_id', auth()->user()->id)->get();
+        $vacancy_id = $vacancy_id[0]['id'];
+        $validatedData['stat_vacancy_id'] = $vacancy_id;
         $validatedData['image'] = $request->file('image')->store('report-images');
 
         Report::create($validatedData);
-        return redirect('/buruhtani/accept');
+        return redirect()->back()->with('status', 'Berhasil mengirim laporan');
     }
 }

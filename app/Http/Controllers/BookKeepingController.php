@@ -14,7 +14,7 @@ class BookKeepingController extends Controller
     }
     public function index(){
         return view('petani.pembukuan.index', [
-            'books' => BookKeeping::where('user_id', auth()->user()->id)->latest()->get()
+            'books' => BookKeeping::where('user_id', auth()->user()->id)->latest()->paginate(7)
         ]);
     }
     public function create(){
@@ -51,11 +51,5 @@ class BookKeepingController extends Controller
         BookKeeping::where('id', $book->id)->update($validatedData);
         
         return redirect('/petani/books')->with('status', 'Berhasil mengubah catatan!');
-    }
-    public function destroy(BookKeeping $book)
-    {
-        BookKeeping::destroy($book->id);
-
-        return redirect('/petani/books')->with('status', 'Berhasil menghapus catatan!');
     }
 }

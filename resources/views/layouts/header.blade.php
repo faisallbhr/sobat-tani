@@ -1,4 +1,4 @@
-<nav x-data="{ isOpen: false }" class="relative bg-white border-b">
+<nav x-data="{ isOpen: false }" class="relative bg-white border-b shadow">
     <div class="container px-4 py-3 mx-auto">
         <div class="flex items-center justify-between">
             <a href="/" class="flex items-center gap-4">

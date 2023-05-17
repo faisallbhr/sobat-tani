@@ -33,6 +33,8 @@
               <div class="w-[100%] action bg-slate-50 shadow-md h-full rounded-lg absolute left-2 -bottom-3 -z-10 transition-all"></div>
             </div>
           @endcan
+
+          
           @can('petani')
             <div class="relative min-w-80">
               <div class="flex hover items-center p-8 bg-white shadow-lg rounded-lg z-10">

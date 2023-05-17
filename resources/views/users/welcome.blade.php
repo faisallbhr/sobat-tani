@@ -37,7 +37,7 @@
 
     <footer class="bg-white">
         <div class="py-8 shadow-md text-center">
-            <p class="text-[#141414]">Copyright 2023 © <span class="text-primary font-bold">Sobat Tani</span></p>
+            <p class="text-[#141414]">Copyright 2023 © <a href="{{ url('/') }}" class="text-primary font-bold">Sobat Tani</a></p>
         </div>
     </footer>
 @endsection

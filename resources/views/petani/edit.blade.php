@@ -84,8 +84,8 @@
             </div>
         </form>
         <div class="flex justify-end gap-2">
-            <a href="{{ url('/petani/posts') }}"><button class="mt-4 bg-gray-400 px-4 py-2 text-gray-700 font-medium rounded text-sm hover:bg-gray-500 hover:text-gray-300">Batal</button></a>
-            <x-jet-button class="mt-4" type='submit' form='form'>Edit postingan</x-jet-button>
+            <a href="{{ url('/petani/posts') }}"><button class="mt-4 bg-white border border-primary text-primary px-4 py-2 font-medium rounded text-sm">Batal</button></a>
+            <button class="mt-4 bg-primary border border-primary text-white px-4 py-2 font-medium rounded text-sm" type='submit' form='form'>Edit postingan</button>
         </div>
     </div>
 </div>

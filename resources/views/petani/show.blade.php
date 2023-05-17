@@ -92,7 +92,7 @@
         </table>
         @endif
 
-        <a href="{{ url('/petani/posts') }}"><x-jet-button class="absolute right-0 mt-4">Kembali</x-jet-button></a>
+        <a href="{{ url('/petani/posts') }}"><button class="bg-white border border-primary text-primary px-4 py-2 font-medium rounded text-sm absolute right-0 mt-4">Kembali</button></a>
     </div>
 </div>
 </x-app-layout>

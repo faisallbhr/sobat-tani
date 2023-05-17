@@ -2,7 +2,7 @@
     <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl">
         
         <!-- Cards -->
-        <div class="py-6 relative max-w-5xl">
+        <div class="py-6 relative max-w-2xl">
             @if (session('status'))
             <div id="toast-success" class="flex items-center w-full p-4 mb-4 text-primary bg-green-100 rounded shadow " role="alert">
                 <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-primary bg-green-100">
@@ -24,7 +24,7 @@
                         <th class="px-6 py-4">Aktivitas</th>
                         <th class="px-6 py-4">Biaya</th>
                         <th class="px-6 py-4">Tanggal</th>
-                        <th class="flex justify-center py-4">Action</th>
+                        <th class="px-6 py-4 flex justify-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,30 +35,21 @@
                             <td class="px-6 py-4 text-slate-800">{{ $book->activity }}</td>
                             <td class="px-6 py-4 text-slate-800">{{ $book->cost }}</td>
                             <td class="px-6 py-4 text-slate-800">{{ $book->date }}</td>
-                            <td class="px-6 py-4  text-slate-800 flex flex-col md:flex-row gap-2 items-center justify-center">
-                                <div>
-                                    <a href="/petani/books/{{ $book->slug }}/edit" >
-                                    <button class="bg-yellow-400 px-4 py-2 rounded hover:bg-yellow-500">
-                                        <span class="fa-solid fa-edit mx-auto "></span>
+                            <td class="px-6 py-4 text-slate-800 flex justify-center">
+                                <a href="/petani/books/{{ $book->slug }}/edit" >
+                                    <button class="bg-yellow-500 px-4 py-2 rounded hover:bg-yellow-500">
+                                        <p class="text-xs font-semibold rounded inline-block">Edit</p>
                                     </button>
-                                    </a>
-                                </div>
-                                <form action="/petani/books/{{ $book->slug }}" method="post">
-                                    @method('delete')
-                                    @csrf
-                                    <button class="bg-red-500 px-4 py-2 rounded text-white hover:bg-red-600"           
-                                    onclick="return confirm('Apakah anda yakin akan menghapus catatan?')"><span class="fa-solid fa-trash mx-auto"></span>
-                                    </button>
-                                </form>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
             <div class="mt-4">
-                {{-- {{ $books->links() }} --}}
+                {{ $books->links() }}
             </div>
-            <a href="{{ url('/petani/books/create') }}"><x-jet-button class="absolute right-0 mt-4">Tambah catatan</x-jet-button></a>
+            <a href="{{ url('/petani/books/create') }}"><button class="bg-primary border border-primary text-white px-4 py-2 font-medium rounded text-sm absolute right-0 mt-4">Tambah catatan</button></a>
         </div>
     </div>
 </x-app-layout>

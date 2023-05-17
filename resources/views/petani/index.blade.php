@@ -36,13 +36,13 @@
                             <td class="px-6 py-4  text-slate-800 flex flex-col md:flex-row gap-2 items-center justify-center">
                                 <div>
                                     <a href="{{ url('/petani/posts/'.$post->slug) }}" >
-                                    <button class="bg-blue-600 px-4 py-2 rounded text-white hover:bg-blue-700"><span class="fa-solid fa-eye mx-auto"></span>
+                                    <button class="bg-primary px-4 py-2 rounded text-white"><span class="fa-solid fa-eye mx-auto"></span>
                                     </button>
                                     </a>
                                 </div>
                                 <div>
                                     <a href="/petani/posts/{{ $post->slug }}/edit" >
-                                    <button class="bg-yellow-400 px-4 py-2 rounded hover:bg-yellow-500">
+                                    <button class="bg-yellow-500 px-4 py-2 rounded">
                                         <span class="fa-solid fa-edit mx-auto "></span>
                                     </button>
                                     </a>
@@ -50,7 +50,7 @@
                                     <form action="/petani/posts/{{ $post->slug }}" method="post">
                                         @method('delete')
                                         @csrf
-                                        <button class="bg-red-500 px-4 py-2 rounded text-white hover:bg-red-600"           
+                                        <button class="bg-red-600 px-4 py-2 rounded text-white"           
                                         onclick="return confirm('Apakah anda yakin akan menghapus postingan?')"><span class="fa-solid fa-trash mx-auto"></span>
                                     </button>
                                 </form>
@@ -62,7 +62,7 @@
             <div class="mt-4">
                 {{ $posts->links() }}
             </div>
-            <a href="{{ url('/petani/posts/create') }}"><x-jet-button class="absolute right-0 mt-4">Tambah postingan</x-jet-button></a>
+            <a href="{{ url('/petani/posts/create') }}"><button class="bg-primary border border-primary text-white px-4 py-2 font-medium rounded text-sm absolute right-0 mt-4">Tambah postingan</button></a>
         </div>
     </div>
     
