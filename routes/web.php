@@ -29,6 +29,7 @@ Route::post('/detail/{post:slug}', [UserController::class, 'store']);
 
 // PETANI
 Route::resource('/petani/posts', DashboardPostController::class);
+Route::patch('/petani/posts/{post:slug}', [DashboardPostController::class, 'status']);
 Route::get('/petani/accept/{wait:id}', [PetaniAccController::class, 'update']);
 Route::get('/petani/reject/{wait:id}', [PetaniAccController::class, 'destroy']);
 Route::resource('/petani/books', BookKeepingController::class);

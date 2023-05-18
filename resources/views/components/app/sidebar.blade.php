@@ -76,11 +76,11 @@
                                         <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-100">Posting Lowongan</span>
                                     </a>
                                 </li>
-                                <li class="mb-1 last:mb-0">
+                                {{-- <li class="mb-1 last:mb-0">
                                     <a class="block text-slate-400 hover:text-slate-700 transition duration-100 truncate @if(Route::is('tasks-list')){{ '!text-slate-800' }}@endif" href="#0">
                                         <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-100">Pembayaran</span>
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li class="mb-1 last:mb-0">
                                     <a class="block text-slate-400 hover:text-slate-700 transition duration-100 truncate @if(Route::is('books.*')){{ '!text-slate-800' }}@endif" href="{{ url('petani/books') }}">
                                         <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-100">Pencatatan</span>

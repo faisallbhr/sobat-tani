@@ -12,18 +12,23 @@ class UserController extends Controller
 {
     public function index(){
         return view('users.welcome', [
-            'posts' => Vacancies::latest()->paginate(12)
+            'posts' => Vacancies::where('status', false)->latest()->paginate(12)
         ]);
     }
     public function show(Vacancies $post)
     {
         if(Auth::user()){
-            return view('users.show', [
-                'post' => $post,
-                'check_post' => StatVacancies::where('vacancy_id', $post->id)->get(),
-                'check_user' => User::where('id', auth()->user()->id)->get('id'),
-                'counter' => true
-            ]);
+            if($post->status){
+                abort(403);
+            }
+            else{
+                return view('users.show', [
+                    'post' => $post,
+                    'check_post' => StatVacancies::where('vacancy_id', $post->id)->get(),
+                    'check_user' => User::where('id', auth()->user()->id)->get('id'),
+                    'counter' => true
+                ]);
+            }
         }else{
             return view('users.show', [
                 'post' => $post,

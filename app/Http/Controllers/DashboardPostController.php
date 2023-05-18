@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Regency;
+use App\Models\Report;
 use App\Models\Village;
 use App\Models\Category;
 use App\Models\District;
@@ -23,7 +24,10 @@ class DashboardPostController extends Controller
     public function index()
     {
         return view('petani.index', [
-            'posts' => Vacancies::where('user_id', auth()->user()->id)->latest()->paginate(7)
+            'posts' => Vacancies::where('user_id', auth()->user()->id)->latest()
+                                ->where('status', false)->get(),
+            'started' => Vacancies::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')
+                                ->where('status', true)->get()
         ]);
     }
 
@@ -58,7 +62,6 @@ class DashboardPostController extends Controller
         Vacancies::create($validatedData);
         
         return redirect('/petani/posts');
-        
     }
 
     /**
@@ -70,19 +73,41 @@ class DashboardPostController extends Controller
                     ->where('status', false)->get();
         $accept = StatVacancies::where('vacancy_id', $post->id)
                     ->where('status', true)->get();
+        $status = $post->status;
+        
+        if($status){
+            if(count($accept)>0){
+                $reports = Report::where('stat_vacancy_id', $accept[0]['id'])->get();
+            }else{
+                $reports = [];
+            }
+            return view('petani.show', [
+                'post' => $post,
+                'waiting' => $waiting,
+                'accept' => $accept,
+                'reports' => $reports,
+                'status' => $status
+            ]);
+        }
 
         return view('petani.show', [
             'post' => $post,
             'waiting' => $waiting,
-            'accept' => $accept
-        ]);
+            'accept' => $accept,
+            'status' => $status
+            ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Vacancies $post)
+     public function edit(Vacancies $post)
     {
+        $status = $post->status;
+        // dd($status);
+        // if($status){
+        //     abort(403);
+        // }
         return view('petani.edit', [
             'post' => $post,
             'categories' => Category::all(),
@@ -107,8 +132,8 @@ class DashboardPostController extends Controller
         $validatedData = $request->validate($rules);
         
         $validatedData['slug'] = SlugService::createSlug(Vacancies::class, 'slug', $request->title);    
-        
         $validatedData['user_id'] = auth()->user()->id;
+        $validatedData['status'] = false;
 
         Vacancies::where('id', $post->id)->update($validatedData);
 
@@ -126,6 +151,13 @@ class DashboardPostController extends Controller
         Vacancies::destroy($post->id);
 
         return redirect('/petani/posts')->with('status', 'Berhasil menghapus lowongan!');
+    }
+    
+    // MEMULAI PEKERJAAN LOWONGAN
+    public function status(Vacancies $post){
+        $data['status'] = true;
+        Vacancies::where('id', $post->id)->update($data);
+        return redirect()->back()->with('status', 'Berhasil menutup lowongan!');
     }
 
 

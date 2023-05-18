@@ -27,6 +27,9 @@
                     name="salary"
                     value="{{ old('salary', $post->salary) }}"
                 />
+                @error('salary')
+                    <small class="text-rose-600">{{ $message }}</small>
+                @enderror
             </div>
             <div class="w-1/2 py-2">
                 <p>Category</p>
@@ -39,6 +42,9 @@
                         @endif
                     @endforeach
                 </select>
+                @error('category_id')
+                    <small class="text-rose-600">{{ $message }}</small>
+                @enderror
             </div>
             <div class="py-2">
                 <p>Alamat</p>
@@ -50,21 +56,33 @@
                                 <option value="{{ $province->id }}">{{ $province->name }}</option>
                             @endforeach
                         </select>
+                        @error('province')
+                            <small class="text-rose-600">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div>
                         <select name="regency" id="regency" class="w-1/2 rounded">
                             <option>{{ old('regency', $post->address->district->regency->name) }}</option>
                         </select>
+                        @error('regency')
+                            <small class="text-rose-600">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div>
                         <select name="district" id="district" class="w-1/2 rounded">
                             <option>{{ old('district', $post->address->district->name) }}</option>
                         </select>
+                        @error('district')
+                            <small class="text-rose-600">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div>
                         <select name="address_id" id="village" class="w-1/2 rounded">
                             <option value="{{ old('address_id', $post->address->id) }}">{{ old('address_id', $post->address->name) }}</option>
                         </select>
+                        @error('address_id')
+                            <small class="text-rose-600">{{ $message }}</small>
+                        @enderror
                     </div>
                     <input type="text" 
                     name="address_detail" 
@@ -72,6 +90,9 @@
                     placeholder="Detail lainnya (Cth: jalan, blok, dll)" 
                     value="{{ old('address_detail', $post->address_detail) }}"
                     class='w-3/4 h-20 p-2 border rounded outline-none shadow-sm'>
+                    @error('address_detail')
+                        <small class="text-rose-600">{{ $message }}</small>
+                    @enderror
                 </div>
             </div>
             <div class="py-2">

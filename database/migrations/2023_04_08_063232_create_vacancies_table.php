@@ -24,6 +24,7 @@ return new class extends Migration
             $table->bigInteger('salary');
             $table->text('body');
             $table->text('address_detail')->nullable();
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

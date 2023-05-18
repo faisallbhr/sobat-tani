@@ -56,11 +56,12 @@
 </div>
 
 <script>
-
+    // MODAL
     const btn = document.querySelector('#btn')
     const btnBack = document.querySelector('#btnBack')
     const form = document.querySelector('#toForm')
     btn.addEventListener('click', function(){
+        let cek = true
         form.classList.toggle('hidden')
     })
     btnBack.addEventListener('click', function(){
