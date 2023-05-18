@@ -11,6 +11,6 @@ class Report extends Model
     use HasFactory;
     protected $guarded = ['id'];
     public function stat_vacancy(){
-        return $this->hasMany(StatVacancies::class);
+        return $this->belongsTo(StatVacancies::class);
     }
 }

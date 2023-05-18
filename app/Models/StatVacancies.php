@@ -16,6 +16,6 @@ class StatVacancies extends Model
         return $this->belongsTo(Vacancies::class);
     }
     public function report(){
-        return $this->belongsTo(Report::class);
+        return $this->hasMany(Report::class);
     }
 }

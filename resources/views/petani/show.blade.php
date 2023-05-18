@@ -37,10 +37,18 @@
                     </div>
                 </div>
             </div>
-            @foreach ($reports as $report)
-                <img src="{{ asset('storage/'.$report->image) }}" class="max-w-xl" alt="report-image">
-                <p>{!! $report->deskripsi !!}</p>
-            @endforeach
+            <div class="bg-white w-full my-10 rounded shadow-md">
+                <h3 class="px-4 pt-8 font-bold text-xl">Laporan:</h3>
+                @foreach ($reports as $report)
+                <div class="flex gap-8 py-8 px-4 border-b">
+                        <img src="{{ asset('storage/'.$report->image) }}" class="max-w-xl rounded-md" alt="report-image">
+                        <div>
+                            <p class="font-bold">Nama<span class="ml-[95.5px]">: {{ $report->stat_vacancy->user->name }}</span></p>
+                            <p class="font-bold">Deskripsi laporan : <span>{!! $report->deskripsi !!}</span></p>
+                        </div>
+                </div>
+                @endforeach
+            </div>
         @else
             @if (session('status'))
             <div id="toast-success" class="flex items-center w-full p-4 text-primary bg-green-100 rounded shadow my-4" role="alert">
