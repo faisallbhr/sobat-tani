@@ -23,6 +23,9 @@
                     <h3 class="font-semibold text-4xl py-4 text-black">Rp{{ $accept->salary }} <span class="text-2xl text-gray-doang">/orang</span></h3>
                     <h4 class="font-semibold text-2xl text-black">Deskripsi Pekerjaan</h4>
                     <p>{!! $accept->body !!}</p>
+                    <h4 class="font-semibold text-2xl text-black pt-4">Deadline</h4>
+                    <p>{{ $dl_tgl }}</p>
+                    <p>{{ $dl_jam }}</p>
                     <h4 class="font-semibold text-2xl pt-4 text-black">Alamat</h4>
                     <p class="text-gray-doang text-lg">{{ $accept->address->name }}, {{ $accept->address->district->name }}, {{ $accept->address->district->regency->name }}, {{ $accept->address->district->regency->province->name }}</p>
 

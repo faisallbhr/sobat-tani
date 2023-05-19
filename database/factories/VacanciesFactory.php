@@ -23,6 +23,7 @@ class VacanciesFactory extends Factory
             'address_id' => 1101020039,
             'slug' =>$this->faker->slug(),
             'body' =>$this->faker->paragraph(mt_rand(2,8)),
+            'work_duration' => 3,
             'salary' => mt_rand(10000,100000),
             'address_detail' => $this->faker->paragraph(mt_rand(1,2)),
         ];

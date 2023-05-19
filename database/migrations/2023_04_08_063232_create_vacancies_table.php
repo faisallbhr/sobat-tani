@@ -21,6 +21,8 @@ return new class extends Migration
             $table->foreignId('address_id');
             $table->string('title');
             $table->string('slug')->unique();
+            $table->string('work_duration');
+            $table->timestamp('deadline')->useCurrent();
             $table->bigInteger('salary');
             $table->text('body');
             $table->text('address_detail')->nullable();

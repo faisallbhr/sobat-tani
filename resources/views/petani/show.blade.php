@@ -18,7 +18,7 @@
             @endif  
             <div class="flex justify-start w-full">
                 <div class="px-4 sm:px-6 lg:px-8 py-8 max-w-9xl flex justify-center bg-white rounded-md shadow-md">
-                    <div class="py-6 max-w-9xl relative w-full"> 
+                    <div class="py-6 max-w-9xl relative w-full card-content"> 
                         <div class="grid grid-cols-2 gap-8 w-full">
                             <img class="rounded-md overflow-hidden h-full" src="https://images.unsplash.com/photo-1624996379697-f01d168b1a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">
                             <div class="text-gray-doang text-lg">
@@ -26,6 +26,8 @@
                                 <h3 class="font-semibold text-4xl py-4 text-black">Rp{{ $post->salary }} <span class="text-2xl text-gray-doang">/orang</span></h3>
                                 <h4 class="font-semibold text-2xl text-black">Deskripsi Pekerjaan</h4>
                                 <p>{!! $post->body !!}</p>
+                                <h4 class="font-semibold text-2xl text-black pt-4">Lama Pengerjaan</h4>
+                                <p>{{ $post->work_duration }} hari</p>
                                 <h4 class="font-semibold text-2xl pt-4 text-black">Alamat</h4>
                                 <p class="text-gray-doang text-lg">{{ $post->address->name }}, {{ $post->address->district->name }}, {{ $post->address->district->regency->name }}, {{ $post->address->district->regency->province->name }}</p>
                                 <div class="flex gap-4 absolute right-0 bottom-0">
@@ -37,18 +39,22 @@
                     </div>
                 </div>
             </div>
+
+            {{-- LAPORAN --}}
+            @if (count($reports) > 0)
             <div class="bg-white w-full my-10 rounded shadow-md">
                 <h3 class="px-4 pt-8 font-bold text-xl">Laporan:</h3>
                 @foreach ($reports as $report)
                 <div class="flex gap-8 py-8 px-4 border-b">
-                        <img src="{{ asset('storage/'.$report->image) }}" class="max-w-xl rounded-md" alt="report-image">
-                        <div>
-                            <p class="font-bold">Nama<span class="ml-[95.5px]">: {{ $report->stat_vacancy->user->name }}</span></p>
-                            <p class="font-bold">Deskripsi laporan : <span>{!! $report->deskripsi !!}</span></p>
-                        </div>
+                    <img src="{{ asset('storage/'.$report->image) }}" class="max-w-xl w-full rounded-md" alt="report-image">
+                    <div>
+                        <p class="font-bold">Nama<span class="ml-[95.5px]">: {{ $report->stat_vacancy->user->name }}</span></p>
+                        <p class="font-bold mt-2">Deskripsi laporan : <span>{!! $report->deskripsi !!}</span></p>
+                    </div>
                 </div>
                 @endforeach
             </div>
+            @endif
         @else
             @if (session('status'))
             <div id="toast-success" class="flex items-center w-full p-4 text-primary bg-green-100 rounded shadow my-4" role="alert">
@@ -63,7 +69,7 @@
                 </button>
             </div>
             @endif  
-            <div class="flex justify-start w-full">
+            <div class="flex justify-start w-full ">
                 <div class="px-4 sm:px-6 lg:px-8 py-8 max-w-9xl flex justify-center bg-white rounded-md shadow-md">
                     <div class="py-6 max-w-9xl relative w-full"> 
                         <div class="grid grid-cols-2 gap-8 w-full">
@@ -73,9 +79,11 @@
                                 <h3 class="font-semibold text-4xl py-4 text-black">Rp{{ $post->salary }} <span class="text-2xl text-gray-doang">/orang</span></h3>
                                 <h4 class="font-semibold text-2xl text-black">Deskripsi Pekerjaan</h4>
                                 <p>{!! $post->body !!}</p>
+                                <h4 class="font-semibold text-2xl text-black pt-4">Lama Pengerjaan</h4>
+                                <p>{{ $post->work_duration }} hari</p>
                                 <h4 class="font-semibold text-2xl pt-4 text-black">Alamat</h4>
                                 <p class="text-gray-doang text-lg">{{ $post->address->name }}, {{ $post->address->district->name }}, {{ $post->address->district->regency->name }}, {{ $post->address->district->regency->province->name }}</p>
-                                <div class="flex gap-4 absolute right-0 bottom-0">
+                                <div class="flex gap-4 justify-end">
                                     <a href="{{ url('/petani/posts') }}"><button class="bg-white border border-primary text-primary px-4 py-2 font-medium rounded text-sm mt-4">Kembali</button></a>
                                     <form action="{{ url('petani/posts/'.$post->slug)}}" method="POST">
                                         @method('patch')
@@ -90,6 +98,8 @@
                     </div>
                 </div>
             </div>
+
+            {{-- LIST PENDAFTAR --}}
             @if (count($accept) !== 0)
             <table class="text-left text-sm font-light overflow-hidden rounded-md w-full mt-10">
                 <thead

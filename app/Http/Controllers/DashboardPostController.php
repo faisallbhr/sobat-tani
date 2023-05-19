@@ -50,6 +50,7 @@ class DashboardPostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'category_id' => 'required',
+            'work_duration' => 'required|numeric',
             'salary' => 'required|numeric',
             'address_id' => 'required',
             'body' => 'required',
@@ -156,6 +157,12 @@ class DashboardPostController extends Controller
     // MEMULAI PEKERJAAN LOWONGAN
     public function status(Vacancies $post){
         $data['status'] = true;
+        Vacancies::where('id', $post->id)->update($data); //update data terlebih dahulu
+        
+        $deadline = $post->updated_at; //ubah deadline mulai dari tgl status yang telah diubah
+        $duration = intval($post->work_duration);
+        $post->deadline = $deadline->addDays($duration);
+        $data['deadline'] = $post->deadline;
         Vacancies::where('id', $post->id)->update($data);
         return redirect()->back()->with('status', 'Berhasil menutup lowongan!');
     }

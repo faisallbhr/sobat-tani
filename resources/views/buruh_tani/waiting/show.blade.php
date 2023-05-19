@@ -16,6 +16,8 @@
                     <h3 class="font-semibold text-4xl py-4 text-black">Rp{{ $wait->salary }} <span class="text-2xl text-gray-doang">/orang</span></h3>
                     <h4 class="font-semibold text-2xl text-black">Deskripsi Pekerjaan</h4>
                     <p>{!! $wait->body !!}</p>
+                    <h4 class="font-semibold text-2xl text-black pt-4">Lama Pengerjaan</h4>
+                    <p>{{ $wait->work_duration }} hari</p>
                     <h4 class="font-semibold text-2xl pt-4 text-black">Alamat</h4>
                     <p class="text-gray-doang text-lg">{{ $wait->address->name }}, {{ $wait->address->district->name }}, {{ $wait->address->district->regency->name }}, {{ $wait->address->district->regency->province->name }}</p>
 

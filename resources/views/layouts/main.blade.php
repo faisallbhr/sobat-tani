@@ -37,6 +37,7 @@
                 background: white
             }
         </style>
+        
     </head>
     <body class="bg-[#F5F5F5]">
         @include('layouts.header')
