@@ -12,6 +12,7 @@ class Vacancies extends Model
 
     protected $with = ['user', 'category'];
     protected $guarded = ['id'];
+    protected $dates = ['deadline'];
     public function category(){
         return $this->belongsTo(Category::class);
     }

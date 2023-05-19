@@ -8,6 +8,7 @@ use App\Models\Vacancies;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\StatVacancies;
+use Illuminate\Support\Facades\Schema;
 
 class DaftarPekerjaanController extends Controller
 {
@@ -15,51 +16,78 @@ class DaftarPekerjaanController extends Controller
         $this->middleware('can:buruh tani');
     }
     public function index(){
-        $progress = StatVacancies::where('user_id', auth()->user()->id)
-                                ->where('status', true)
-                                ->where('pengerjaan', false)->get();
-        $done = StatVacancies::where('user_id', auth()->user()->id)
-                                ->where('status', true)
-                                ->where('pengerjaan', true)->get();
+        $accepted = StatVacancies::where('user_id', auth()->user()->id)
+                                ->where('status', true)->get();
 
-        $vacancies_progress = array();
-        foreach($progress as $acc){
-           array_push($vacancies_progress, $acc->vacancy_id);
+        $vacancies = array();
+        foreach($accepted as $acc){
+           array_push($vacancies, $acc->vacancy_id);
         }
-        $vacancies_done = array();
-        foreach($progress as $acc){
-           array_push($vacancies_done, $acc->vacancy_id);
-        }
+
+        $vacancy = Schema::getColumnListing((new Vacancies())->getTable()); //mendapatkan kolom status pada tabel vacancies
+
         return view('buruh_tani.accepted.accepted', [
-            'progress' => Vacancies::whereIn('id', $vacancies_progress)->get(),
-            'done' => Vacancies::whereIn('id', $vacancies_done)->get(),
+            'progress' => StatVacancies::whereIn('vacancy_id', $vacancies)
+                                        ->where('user_id', auth()->user()->id)
+                                        ->where('pengerjaan', false)
+                                        ->where($vacancy[11], true)->get(),
+            'done' => StatVacancies::whereIn('vacancy_id', $vacancies)
+                                    ->where('user_id', auth()->user()->id)
+                                    ->where('pengerjaan', true)
+                                    ->where($vacancy[11], true)->get(),
         ]);
     }
     public function show(Vacancies $accept){
         $data = $accept->id;
         session()->put('data', $data); //mengirim id postingan ke controller store
-        $deadline = $accept->deadline;
 
+        $stat_id = StatVacancies::where('user_id', auth()->user()->id)
+                                ->where('vacancy_id', $accept->id)->get();
+        session()->put('stat_vacancy_id', $stat_id[0]['id']); //mengirim id status vacancy ke controller store untuk update status pengerjaan di table statvacancy
+
+        $counter = $stat_id[0]['pengerjaan'];
+        if($counter){
+            $vacancy_id = StatVacancies::where('vacancy_id',$data)->get();
+            // dd($vacancy_id);
+            $vacancies = array();
+            foreach($vacancy_id as $vacancy){
+            array_push($vacancies, $vacancy->id);
+            }
+            // dd($vacancies);
+            $reports = Report::whereIn('stat_vacancy_id', $vacancies)->get();
+            // dd($reports);
+        }else{
+            $reports = [];
+        }
+        
         return view('buruh_tani.accepted.show', [
             'accept' => $accept,
-            'dl_tgl' => $deadline,
-            'dl_jam' => $deadline,
+            'dl_tgl' => $accept->deadline->format('d-m-Y'),
+            'dl_jam' => $accept->deadline->format('H:i:s'),
+            'counter' => $counter,
+            'reports' => $reports
         ])->with($data);
     }
     public function store(Request $request){
         $data = session()->get('data'); //mengambil id dari postingan
+        $stat_id = session()->get('stat_vacancy_id');
 
         $validatedData = $request->validate([
             'deskripsi' => 'required|max:255',
             'image' => 'required|image|file|max:2048'
         ]);
         $vacancy_id = StatVacancies::where('vacancy_id', $data)
-                            ->where('user_id', auth()->user()->id)->get();
+                                    ->where('user_id', auth()->user()->id)->get();
+
         $vacancy_id = $vacancy_id[0]['id'];
         $validatedData['stat_vacancy_id'] = $vacancy_id;
         $validatedData['image'] = $request->file('image')->store('report-images');
 
         Report::create($validatedData);
+
+        // update status pengerjaan menjadi selesai
+        $stat_vacancy['pengerjaan'] = true;
+        StatVacancies::where('id', $stat_id)->update($stat_vacancy);
         return redirect()->back()->with('status', 'Berhasil mengirim laporan');
     }
 }

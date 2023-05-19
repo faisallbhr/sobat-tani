@@ -31,12 +31,17 @@
 
                     <div class="flex justify-end gap-2">
                         <a href="{{ url('buruhtani/accept') }}"><button class="mt-4 bg-white border border-primary text-primary px-4 py-2 font-medium rounded text-sm">Kembali</button></a>
+                        @if (! $counter)
+                            
                         <button id="btn" class="mt-4 bg-primary border border-primary text-white px-4 py-2 font-medium rounded text-sm">Kirim Laporan</button>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    {{-- MODAL --}}
     <div id="toForm" class="hidden flex justify-center items-center absolute bg-black bg-opacity-90 w-full h-[90.8%]">
         <div class="mx-8 p-4 bg-white max-w-xl w-full h-fit rounded-md">
             <form id="myForm" action="{{ url('buruhtani/accept/') }}" method="post" enctype="multipart/form-data">
@@ -56,6 +61,25 @@
             </div>  
         </div>
     </div>
+</div>
+
+{{-- LAPORAN --}}
+<div class="max-w-5xl mx-auto">
+    @if (count($reports) > 0)
+    <div class="bg-white w-full my-10 rounded shadow-md">
+        <h3 class="px-4 pt-8 font-bold text-xl">Laporan:</h3>
+        @foreach ($reports as $report)
+        <div class="flex gap-8 py-8 mx-4 border-b">
+            <img src="{{ asset('storage/'.$report->image) }}" class="max-w-xl w-full rounded-md" alt="report-image">
+            <div>
+                <p class="font-bold">Nama<span class="ml-[95.5px]">: {{ $report->stat_vacancy->user->name }}</span></p>
+                <p class="font-bold mt-2">Deskripsi laporan : <span>{!! $report->deskripsi !!}</span></p>
+                <small class="text-gray-doang">Upload pada tanggal: {{ $report->updated_at }}</small>
+            </div>
+        </div>
+        @endforeach
+    </div>
+    @endif
 </div>
 
 <script>

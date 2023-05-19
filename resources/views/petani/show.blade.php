@@ -45,7 +45,7 @@
             <div class="bg-white w-full my-10 rounded shadow-md">
                 <h3 class="px-4 pt-8 font-bold text-xl">Laporan:</h3>
                 @foreach ($reports as $report)
-                <div class="flex gap-8 py-8 px-4 border-b">
+                <div class="flex gap-8 py-8 mx-4 border-b">
                     <img src="{{ asset('storage/'.$report->image) }}" class="max-w-xl w-full rounded-md" alt="report-image">
                     <div>
                         <p class="font-bold">Nama<span class="ml-[95.5px]">: {{ $report->stat_vacancy->user->name }}</span></p>

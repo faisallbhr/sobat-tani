@@ -50,7 +50,7 @@
                         <td class="px-6 py-4 text-slate-800">{{ $acc->title }} </td>
                         <td class="px-6 py-4 text-slate-800">{{ $acc->category->name }}</td>
                         <td class="py-4  text-slate-800 px-6 whitespace-nowrap  text-center">
-                            <p class="bg-yellow-500 text-xs px-4 py-2 font-semibold rounded inline-block ">Telah disetujui</p>
+                            <p class="bg-green-500 text-xs px-4 py-2 font-semibold rounded inline-block ">Telah disetujui</p>
                         </td>
                         <td class="py-4  text-slate-800 whitespace-nowrap px-6 text-center">
                             <a href="{{ url('/buruhtani/wait/'.$acc->slug) }}" class="bg-blue-500 hover:bg-blue-600 text-xs px-4 py-2 font-semibold rounded">Lihat detail

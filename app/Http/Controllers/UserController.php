@@ -40,7 +40,8 @@ class UserController extends Controller
         $data = [
             'user_id' => $user[0]['id'],
             'vacancy_id' => $post->id,
-            'status' => false
+            'status' => false,
+            'pengerjaan' => false
         ];
         StatVacancies::create($data);
         return redirect()->back()->with('status', 'Berhasil daftar lowongan');
