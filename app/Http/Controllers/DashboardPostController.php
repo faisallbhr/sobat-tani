@@ -79,15 +79,16 @@ class DashboardPostController extends Controller
         if($status){
             if(count($accept)>0){
                 $vacancy_id = StatVacancies::where('vacancy_id',$post->id)->get();
-                // dd($vacancy_id);
+
                 $vacancies = array();
                 foreach($vacancy_id as $vacancy){
-                array_push($vacancies, $vacancy->id);
+                    array_push($vacancies, $vacancy->id);
                 }
                 $reports = Report::whereIn('stat_vacancy_id', $vacancies)->get();
             }else{
                 $reports = [];
             }
+            
             return view('petani.show', [
                 'post' => $post,
                 'waiting' => $waiting,

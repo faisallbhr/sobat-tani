@@ -26,8 +26,13 @@
                                 <h3 class="font-semibold text-4xl py-4 text-black">Rp{{ $post->salary }} <span class="text-2xl text-gray-doang">/orang</span></h3>
                                 <h4 class="font-semibold text-2xl text-black">Deskripsi Pekerjaan</h4>
                                 <p>{!! $post->body !!}</p>
-                                <h4 class="font-semibold text-2xl text-black pt-4">Lama Pengerjaan</h4>
-                                <p>{{ $post->work_duration }} hari</p>
+                                @if ($status)
+                                    <h4 class="font-semibold text-2xl text-black pt-4">Deadline Pengerjaan</h4>
+                                    <p>{{ $post->deadline->format('d-m-Y') }}</p>
+                                @else
+                                    <h4 class="font-semibold text-2xl text-black pt-4">Lama Pengerjaan</h4>
+                                    <p>{{ $post->work_duration }} hari</p>
+                                @endif
                                 <h4 class="font-semibold text-2xl pt-4 text-black">Alamat</h4>
                                 <p class="text-gray-doang text-lg">{{ $post->address->name }}, {{ $post->address->district->name }}, {{ $post->address->district->regency->name }}, {{ $post->address->district->regency->province->name }}</p>
                                 <div class="flex gap-4 absolute right-0 bottom-0">
@@ -46,7 +51,7 @@
                 <h3 class="px-4 pt-8 font-bold text-xl">Laporan:</h3>
                 @foreach ($reports as $report)
                 <div class="flex gap-8 py-8 mx-4 border-b">
-                    <img src="{{ asset('storage/'.$report->image) }}" class="max-w-xl w-full rounded-md" alt="report-image">
+                    <img src="{{ asset('storage/'.$report->image) }}" class="max-w-xl w-full rounded-md h-80 object-contain border p-4" alt="report-image">
                     <div>
                         <p class="font-bold">Nama<span class="ml-[95.5px]">: {{ $report->stat_vacancy->user->name }}</span></p>
                         <p class="font-bold mt-2">Deskripsi laporan : <span>{!! $report->deskripsi !!}</span></p>

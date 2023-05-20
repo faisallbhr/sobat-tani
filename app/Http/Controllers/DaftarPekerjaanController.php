@@ -62,8 +62,7 @@ class DaftarPekerjaanController extends Controller
         
         return view('buruh_tani.accepted.show', [
             'accept' => $accept,
-            'dl_tgl' => $accept->deadline->format('d-m-Y'),
-            'dl_jam' => $accept->deadline->format('H:i:s'),
+            'deadline' => $accept->deadline->format('d-m-Y'),
             'counter' => $counter,
             'reports' => $reports
         ])->with($data);
