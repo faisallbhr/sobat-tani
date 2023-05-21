@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Report;
 use App\Models\Vacancies;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\StatVacancies;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 
 class DaftarPekerjaanController extends Controller
@@ -67,20 +68,52 @@ class DaftarPekerjaanController extends Controller
         ])->with($data);
     }
     public function store(Request $request){        
+        // dd($accept);
         $data = session()->get('data'); //mengambil id dari postingan
         $stat_id = session()->get('stat_vacancy_id');
-
         $rules = \Validator::make($request->all(),[
             'deskripsi' => 'required|max:255',
-            'image' => 'required|image|file|max:2048'
+            'image' => ''
         ]);
-        
+        $reports = Report::all();
+        $report_id = array();
+        $user_report_id = array();
+        $vacancy_report_id = array();
+        foreach($reports as $i => $report){
+            array_push($report_id, $reports[$i]->id);
+            array_push($user_report_id, $reports[$i]->stat_vacancy->user_id);
+            array_push($vacancy_report_id, $reports[$i]->stat_vacancy->vacancy_id);
+        }
+
+        if(in_array(Auth::user()->id, $user_report_id) && in_array($data, $vacancy_report_id)){
+            if($rules->fails()){
+                return redirect()->back()->with('failed', 'Gagal memperbarui laporan, mohon isi laporan dengan benar!');
+            }else{
+                Report::where('stat_vacancy_id', $stat_id)->delete();
+                $validatedData = $request->validate([
+                    'deskripsi' => 'required|max:255',
+                    'image' => '|image'
+                ]);
+                $vacancy_id = StatVacancies::where('vacancy_id', $data)
+                ->where('user_id', auth()->user()->id)->get();
+                $vacancy_id = $vacancy_id[0]['id'];
+                $validatedData['stat_vacancy_id'] = $vacancy_id;
+                $validatedData['image'] = $request->file('image')->store('report-images');
+                
+                Report::create($validatedData);
+                
+                // update status pengerjaan menjadi selesai
+                $stat_vacancy['pengerjaan'] = true;
+                StatVacancies::where('id', $stat_id)->update($stat_vacancy);
+                return redirect()->back()->with('status', 'Berhasil mengubah laporan');
+            }
+        }
         if($rules->fails()){
             return redirect()->back()->with('failed', 'Gagal mengirim laporan, mohon isi laporan dengan benar!');
         }else{
             $validatedData = $request->validate([
                 'deskripsi' => 'required|max:255',
-                'image' => 'required|image|file|max:2048'
+                'image' => '|image'
             ]);
             $vacancy_id = StatVacancies::where('vacancy_id', $data)
             ->where('user_id', auth()->user()->id)->get();

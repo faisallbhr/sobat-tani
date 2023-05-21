@@ -45,50 +45,45 @@
                     <div class="flex justify-end gap-2">
                         <a href="{{ url('buruhtani/accept') }}"><button class="mt-4 bg-white border border-primary text-primary px-4 py-2 font-medium rounded text-sm">Kembali</button></a>
                         @if (! $counter)
-                            
                         <button id="btn" class="mt-4 bg-primary border border-primary text-white px-4 py-2 font-medium rounded text-sm">Kirim Laporan</button>
+                        @else
+                        <button id="btn" class="mt-4 bg-primary border border-primary text-white px-4 py-2 font-medium rounded text-sm">Ubah Laporan</button>
                         @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    {{-- MODAL --}}
-    <div id="toForm" class="hidden justify-center items-center absolute bg-black bg-opacity-90 w-full h-screen">
-        <div class="mx-8 p-4 bg-white max-w-xl w-full h-fit rounded-md">
-            <form id="myForm" action="{{ url('buruhtani/accept/') }}" method="post" enctype="multipart/form-data">
-                @csrf
-                <label class="block mb-2 text-sm font-medium" for="file_input">Upload foto <span class="text-xs text-gray-500" id="file_input_help">(max. 2 MB)</span></label>
-                <input name="image" id="image" class="block w-full text-sm border border-gray-300 rounded cursor-pointer bg-gray-50 focus:outline-none" type="file">
-                @error('image')
-                    <small class="text-red-500">{{ $message }}</small>
-                @enderror
-                <label class="block mb-2 text-sm font-medium mt-4" for="deskripsi">Deskripsi</label>
-                <div>
-                    <input type="text" name="deskripsi" id="deskripsi" class="w-full hidden">
-                    <trix-editor input="deskripsi"></trix-editor>
-                    @error('deskripsi')
-                        <small class="text-red-500">{{ $message }}</small>
-                    @enderror
-                </div>
-            </form>
-            <div class="flex justify-end gap-2">
-                <button id="btnBack" class="mt-4 bg-white border border-primary text-primary px-4 py-2 font-medium rounded text-sm">Kembali</button>
-                <button form="myForm" class="mt-4 bg-primary border border-primary text-white px-4 py-2 font-medium rounded text-sm">Kirim</button>
-            </div>  
-        </div>
+{{-- MODAL KIRIM LAPORAN --}}
+<div id="toForm" class="max-w-5xl mx-auto my-10 flex z-50 justify-center items-center  bg-white w-full">
+    <div class="px-4 py-10 bg-white w-full h-fit rounded shadow-md">
+        <form id="myForm" action="{{ url('buruhtani/accept/') }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <label class="block mb-2 text-sm font-medium" for="file_input">Upload foto <span class="text-xs text-gray-500" id="file_input_help">(max. 2 MB)</span></label>
+            <input name="image" id="image" class="block w-full text-sm border border-gray-300 rounded cursor-pointer bg-gray-50 focus:outline-none" type="file">
+            <label class="block mb-2 text-sm font-medium mt-4" for="deskripsi">Deskripsi</label>
+            <div>
+                <input type="text" name="deskripsi" id="deskripsi" class="w-full hidden">
+                <trix-editor input="deskripsi"></trix-editor>
+            </div>
+        </form>
+        <div class="flex justify-end gap-2">
+            <button id="btnBack" class="mt-4 bg-white border border-primary text-primary px-4 py-2 font-medium rounded text-sm">Batal</button>
+            <button form="myForm" class="mt-4 bg-primary border border-primary text-white px-4 py-2 font-medium rounded text-sm">Kirim</button>
+        </div>  
     </div>
 </div>
 
 {{-- LAPORAN --}}
-<div class="max-w-5xl mx-auto">
+<div class="max-w-5xl mx-auto relative">
     @if (count($reports) > 0)
     <div class="bg-white w-full my-10 rounded shadow-md">
         <h3 class="px-4 pt-8 font-bold text-xl">Laporan:</h3>
         @foreach ($reports as $report)
-        <div class="flex gap-8 py-8 mx-4 border-b">
-            <img src="{{ asset('storage/'.$report->image) }}" class="max-w-xl w-full rounded-md h-80 object-contain border p-4" alt="report-image">
+        <div class="grid grid-cols-2 gap-8 py-8 mx-4 border-b">
+            <img src="{{ asset('storage/'.$report->image) }}" class="w-full rounded-md h-80 object-contain border p-4" alt="report-image">
             <div class="relative w-full">
                 <p class="font-bold">Nama<span class="ml-[95.5px]">: {{ $report->stat_vacancy->user->name }}</span></p>
                 <p class="font-bold mt-2">Deskripsi laporan : <span>{!! $report->deskripsi !!}</span></p>
@@ -101,25 +96,24 @@
 </div>
 
 <script>
-    // MODAL
-    const btn = document.querySelector('#btn')
-    const btnBack = document.querySelector('#btnBack')
-    const form = document.querySelector('#toForm')
-
-    btn.addEventListener('click', function(){
-            form.classList.toggle('hidden')
-            form.classList.toggle('flex')
-        })
-    
-    btnBack.addEventListener('click', function(){
-        form.classList.toggle('hidden')
-        form.classList.toggle('flex')
-    })
-
     // TRIX EDITOR
     document.addEventListener('trix-file-accept', function(e){
         e.preventDefault()
     });
 
+    // MODAL
+    const btn = document.querySelector('#btn');
+    const btnBack = document.querySelector('#btnBack'); 
+    const form = document.querySelector('#toForm');
+    
+    btn.addEventListener('click', function(){
+        form.classList.toggle('hidden')
+        form.classList.toggle('flex')
+    })
+    btnBack.addEventListener('click', function(){
+        form.classList.toggle('hidden')
+        form.classList.toggle('flex')
+    })
+    
 </script>
 @endsection
