@@ -20,9 +20,14 @@
                     <div class="px-4">
                         <h4 class="font-medium text-lg h-12">{{ $post->title }}</h4>
                         <p class="text-primary font-bold text-xl">Rp{{ $post->salary }}/<span class="text-sm">orang</span></p>
-                        <div class="flex gap-2 pb-3">
-                            <img src="{{ asset('assets/Vector.svg') }}" alt="" class="text-black">
-                            <p class="font-medium text-xs">{{ $post->user->name }}</p>
+                        <div class="flex justify-between items-center py-2">
+                            <div class="flex gap-2">
+                                <img src="{{ asset('assets/Vector.svg') }}" alt="" class="text-black">
+                                <p class="font-medium text-xs">{{ $post->user->name }}</p>
+                            </div>
+                            <div>
+                                <small class="text-gray-700">{{ $post->created_at->format('d-m-Y') }}</small>
+                            </div>
                         </div>
                         <a href="{{ url('/detail/'.$post->slug) }}" class="bg-primary font-semibold text-lg text-white text-center w-full inline-block py-3 rounded-md mb-8">Lihat detail</a>
                     </div>

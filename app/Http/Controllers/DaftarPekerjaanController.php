@@ -59,34 +59,41 @@ class DaftarPekerjaanController extends Controller
         }else{
             $reports = [];
         }
-        
         return view('buruh_tani.accepted.show', [
             'accept' => $accept,
             'deadline' => $accept->deadline->format('d-m-Y'),
             'counter' => $counter,
-            'reports' => $reports
+            'reports' => $reports,
         ])->with($data);
     }
-    public function store(Request $request){
+    public function store(Request $request){        
         $data = session()->get('data'); //mengambil id dari postingan
         $stat_id = session()->get('stat_vacancy_id');
 
-        $validatedData = $request->validate([
+        $rules = \Validator::make($request->all(),[
             'deskripsi' => 'required|max:255',
             'image' => 'required|image|file|max:2048'
         ]);
-        $vacancy_id = StatVacancies::where('vacancy_id', $data)
-                                    ->where('user_id', auth()->user()->id)->get();
-
-        $vacancy_id = $vacancy_id[0]['id'];
-        $validatedData['stat_vacancy_id'] = $vacancy_id;
-        $validatedData['image'] = $request->file('image')->store('report-images');
-
-        Report::create($validatedData);
-
-        // update status pengerjaan menjadi selesai
-        $stat_vacancy['pengerjaan'] = true;
-        StatVacancies::where('id', $stat_id)->update($stat_vacancy);
-        return redirect()->back()->with('status', 'Berhasil mengirim laporan');
+        
+        if($rules->fails()){
+            return redirect()->back()->with('failed', 'Gagal mengirim laporan, mohon isi laporan dengan benar!');
+        }else{
+            $validatedData = $request->validate([
+                'deskripsi' => 'required|max:255',
+                'image' => 'required|image|file|max:2048'
+            ]);
+            $vacancy_id = StatVacancies::where('vacancy_id', $data)
+            ->where('user_id', auth()->user()->id)->get();
+            $vacancy_id = $vacancy_id[0]['id'];
+            $validatedData['stat_vacancy_id'] = $vacancy_id;
+            $validatedData['image'] = $request->file('image')->store('report-images');
+            
+            Report::create($validatedData);
+            
+            // update status pengerjaan menjadi selesai
+            $stat_vacancy['pengerjaan'] = true;
+            StatVacancies::where('id', $stat_id)->update($stat_vacancy);
+            return redirect()->back()->with('status', 'Berhasil mengirim laporan');
+        }
     }
 }

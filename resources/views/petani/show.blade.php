@@ -23,6 +23,7 @@
                             <img class="rounded-md overflow-hidden h-full" src="https://images.unsplash.com/photo-1624996379697-f01d168b1a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">
                             <div class="text-gray-doang text-lg">
                                 <h1 class="font-medium text-5xl text-black">{{ $post->title }}</h1>
+                                <small>Upload pada tanggal: {{ $post->created_at->format('d-m-Y') }}</small>
                                 <h3 class="font-semibold text-4xl py-4 text-black">Rp{{ $post->salary }} <span class="text-2xl text-gray-doang">/orang</span></h3>
                                 <h4 class="font-semibold text-2xl text-black">Deskripsi Pekerjaan</h4>
                                 <p>{!! $post->body !!}</p>
@@ -35,7 +36,7 @@
                                 @endif
                                 <h4 class="font-semibold text-2xl pt-4 text-black">Alamat</h4>
                                 <p class="text-gray-doang text-lg">{{ $post->address->name }}, {{ $post->address->district->name }}, {{ $post->address->district->regency->name }}, {{ $post->address->district->regency->province->name }}</p>
-                                <div class="flex gap-4 absolute right-0 bottom-0">
+                                <div class="flex gap-4 justify-end">
                                     <a href="{{ url('/petani/posts') }}"><button class="bg-white border border-primary text-primary px-4 py-2 font-medium rounded text-sm mt-4">Kembali</button></a>
                                     <p class="mt-4 bg-gray-200 px-4 py-2 rounded font-medium text-gray-400 text-sm">Mulai pekerjaan</p>
                                 </div>
@@ -45,6 +46,29 @@
                 </div>
             </div>
 
+            <div class="bg-white w-full rounded shadow-md px-4 py-10 my-10">
+                <h3 class="font-bold text-xl">Daftar pekerja:</h3>
+                <table class="text-left text-sm font-light overflow-hidden rounded-md w-full my-4">
+                    <thead
+                        class="border-b bg-neutral-200 font-medium">
+                        <tr>
+                            <th class="px-6 py-4">No</th>
+                            <th class="px-6 py-4">Nama</th>
+                            <th class="px-6 py-4">Nomor Rekening</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($accept as $acc)
+                            <tr 
+                            class="border-b border-neutral-500 bg-neutral-100">
+                                <td class="px-6 py-4 text-slate-800 font-medium w-[10px] text-center">{{ $loop->iteration }}</td>
+                                <td class="px-6 py-4 text-slate-800">{{ $acc->user->name }}</td>
+                                <td class="px-6 py-4 text-slate-800">{{ $acc->user->no_rekening }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
             {{-- LAPORAN --}}
             @if (count($reports) > 0)
             <div class="bg-white w-full my-10 rounded shadow-md">
@@ -52,14 +76,17 @@
                 @foreach ($reports as $report)
                 <div class="flex gap-8 py-8 mx-4 border-b">
                     <img src="{{ asset('storage/'.$report->image) }}" class="max-w-xl w-full rounded-md h-80 object-contain border p-4" alt="report-image">
-                    <div>
+                    <div class="relative w-full">
                         <p class="font-bold">Nama<span class="ml-[95.5px]">: {{ $report->stat_vacancy->user->name }}</span></p>
                         <p class="font-bold mt-2">Deskripsi laporan : <span>{!! $report->deskripsi !!}</span></p>
+                        <small class="text-gray-doang absolute bottom-4">Upload pada tanggal: {{ $report->updated_at->format('d-m-Y') }}</small>
                     </div>
                 </div>
                 @endforeach
             </div>
             @endif
+
+
         @else
             @if (session('status'))
             <div id="toast-success" class="flex items-center w-full p-4 text-primary bg-green-100 rounded shadow my-4" role="alert">
@@ -81,8 +108,9 @@
                             <img class="rounded-md overflow-hidden h-full" src="https://images.unsplash.com/photo-1624996379697-f01d168b1a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">
                             <div class="text-gray-doang text-lg">
                                 <h1 class="font-medium text-5xl text-black">{{ $post->title }}</h1>
-                                <h3 class="font-semibold text-4xl py-4 text-black">Rp{{ $post->salary }} <span class="text-2xl text-gray-doang">/orang</span></h3>
-                                <h4 class="font-semibold text-2xl text-black">Deskripsi Pekerjaan</h4>
+                                <h3 class="font-semibold text-4xl pt-4 text-black">Rp{{ $post->salary }} <span class="text-2xl text-gray-doang">/orang</span></h3>
+                                <small>Upload pada tanggal: {{ $post->created_at->format('d-m-Y') }}</small>
+                                <h4 class="font-semibold text-2xl text-black pt-4">Deskripsi Pekerjaan</h4>
                                 <p>{!! $post->body !!}</p>
                                 <h4 class="font-semibold text-2xl text-black pt-4">Lama Pengerjaan</h4>
                                 <p>{{ $post->work_duration }} hari</p>

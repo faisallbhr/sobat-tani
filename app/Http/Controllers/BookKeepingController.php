@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Category;
 use App\Models\BookKeeping;
 use Illuminate\Http\Request;
@@ -13,8 +14,9 @@ class BookKeepingController extends Controller
         $this->middleware('can:petani');
     }
     public function index(){
+        $books = BookKeeping::where('user_id', auth()->user()->id)->latest()->paginate(7);
         return view('petani.pembukuan.index', [
-            'books' => BookKeeping::where('user_id', auth()->user()->id)->latest()->paginate(7)
+            'books' => $books
         ]);
     }
     public function create(){

@@ -74,12 +74,12 @@ class DashboardPostController extends Controller
                     ->where('status', false)->get();
         $accept = StatVacancies::where('vacancy_id', $post->id)
                     ->where('status', true)->get();
+        // $list_worker = StatVacancies::whereIn();
         $status = $post->status;
         
         if($status){
             if(count($accept)>0){
                 $vacancy_id = StatVacancies::where('vacancy_id',$post->id)->get();
-
                 $vacancies = array();
                 foreach($vacancy_id as $vacancy){
                     array_push($vacancies, $vacancy->id);
@@ -113,9 +113,9 @@ class DashboardPostController extends Controller
     {
         $status = $post->status;
         // dd($status);
-        // if($status){
-        //     abort(403);
-        // }
+        if($status){
+            abort(403);
+        }
         return view('petani.edit', [
             'post' => $post,
             'categories' => Category::all(),
@@ -132,6 +132,7 @@ class DashboardPostController extends Controller
             'title' => 'required|max:255',
             'category_id' => 'required',
             'salary' => 'required|numeric',
+            'work_duration' => 'required|numeric',
             'address_id' => 'required',
             'body' => 'required|max:255',
             'address_detail' => 'max:255'

@@ -16,12 +16,26 @@
                 </button>
             </div>
             @endif  
+            @if (session('failed'))
+            <div id="toast-success" class="flex items-center w-full p-4 mb-4 text-red-500 bg-red-100 rounded shadow -mt-8" role="alert">
+                <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Check icon</span>
+                </div>
+                <div class="ml-3 text-sm font-medium">{{ session('failed') }}</div>
+                <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8" data-dismiss-target="#toast-success" aria-label="Close">
+                    <span class="sr-only">Close</span>
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </button>
+            </div>
+            @endif  
             <div class="grid grid-cols-2 gap-8">
                 <img class="rounded-md overflow-hidden h-full" src="https://images.unsplash.com/photo-1624996379697-f01d168b1a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">
                 <div class="text-gray-doang text-lg">
                     <h1 class="font-medium text-5xl text-black">{{ $accept->title }}</h1>
-                    <h3 class="font-semibold text-4xl py-4 text-black">Rp{{ $accept->salary }} <span class="text-2xl text-gray-doang">/orang</span></h3>
-                    <h4 class="font-semibold text-2xl text-black">Deskripsi Pekerjaan</h4>
+                    <h3 class="font-semibold text-4xl pt-4 text-black">Rp{{ $accept->salary }} <span class="text-2xl text-gray-doang">/orang</span></h3>
+                    <small>Upload pada tanggal: {{ $accept->created_at->format('d-m-Y') }}</small>
+                    <h4 class="font-semibold text-2xl text-black pt-4">Deskripsi Pekerjaan</h4>
                     <p>{!! $accept->body !!}</p>
                     <h4 class="font-semibold text-2xl text-black pt-4">Deadline</h4>
                     <p>{{ $deadline }}</p>
@@ -41,17 +55,22 @@
     </div>
 
     {{-- MODAL --}}
-    <div id="toForm" class="hidden flex justify-center items-center absolute bg-black bg-opacity-90 w-full h-[90.8%]">
+    <div id="toForm" class="hidden justify-center items-center absolute bg-black bg-opacity-90 w-full h-screen">
         <div class="mx-8 p-4 bg-white max-w-xl w-full h-fit rounded-md">
             <form id="myForm" action="{{ url('buruhtani/accept/') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <label class="block mb-2 text-sm font-medium" for="file_input">Upload foto <span class="text-xs text-gray-500" id="file_input_help">(max. 2 MB)</span></label>
                 <input name="image" id="image" class="block w-full text-sm border border-gray-300 rounded cursor-pointer bg-gray-50 focus:outline-none" type="file">
-                
+                @error('image')
+                    <small class="text-red-500">{{ $message }}</small>
+                @enderror
                 <label class="block mb-2 text-sm font-medium mt-4" for="deskripsi">Deskripsi</label>
                 <div>
                     <input type="text" name="deskripsi" id="deskripsi" class="w-full hidden">
                     <trix-editor input="deskripsi"></trix-editor>
+                    @error('deskripsi')
+                        <small class="text-red-500">{{ $message }}</small>
+                    @enderror
                 </div>
             </form>
             <div class="flex justify-end gap-2">
@@ -69,11 +88,11 @@
         <h3 class="px-4 pt-8 font-bold text-xl">Laporan:</h3>
         @foreach ($reports as $report)
         <div class="flex gap-8 py-8 mx-4 border-b">
-            <img src="{{ asset('storage/'.$report->image) }}" class="max-w-xl w-full rounded-md" alt="report-image">
-            <div>
+            <img src="{{ asset('storage/'.$report->image) }}" class="max-w-xl w-full rounded-md h-80 object-contain border p-4" alt="report-image">
+            <div class="relative w-full">
                 <p class="font-bold">Nama<span class="ml-[95.5px]">: {{ $report->stat_vacancy->user->name }}</span></p>
                 <p class="font-bold mt-2">Deskripsi laporan : <span>{!! $report->deskripsi !!}</span></p>
-                <small class="text-gray-doang">Upload pada tanggal: {{ $report->updated_at }}</small>
+                <small class="text-gray-doang absolute bottom-4">Upload pada tanggal: {{ $report->updated_at->format('d-m-Y') }}</small>
             </div>
         </div>
         @endforeach
@@ -86,12 +105,15 @@
     const btn = document.querySelector('#btn')
     const btnBack = document.querySelector('#btnBack')
     const form = document.querySelector('#toForm')
+
     btn.addEventListener('click', function(){
-        let cek = true
-        form.classList.toggle('hidden')
-    })
+            form.classList.toggle('hidden')
+            form.classList.toggle('flex')
+        })
+    
     btnBack.addEventListener('click', function(){
         form.classList.toggle('hidden')
+        form.classList.toggle('flex')
     })
 
     // TRIX EDITOR
