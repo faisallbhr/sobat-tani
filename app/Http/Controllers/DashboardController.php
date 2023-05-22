@@ -27,9 +27,27 @@ class DashboardController extends Controller
     {
         // BURUH TANI START
         $regis_vacancy = StatVacancies::where('user_id', auth()->user()->id)
-                        ->where('status', false)->get();
-        $acc_vacancy = StatVacancies::where('user_id', auth()->user()->id)
-                        ->where('status', true)->get();
+                                        ->where('status', false)
+                                        ->where('pengerjaan', false)->get();
+
+        $acc = StatVacancies::where('user_id', auth()->user()->id)
+                            ->where('status', true)
+                            ->where('pengerjaan', false)->get();
+
+        $progress_id = array();
+        foreach ($acc as $i => $progress){
+            array_push($progress_id, $acc[$i]->vacancy->id);
+        }
+        $acc_vacancy = Vacancies::whereIn('id', $progress_id)
+                                    ->where('status', false)->get();
+        
+        $progress = StatVacancies::where('user_id', auth()->user()->id)
+                                    ->where('status', true)
+                                    ->where('pengerjaan', false)->get();
+
+        $done = StatVacancies::where('user_id', auth()->user()->id)
+                                ->where('status', true)
+                                ->where('pengerjaan', true)->get();
         // BURUH TANI END
 
         // PETANI START
@@ -45,11 +63,13 @@ class DashboardController extends Controller
         // PETANI END
 
         return view('pages.dashboard.dashboard', [
+            'regis_vacancy' => count($regis_vacancy),
+            'acc_vacancy' => count($acc_vacancy),
+            'progress' => count($progress),
+            'done' => count($done),
             'vacancies' => count($vacancies),
             'registered' => count($registered),
             'accepted' => count($accepted),
-            'regis_vacancy' => count($regis_vacancy),
-            'acc_vacancy' => count($acc_vacancy),
         ]);
     }
 }
