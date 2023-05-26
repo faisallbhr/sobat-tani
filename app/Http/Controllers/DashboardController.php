@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BookKeeping;
 use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\Category;
@@ -51,15 +52,11 @@ class DashboardController extends Controller
         // BURUH TANI END
 
         // PETANI START
-        $vacancies = Vacancies::where('user_id', auth()->user()->id)->get();
-        $vacancy_id = array();
-        foreach($vacancies as $i){
-            array_push($vacancy_id, $i->id);
-        }
-        $registered = StatVacancies::whereIn('vacancy_id', $vacancy_id)
-                                    ->where('status', false)->get();
-        $accepted = StatVacancies::whereIn('vacancy_id', $vacancy_id)
-                                    ->where('status', true)->get();
+        $vacancies_open = Vacancies::where('user_id', auth()->user()->id)
+                                ->where('status', false)->get();
+        $vacancies_closed = Vacancies::where('user_id', auth()->user()->id)
+                                ->where('status', true)->get();
+        $books = BookKeeping::where('user_id', auth()->user()->id)->get();
         // PETANI END
 
         return view('pages.dashboard.dashboard', [
@@ -67,9 +64,9 @@ class DashboardController extends Controller
             'acc_vacancy' => count($acc_vacancy),
             'progress' => count($progress),
             'done' => count($done),
-            'vacancies' => count($vacancies),
-            'registered' => count($registered),
-            'accepted' => count($accepted),
+            'vacancies_open' => count($vacancies_open),
+            'vacancies_closed' => count($vacancies_closed),
+            'books' => count($books)
         ]);
     }
 }

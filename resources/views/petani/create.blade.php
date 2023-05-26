@@ -29,6 +29,19 @@
                     value="{{ old('salary') }}"
                 />
             </div>
+            <div class="w-1/2 py-2">
+                <label htmlFor='salary'>Lama pengerjaan</label>
+                <input
+                    type='text'
+                    class='w-full p-2 border rounded-md outline-none shadow-sm'
+                    id='work_duration'
+                    name="work_duration"
+                    value="{{ old('work_duration') }}"
+                />
+                @error('salary')
+                    <small class="text-rose-600">{{ $message }}</small>
+                @enderror
+            </div>
             <div class="py-2">
                 <p>Alamat</p>
                 <div class="flex flex-col gap-4">

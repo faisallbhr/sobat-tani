@@ -73,7 +73,7 @@ class DaftarPekerjaanController extends Controller
         $stat_id = session()->get('stat_vacancy_id');
         $rules = \Validator::make($request->all(),[
             'deskripsi' => 'required|max:255',
-            'image' => ''
+            'image' => 'required|image'
         ]);
         $reports = Report::all();
         $report_id = array();
@@ -92,10 +92,10 @@ class DaftarPekerjaanController extends Controller
                 Report::where('stat_vacancy_id', $stat_id)->delete();
                 $validatedData = $request->validate([
                     'deskripsi' => 'required|max:255',
-                    'image' => '|image'
+                    'image' => 'required|image'
                 ]);
                 $vacancy_id = StatVacancies::where('vacancy_id', $data)
-                ->where('user_id', auth()->user()->id)->get();
+                                            ->where('user_id', auth()->user()->id)->get();
                 $vacancy_id = $vacancy_id[0]['id'];
                 $validatedData['stat_vacancy_id'] = $vacancy_id;
                 $validatedData['image'] = $request->file('image')->store('report-images');
@@ -113,10 +113,10 @@ class DaftarPekerjaanController extends Controller
         }else{
             $validatedData = $request->validate([
                 'deskripsi' => 'required|max:255',
-                'image' => '|image'
+                'image' => 'required|image'
             ]);
             $vacancy_id = StatVacancies::where('vacancy_id', $data)
-            ->where('user_id', auth()->user()->id)->get();
+                                        ->where('user_id', auth()->user()->id)->get();
             $vacancy_id = $vacancy_id[0]['id'];
             $validatedData['stat_vacancy_id'] = $vacancy_id;
             $validatedData['image'] = $request->file('image')->store('report-images');

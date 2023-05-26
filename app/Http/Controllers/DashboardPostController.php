@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\District;
 use App\Models\Province;
 use App\Models\Vacancies;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\StatVacancies;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -166,10 +167,10 @@ class DashboardPostController extends Controller
     public function status(Vacancies $post){
         $data['status'] = true;
         Vacancies::where('id', $post->id)->update($data); //update data terlebih dahulu
+
         
-        $deadline = $post->updated_at; //ubah deadline mulai dari tgl status yang telah diubah
         $duration = intval($post->work_duration);
-        $post->deadline = $deadline->addDays($duration);
+        $post->deadline = Carbon::now()->addDays($duration);
         $data['deadline'] = $post->deadline;
         Vacancies::where('id', $post->id)->update($data);
         return redirect()->back()->with('status', 'Berhasil menutup lowongan!');

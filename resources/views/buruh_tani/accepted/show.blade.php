@@ -57,7 +57,7 @@
 </div>
 
 {{-- MODAL KIRIM LAPORAN --}}
-<div id="toForm" class="max-w-5xl mx-auto my-10 flex z-50 justify-center items-center  bg-white w-full">
+<div id="toForm" class="hidden max-w-5xl mx-auto my-10 flex z-50 justify-center items-center  bg-white w-full">
     <div class="px-4 py-10 bg-white w-full h-fit rounded shadow-md">
         <form id="myForm" action="{{ url('buruhtani/accept/') }}" method="post" enctype="multipart/form-data">
             @csrf

@@ -72,8 +72,8 @@
                   </svg>
                 </div>
                 <div>
-                  <span class="block text-2xl font-bold">{{ $vacancies }}</span>
-                  <span class="block text-gray-500">Posting lowongan</span>
+                  <span class="block text-2xl font-bold">{{ $vacancies_open }}</span>
+                  <span class="block text-gray-500">Lowongan dibuka</span>
                 </div>
               </div>
               <div class="w-[100%] action bg-slate-50 shadow-md h-full rounded-lg absolute left-2 -bottom-3 -z-10 transition-all"></div>
@@ -86,8 +86,8 @@
                   </svg>
                 </div>
                 <div>
-                  <span class="block text-2xl font-bold">{{ $registered }}</span>
-                  <span class="block text-gray-500">Pendaftar</span>
+                  <span class="block text-2xl font-bold">{{ $vacancies_closed }}</span>
+                  <span class="block text-gray-500">Lowongan ditutup</span>
                 </div>
               </div>
               <div class="w-[100%] action bg-slate-50 shadow-md h-full rounded-lg absolute left-2 -bottom-3 -z-10 transition-all"></div>
@@ -100,8 +100,8 @@
                   </svg>
                 </div>
                 <div>
-                  <span class="block text-2xl font-bold">{{ $accepted }}</span>
-                  <span class="block text-gray-500">Pekerja</span>
+                  <span class="block text-2xl font-bold">{{ $books }}</span>
+                  <span class="block text-gray-500">Catatan</span>
                 </div>
               </div>
               <div class="w-[100%] action bg-slate-50 shadow-md h-full rounded-lg absolute left-2 -bottom-3 -z-10 transition-all"></div>

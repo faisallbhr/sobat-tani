@@ -38,7 +38,14 @@
                                 <p class="text-gray-doang text-lg">{{ $post->address->name }}, {{ $post->address->district->name }}, {{ $post->address->district->regency->name }}, {{ $post->address->district->regency->province->name }}</p>
                                 <div class="flex gap-4 justify-end">
                                     <a href="{{ url('/petani/posts') }}"><button class="bg-white border border-primary text-primary px-4 py-2 font-medium rounded text-sm mt-4">Kembali</button></a>
+                                    @if ($post->deadline->isPast())
+                                    <button onclick="return confirm('belum bisa bro, programmer lagi istirahat')" class="mt-4 bg-red-500 hover:bg-red-700 border border-red-800 text-white px-4 py-2 font-medium rounded text-sm">Bayar</button>
+                                    {{-- <form action="{{ url('petani/posts/'.$post->slug)}}" method="POST">
+                                        @csrf
+                                    </form> --}}
+                                    @else
                                     <p class="mt-4 bg-gray-200 px-4 py-2 rounded font-medium text-gray-400 text-sm">Mulai pekerjaan</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
