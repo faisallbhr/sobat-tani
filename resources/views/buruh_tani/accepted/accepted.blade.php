@@ -16,8 +16,9 @@
             </thead>
             <tbody>
                 @foreach ($progress as $acc)
-                    <tr class="border-b border-neutral-500 bg-neutral-200">
-                        <td class="px-6 py-4 text-slate-800 font-medium ">{{ $loop->iteration }}</td>
+                @if ($acc->vacancy->status)
+                <tr class="border-b border-neutral-500 bg-neutral-200">
+                    <td class="px-6 py-4 text-slate-800 font-medium ">{{ $loop->iteration }}</td>
                         <td class="px-6 py-4 text-slate-800">{{ $acc->vacancy->title }}</td>
                         <td class="px-6 py-4 text-slate-800">{{ $acc->vacancy->category->name }}</td>
                         <td class="py-4  text-slate-800 whitespace-nowrap text-center">
@@ -25,6 +26,7 @@
                             </a>
                         </td>
                     </tr>
+                @endif
                 @endforeach
             </tbody>
         </table>

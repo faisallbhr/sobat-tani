@@ -45,6 +45,12 @@ class DashboardController extends Controller
         $progress = StatVacancies::where('user_id', auth()->user()->id)
                                     ->where('status', true)
                                     ->where('pengerjaan', false)->get();
+        $count_progress = array();
+        foreach($progress as $i){
+            if($i->vacancy->status){
+                array_push($count_progress, $i);
+            }
+        }
 
         $done = StatVacancies::where('user_id', auth()->user()->id)
                                 ->where('status', true)
@@ -62,7 +68,7 @@ class DashboardController extends Controller
         return view('pages.dashboard.dashboard', [
             'regis_vacancy' => count($regis_vacancy),
             'acc_vacancy' => count($acc_vacancy),
-            'progress' => count($progress),
+            'progress' => count($count_progress),
             'done' => count($done),
             'vacancies_open' => count($vacancies_open),
             'vacancies_closed' => count($vacancies_closed),

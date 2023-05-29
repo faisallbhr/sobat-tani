@@ -31,11 +31,12 @@ class DaftarPekerjaanController extends Controller
             'progress' => StatVacancies::whereIn('vacancy_id', $vacancies)
                                         ->where('user_id', auth()->user()->id)
                                         ->where('pengerjaan', false)
-                                        ->where($vacancy[11], true)->get(),
+                                        ->where('status', true)->get(),
+
             'done' => StatVacancies::whereIn('vacancy_id', $vacancies)
                                     ->where('user_id', auth()->user()->id)
                                     ->where('pengerjaan', true)
-                                    ->where($vacancy[11], true)->get(),
+                                    ->where('status', true)->get(),
         ]);
     }
     public function show(Vacancies $accept){

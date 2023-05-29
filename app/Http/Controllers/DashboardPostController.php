@@ -75,7 +75,6 @@ class DashboardPostController extends Controller
                     ->where('status', false)->get();
         $accept = StatVacancies::where('vacancy_id', $post->id)
                     ->where('status', true)->get();
-        // $list_worker = StatVacancies::whereIn();
         $status = $post->status;
         
         if($status){
