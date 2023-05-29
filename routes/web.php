@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookKeepingController;
+use App\Http\Controllers\InvoiceController;
 use Laravel\Fortify\Features;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -33,13 +34,16 @@ Route::patch('/petani/posts/{post:slug}', [DashboardPostController::class, 'stat
 Route::get('/petani/accept/{wait:id}', [PetaniAccController::class, 'update']);
 Route::get('/petani/reject/{wait:id}', [PetaniAccController::class, 'destroy']);
 Route::resource('/petani/books', BookKeepingController::class);
+Route::post('/invoice', [DashboardPostController::class, 'storeLaporan']);
 
 // BURUH TANI
 Route::resource('/buruhtani/wait', DaftarLowonganController::class);
 Route::resource('/buruhtani/accept', DaftarPekerjaanController::class);
 
 // ADMIN
-Route::resource('/admin', AdminController::class);
+Route::resource('/admin/posts', AdminController::class);
+Route::put('/admin/posts/{post:id}', [AdminController::class, 'update']);
+Route::delete('/admin/posts/{post:id}', [AdminController::class, 'destroy']);
 
 // ADDRESS 
 Route::post('/getregency', [DashboardPostController::class, 'getregency'])->name('getregency');

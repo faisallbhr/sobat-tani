@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Invoice;
 use App\Models\Regency;
 use App\Models\Report;
 use App\Models\Village;
@@ -76,7 +77,7 @@ class DashboardPostController extends Controller
         $accept = StatVacancies::where('vacancy_id', $post->id)
                     ->where('status', true)->get();
         $status = $post->status;
-        
+        $invoice = Invoice::where('vacancy_id', $post->id)->get();
         if($status){
             if(count($accept)>0){
                 $vacancy_id = StatVacancies::where('vacancy_id',$post->id)->get();
@@ -94,7 +95,8 @@ class DashboardPostController extends Controller
                 'waiting' => $waiting,
                 'accept' => $accept,
                 'reports' => $reports,
-                'status' => $status
+                'status' => $status,
+                'invoice' => $invoice[0]
             ]);
         }
 
@@ -175,6 +177,21 @@ class DashboardPostController extends Controller
         return redirect()->back()->with('status', 'Berhasil menutup lowongan!');
     }
 
+    public function storeLaporan(Request $request){
+        // dd('cek');
+        $rules = \Validator::make($request->all(),[
+            'image' => 'required|image'
+        ]);
+        if($rules->fails()){
+            return redirect()->back()->with('failed', 'Gagal mengirim bukti pembayaran, mohon isi form dengan benar!');
+        }else{
+            Invoice::create([
+                'vacancy_id' => $request->vacancy_id,
+                'invoice' => $request->file('image')->store('invoice-images'),
+            ]);
+            return redirect()->back()->with('status', 'Berhasil mengirim bukti pembayaran');
+        }
+    }
 
     // ADDRESS CONTROLLER
     public function getregency(Request $request)

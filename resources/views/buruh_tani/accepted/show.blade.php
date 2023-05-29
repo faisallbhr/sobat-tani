@@ -61,7 +61,7 @@
     <div class="px-4 py-10 bg-white w-full h-fit rounded shadow-md">
         <form id="myForm" action="{{ url('buruhtani/accept/') }}" method="post" enctype="multipart/form-data">
             @csrf
-            <label class="block mb-2 text-sm font-medium" for="file_input">Upload foto <span class="text-xs text-gray-500" id="file_input_help">(max. 2 MB)</span></label>
+            <label class="block mb-2 text-sm font-medium" for="file_input">Upload foto</label>
             <input name="image" id="image" class="block w-full text-sm border border-gray-300 rounded cursor-pointer bg-gray-50 focus:outline-none" type="file">
             <label class="block mb-2 text-sm font-medium mt-4" for="deskripsi">Deskripsi</label>
             <div>
