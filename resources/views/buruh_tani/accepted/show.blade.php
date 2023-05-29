@@ -29,6 +29,18 @@
                 </button>
             </div>
             @endif  
+            @if (count($invoice) > 0)
+            @if ($invoice[0]->status)
+            <div id="toast-success" class="flex items-center w-full p-4 text-primary bg-green-100 rounded shadow my-4 -mt-8" role="alert">
+                <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-primary bg-green-100">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Check icon</span>
+                </div>
+                <div class="ml-3 text-sm font-medium">Bukti pembayaran telah disetujui</div>
+
+            </div>
+            @endif
+            @endif  
             <div class="grid grid-cols-2 gap-8">
                 <img class="rounded-md overflow-hidden h-full" src="https://images.unsplash.com/photo-1624996379697-f01d168b1a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">
                 <div class="text-gray-doang text-lg">

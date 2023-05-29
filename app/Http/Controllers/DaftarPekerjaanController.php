@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Report;
+use App\Models\Invoice;
 use App\Models\Vacancies;
 use Illuminate\Http\Request;
 use App\Models\StatVacancies;
@@ -61,11 +62,18 @@ class DaftarPekerjaanController extends Controller
         }else{
             $reports = [];
         }
+        $invoices = Invoice::where('vacancy_id', $accept->id)->get();
+        if(count($invoices)>0){
+            $invoice = Invoice::where('vacancy_id', $accept->id)->get();
+        }else{
+            $invoice = [];
+        }
         return view('buruh_tani.accepted.show', [
             'accept' => $accept,
             'deadline' => $accept->deadline->format('d-m-Y'),
             'counter' => $counter,
             'reports' => $reports,
+            'invoice' =>$invoice
         ])->with($data);
     }
     public function store(Request $request){        

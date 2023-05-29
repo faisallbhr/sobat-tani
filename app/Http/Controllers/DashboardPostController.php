@@ -77,7 +77,12 @@ class DashboardPostController extends Controller
         $accept = StatVacancies::where('vacancy_id', $post->id)
                     ->where('status', true)->get();
         $status = $post->status;
-        $invoice = Invoice::where('vacancy_id', $post->id)->get();
+        $invoices = Invoice::where('vacancy_id', $post->id)->get();
+        if(count($invoices)>0){
+            $invoice = Invoice::where('vacancy_id', $post->id)->get();
+        }else{
+            $invoice = [];
+        }
         if($status){
             if(count($accept)>0){
                 $vacancy_id = StatVacancies::where('vacancy_id',$post->id)->get();
@@ -96,7 +101,7 @@ class DashboardPostController extends Controller
                 'accept' => $accept,
                 'reports' => $reports,
                 'status' => $status,
-                'invoice' => $invoice[0]
+                'invoice' => $invoice
             ]);
         }
 
