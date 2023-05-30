@@ -33,7 +33,7 @@
                         class="border-b border-neutral-500 bg-neutral-200">
                             <td class="px-6 py-4 text-slate-800 font-medium">{{ $loop->iteration }}</td>
                             <td class="px-6 py-4 text-slate-800">{{ $book->activity }}</td>
-                            <td class="px-6 py-4 text-slate-800">{{ $book->cost }}</td>
+                            <td class="px-6 py-4 text-slate-800">@currency($book->cost)</td>
                             <td class="px-6 py-4 text-slate-800">{{ $book->date->format('d-m-Y') }}</td>
                             <td class="px-6 py-4 text-slate-800 flex justify-center">
                                 <a href="/petani/books/{{ $book->slug }}/edit" >

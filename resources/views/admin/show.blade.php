@@ -35,7 +35,7 @@
                                 <div class="text-gray-doang text-lg">
                                     <h1 class="font-medium text-5xl text-black">{{ $post->title }}</h1>
                                     <small>Upload pada tanggal: {{ $post->created_at->format('d-m-Y') }}</small>
-                                    <h3 class="font-semibold text-4xl py-4 text-black">Rp{{ $post->salary }} <span class="text-2xl text-gray-doang">/orang</span></h3>
+                                    <h3 class="font-semibold text-4xl py-4 text-black">@currency($post->salary) <span class="text-2xl text-gray-doang">/orang</span></h3>
                                     <h4 class="font-semibold text-2xl text-black">Deskripsi Pekerjaan</h4>
                                     <p>{!! $post->body !!}</p>
                                         <h4 class="font-semibold text-2xl text-black pt-4">Deadline Pengerjaan</h4>
@@ -58,7 +58,7 @@
                         <img src="{{ asset('storage/'.$invoice->invoice) }}" class="max-w-xl w-full rounded-md h-80 object-contain border p-4" alt="invoice-image">
                         <div class="relative w-full">
                             <p class="font-bold">Nama<span class="font-normal">: {{ $invoice->vacancy->user->name }}</span></p>
-                            <p class="font-bold mt-2">Total yang harus dibayar: <span class="font-normal">Rp{{ ($post->salary)*(count($accept)) }}</span></p>
+                            <p class="font-bold mt-2">Total yang harus dibayar: <span class="font-normal">@currency(($post->salary)*(count($accept)))</span></p>
                             <small class="text-gray-doang absolute bottom-4">Upload pada tanggal: {{ $invoice->updated_at->format('d-m-Y') }}</small>
                             <div class="flex gap-4 absolute bottom-12">
                                 @if (! $invoice->status)
