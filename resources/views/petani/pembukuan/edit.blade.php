@@ -25,7 +25,7 @@
         </form>
         <div class="flex justify-end gap-2">
             <a href="{{ url('/petani/books') }}"><button class="mt-4 bg-white border border-primary text-primary px-4 py-2 font-medium rounded text-sm">Batal</button></a>
-            <button class="mt-4 bg-primary border border-primary text-white px-4 py-2 font-medium rounded text-sm" type='submit' form='form'>Edit postingan</button>
+            <button class="mt-4 bg-primary border border-primary text-white px-4 py-2 font-medium rounded text-sm" type='submit' form='form'>Edit catatan</button>
         </div>
     </div>
 </div>

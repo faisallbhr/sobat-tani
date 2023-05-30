@@ -11,6 +11,7 @@ class BookKeeping extends Model
     use HasFactory, Sluggable;
     protected $with = ['user'];
     protected $guarded = ['id'];
+    protected $dates = ['date'];
     public function user(){
         return $this->belongsTo(User::class);
     }

@@ -34,7 +34,7 @@
                             <td class="px-6 py-4 text-slate-800 font-medium">{{ $loop->iteration }}</td>
                             <td class="px-6 py-4 text-slate-800">{{ $book->activity }}</td>
                             <td class="px-6 py-4 text-slate-800">{{ $book->cost }}</td>
-                            <td class="px-6 py-4 text-slate-800">{{ $book->date }}</td>
+                            <td class="px-6 py-4 text-slate-800">{{ $book->date->format('d-m-Y') }}</td>
                             <td class="px-6 py-4 text-slate-800 flex justify-center">
                                 <a href="/petani/books/{{ $book->slug }}/edit" >
                                     <button class="bg-yellow-500 px-4 py-2 rounded hover:bg-yellow-500">

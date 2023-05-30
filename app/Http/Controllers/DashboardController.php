@@ -62,7 +62,8 @@ class DashboardController extends Controller
                                 ->where('status', false)->get();
         $vacancies_closed = Vacancies::where('user_id', auth()->user()->id)
                                 ->where('status', true)->get();
-        $books = BookKeeping::where('user_id', auth()->user()->id)->get();
+        // $books = BookKeeping::where('user_id', auth()->user()->id)->get();
+        $books = BookKeeping::whereMonth('date', now()->month)->sum('cost');
         // PETANI END
 
         return view('pages.dashboard.dashboard', [
@@ -72,7 +73,7 @@ class DashboardController extends Controller
             'done' => count($done),
             'vacancies_open' => count($vacancies_open),
             'vacancies_closed' => count($vacancies_closed),
-            'books' => count($books)
+            'books' => ($books)
         ]);
     }
 }
