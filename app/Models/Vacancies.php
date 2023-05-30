@@ -26,7 +26,7 @@ class Vacancies extends Model
         return $this->belongsTo(Village::class);
     }
     public function invoice(){
-        return $this->hasMany(Invoice::class);
+        return $this->hasOne(Invoice::class);
     }
     public function getRouteKeyName(){
         return 'slug';

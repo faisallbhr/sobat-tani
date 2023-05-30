@@ -2,8 +2,8 @@
 <div class="px-4 sm:px-6 lg:px-8 w-full max-w-9xl">
     <div class="max-w-9xl relative mt-10">
         @if ($status)
-            @if (count($invoice) > 0)
-            @if ($invoice[0]->status)
+            @if (($invoice))
+            @if ($invoice->status)
             <div id="toast-success" class="flex items-center w-full p-4 text-primary bg-green-100 rounded shadow my-4" role="alert">
                 <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-primary bg-green-100">
                     <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
@@ -62,8 +62,11 @@
                                 <p class="text-gray-doang text-lg">{{ $post->address->name }}, {{ $post->address->district->name }}, {{ $post->address->district->regency->name }}, {{ $post->address->district->regency->province->name }}</p>
                                 <div class="flex gap-4 justify-end">
                                     <a href="{{ url('/petani/posts') }}"><button class="bg-white border border-primary text-primary px-4 py-2 font-medium rounded text-sm mt-4">Kembali</button></a>
-                                    @if ($post->deadline->isPast())
+                                    @if ($post->deadline->isPast() && ! $invoice)
                                     <button id="btn" class="mt-4 bg-red-500 hover:bg-red-700 border border-red-800 text-white px-4 py-2 font-medium rounded text-sm">Bayar</button>
+                                    @elseif ($invoice)
+                                    <button id="btn" class="mt-4 bg-red-500 hover:bg-red-700 border border-red-800 text-white px-4 py-2 font-medium rounded text-sm">Ubah bukti pembayaran</button>
+                                    @elseif ($invoice->status)
                                     @else
                                     <p class="mt-4 bg-gray-200 px-4 py-2 rounded font-medium text-gray-400 text-sm">Mulai pekerjaan</p>
                                     @endif
@@ -83,11 +86,26 @@
                         <input name="image" id="image" class="block w-full text-sm border border-gray-300 rounded cursor-pointer bg-gray-50 focus:outline-none" type="file">
                         <input type="text" value="{{ $post->id }}" class="hidden" name="vacancy_id">
                     </form>
+                    <small class="text-red-500">Total yang harus dibayarkan: @currency((($post->salary)*(count($accept)))+5000)</small>
+                    <small>(biaya admin: @currency(5000))</small>
                     <div class="flex justify-end gap-2">
                         <button id="btnBack" class="mt-4 bg-white border border-primary text-primary px-4 py-2 font-medium rounded text-sm">Batal</button>
                         <button form="myForm" class="mt-4 bg-primary border border-primary text-white px-4 py-2 font-medium rounded text-sm">Kirim</button>
                     </div>  
                 </div>
+            </div>
+            {{-- MODAL KIRIM INVOICE --}}
+            
+            <div class=" mx-auto relative">
+                @if ($invoice)
+                <div class="bg-white w-full my-10 rounded shadow-md">
+                    <h3 class="px-4 pt-8 font-bold text-xl">Bukti pembayaran:</h3>
+                    <div class="py-8 mx-4 border-b">
+                        <img src="{{ asset('storage/'.$invoice->invoice) }}" class="w-full rounded-md object-contain border p-4 mb-4 h-96" alt="invoice-image">
+                        <small class="text-gray-doang absolute bottom-4 right-4">Upload pada tanggal: {{ $invoice->updated_at->format('d-m-Y') }}</small>
+                    </div>
+                </div>
+                @endif
             </div>
 
             <div class="bg-white w-full rounded shadow-md px-4 py-10 my-10">

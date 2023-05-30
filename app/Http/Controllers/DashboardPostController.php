@@ -77,12 +77,7 @@ class DashboardPostController extends Controller
         $accept = StatVacancies::where('vacancy_id', $post->id)
                     ->where('status', true)->get();
         $status = $post->status;
-        $invoices = Invoice::where('vacancy_id', $post->id)->get();
-        if(count($invoices)>0){
-            $invoice = Invoice::where('vacancy_id', $post->id)->get();
-        }else{
-            $invoice = [];
-        }
+
         if($status){
             if(count($accept)>0){
                 $vacancy_id = StatVacancies::where('vacancy_id',$post->id)->get();
@@ -94,14 +89,13 @@ class DashboardPostController extends Controller
             }else{
                 $reports = [];
             }
-            
             return view('petani.show', [
                 'post' => $post,
                 'waiting' => $waiting,
                 'accept' => $accept,
                 'reports' => $reports,
                 'status' => $status,
-                'invoice' => $invoice
+                'invoice' => $post->invoice
             ]);
         }
 
@@ -119,7 +113,6 @@ class DashboardPostController extends Controller
      public function edit(Vacancies $post)
     {
         $status = $post->status;
-        // dd($status);
         if($status){
             abort(403);
         }
@@ -191,7 +184,7 @@ class DashboardPostController extends Controller
             return redirect()->back()->with('failed', 'Gagal mengirim bukti pembayaran, mohon isi form dengan benar!');
         }else{
             Invoice::create([
-                'vacancy_id' => $request->vacancy_id,
+                'vacancies_id' => $request->vacancy_id,
                 'invoice' => $request->file('image')->store('invoice-images'),
             ]);
             return redirect()->back()->with('status', 'Berhasil mengirim bukti pembayaran');

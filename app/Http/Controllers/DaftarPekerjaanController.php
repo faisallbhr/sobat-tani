@@ -51,20 +51,20 @@ class DaftarPekerjaanController extends Controller
         $counter = $stat_id[0]['pengerjaan'];
         if($counter){
             $vacancy_id = StatVacancies::where('vacancy_id',$data)->get();
-            // dd($vacancy_id);
+
             $vacancies = array();
             foreach($vacancy_id as $vacancy){
             array_push($vacancies, $vacancy->id);
             }
-            // dd($vacancies);
+
             $reports = Report::whereIn('stat_vacancy_id', $vacancies)->get();
-            // dd($reports);
+
         }else{
             $reports = [];
         }
-        $invoices = Invoice::where('vacancy_id', $accept->id)->get();
+        $invoices = Invoice::where('vacancies_id', $accept->id)->get();
         if(count($invoices)>0){
-            $invoice = Invoice::where('vacancy_id', $accept->id)->get();
+            $invoice = Invoice::where('vacancies_id', $accept->id)->get();
         }else{
             $invoice = [];
         }
