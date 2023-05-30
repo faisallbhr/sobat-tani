@@ -57,6 +57,7 @@ class DashboardController extends Controller
                                 ->where('pengerjaan', true)->get();
         // BURUH TANI END
 
+
         // PETANI START
         $vacancies_open = Vacancies::where('user_id', auth()->user()->id)
                                 ->where('status', false)->get();
@@ -66,6 +67,22 @@ class DashboardController extends Controller
         $books = BookKeeping::whereMonth('date', now()->month)->sum('cost');
         // PETANI END
 
+        // ADMIN START
+        $posts = Vacancies::where('status', true)
+                        ->where('deadline', '<', now())->get();
+        $post_wait = array();
+        $post_acc = array();
+        foreach($posts as $post){
+            if($post->invoice->status){
+                array_push($post_acc, $post->id);
+            }else{
+                array_push($post_wait, $post->id);
+            }
+        }
+        $admin_acc = Vacancies::whereIn('id', $post_acc)->get();
+        $admin_wait = Vacancies::whereIn('id', $post_wait)->get();
+        // ADMIN END
+
         return view('pages.dashboard.dashboard', [
             'regis_vacancy' => count($regis_vacancy),
             'acc_vacancy' => count($acc_vacancy),
@@ -73,7 +90,9 @@ class DashboardController extends Controller
             'done' => count($done),
             'vacancies_open' => count($vacancies_open),
             'vacancies_closed' => count($vacancies_closed),
-            'books' => ($books)
+            'books' => ($books),
+            'admin_acc' => count($admin_acc),
+            'admin_wait' => count($admin_wait),
         ]);
     }
 }
