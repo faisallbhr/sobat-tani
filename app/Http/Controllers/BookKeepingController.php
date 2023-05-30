@@ -16,7 +16,19 @@ class BookKeepingController extends Controller
     public function index(){
         $books = BookKeeping::where('user_id', auth()->user()->id)->latest()->paginate(7);
         return view('petani.pembukuan.index', [
-            'books' => $books
+            'books' => $books,
+            'jan' => BookKeeping::whereMonth('date', '1')->sum('cost'),
+            'feb' => BookKeeping::whereMonth('date', '2')->sum('cost'),
+            'mar' => BookKeeping::whereMonth('date', '3')->sum('cost'),
+            'apr' => BookKeeping::whereMonth('date', '4')->sum('cost'),
+            'mei' => BookKeeping::whereMonth('date', '5')->sum('cost'),
+            'jun' => BookKeeping::whereMonth('date', '6')->sum('cost'),
+            'jul' => BookKeeping::whereMonth('date', '7')->sum('cost'),
+            'aug' => BookKeeping::whereMonth('date', '8')->sum('cost'),
+            'sep' => BookKeeping::whereMonth('date', '9')->sum('cost'),
+            'oct' => BookKeeping::whereMonth('date', '10')->sum('cost'),
+            'nov' => BookKeeping::whereMonth('date', '11')->sum('cost'),
+            'dec' => BookKeeping::whereMonth('date', '12')->sum('cost'),
         ]);
     }
     public function create(){

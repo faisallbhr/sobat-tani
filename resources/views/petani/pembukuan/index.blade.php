@@ -2,7 +2,7 @@
     <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl">
         
         <!-- Cards -->
-        <div class="py-6 relative max-w-2xl">
+        <div class="py-6 relative max-w-5xl">
             @if (session('status'))
             <div id="toast-success" class="flex items-center w-full p-4 mb-4 text-primary bg-green-100 rounded shadow " role="alert">
                 <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-primary bg-green-100">
@@ -51,5 +51,68 @@
             </div>
             <a href="{{ url('/petani/books/create') }}"><button class="bg-primary border border-primary text-white px-4 py-2 font-medium rounded text-sm absolute right-0 mt-4">Tambah catatan</button></a>
         </div>
+        <div id="chart" class="max-w-5xl bg-white my-20 p-4 rounded"></div>
     </div>
+    <script>
+        
+      
+        var options = {
+            theme: {
+                mode: 'light', 
+                palette: 'palette5', 
+                monochrome: {
+                    enabled: false,
+                    color: '#255aee',
+                    shadeTo: 'light',
+                    shadeIntensity: 0.65
+                    },
+            },
+            series: [{
+                name: "Pengeluaran",
+                data: [{{ $jan }}, {{ $feb }}, {{ $mar }}, {{ $apr }}, {{ $mei }}, {{ $jun }}, {{ $jul }}, {{ $aug }}, {{ $sep }}, {{ $oct }}, {{ $nov }}, {{ $dec }}]
+            }],
+            chart: {
+                height: 350,
+                type: 'line',
+                zoom: {
+                    enabled: false
+                },
+                
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'straight'
+            },
+            title: {
+                text: 'Catatan pengeluaran',
+                align: 'left'
+            },
+            grid: {
+                row: {
+                    colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                    opacity: 0.5
+                },
+            },
+            xaxis: {
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            }, 
+            yaxis: {
+                labels: {
+                    formatter: (val)=>{return "Rp"+val}
+                }
+            },
+            tooltip: {
+                enabled: true,
+                y: {
+                    formatter: (val)=>{return "Rp"+val}
+                },
+            },
+            colors: ['#176419']
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    </script>
 </x-app-layout>
