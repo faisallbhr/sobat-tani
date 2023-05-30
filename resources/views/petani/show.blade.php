@@ -64,7 +64,7 @@
                                     <a href="{{ url('/petani/posts') }}"><button class="bg-white border border-primary text-primary px-4 py-2 font-medium rounded text-sm mt-4">Kembali</button></a>
                                     @if ($post->deadline->isPast() && ! $invoice)
                                     <button id="btn" class="mt-4 bg-red-500 hover:bg-red-700 border border-red-800 text-white px-4 py-2 font-medium rounded text-sm">Bayar</button>
-                                    @elseif ($invoice)
+                                    @elseif ($invoice && ! $invoice->status)
                                     <button id="btn" class="mt-4 bg-red-500 hover:bg-red-700 border border-red-800 text-white px-4 py-2 font-medium rounded text-sm">Ubah bukti pembayaran</button>
                                     @elseif ($invoice->status)
                                     @else

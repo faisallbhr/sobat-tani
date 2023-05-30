@@ -51,6 +51,7 @@
                     </div>
                 </div>
 
+                @if ($invoice)
                 <div class="bg-white w-full my-10 rounded shadow-md">
                     <h3 class="px-4 pt-8 font-bold text-xl">Bukti pembayaran:</h3>
                     <div class="grid grid-cols-2 gap-8 py-8 mx-4 border-b">
@@ -81,6 +82,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
     
                 <div class="bg-white w-full rounded shadow-md px-4 py-10 my-10">
                     <h3 class="font-bold text-xl">Daftar pekerja:</h3>

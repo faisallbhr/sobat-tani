@@ -34,7 +34,7 @@ class AdminController extends Controller
         return redirect()->back()->with('status', 'Berhasil menerima bukti pembayaran');
     }
     public function destroy(Vacancies $post){
-        Invoice::destroy('vacancies_id', $post->id);
+        Invoice::where('vacancies_id', $post->id)->delete();
         return redirect()->back()->with('status', 'Berhasil menolak bukti pembayaran');
     }
 }
