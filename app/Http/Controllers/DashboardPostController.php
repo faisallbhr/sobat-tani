@@ -176,10 +176,21 @@ class DashboardPostController extends Controller
     }
 
     public function storeLaporan(Request $request){
-        // dd('cek');
         $rules = \Validator::make($request->all(),[
             'image' => 'required|image'
         ]);
+        $invoice = Invoice::where('vacancies_id', $request->vacancies_id)->pluck('vacancies_id')->first();
+        if(($request->vacancies_id == $invoice)){
+            if($rules->fails()){
+                return redirect()->back()->with('failed', 'Gagal mengubah bukti pembayaran, mohon isi form dengan benar!');
+            }else{
+                Invoice::where('vacancies_id', $request->vacancies_id)->update([
+                    'vacancies_id' => $request->vacancy_id,
+                    'invoice' => $request->file('image')->store('invoice-images'),
+                ]);
+                return redirect()->back()->with('status', 'Berhasil mengubah bukti pembayaran');
+            }
+        }
         if($rules->fails()){
             return redirect()->back()->with('failed', 'Gagal mengirim bukti pembayaran, mohon isi form dengan benar!');
         }else{

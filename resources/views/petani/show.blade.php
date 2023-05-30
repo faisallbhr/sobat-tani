@@ -82,6 +82,7 @@
                 <div class="px-4 py-10 bg-white w-full h-fit rounded shadow-md">
                     <form id="myForm" action="{{ url('invoice/') }}" method="post" enctype="multipart/form-data">
                         @csrf
+                        <input type="text" value="{{ $post->id }}" class="hidden" name="vacancies_id">
                         <label class="block mb-2 text-sm font-medium" for="file_input">Upload foto bukti pembayaran</label>
                         <input name="image" id="image" class="block w-full text-sm border border-gray-300 rounded cursor-pointer bg-gray-50 focus:outline-none" type="file">
                         <input type="text" value="{{ $post->id }}" class="hidden" name="vacancy_id">

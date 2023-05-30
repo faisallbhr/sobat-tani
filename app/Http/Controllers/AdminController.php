@@ -22,20 +22,19 @@ class AdminController extends Controller
     public function show(Vacancies $post){
         $accept = StatVacancies::where('vacancy_id', $post->id)
                                 ->where('status', true)->get();
-        $invoices = Invoice::where('vacancy_id', $post->id)->get();
         
         return view('admin.show', [
             'post' => $post,
             'accept' => $accept,
-            'invoices' => $invoices
+            'invoice' => $post->invoice
         ]);
     }
     public function update(Vacancies $post){
-        Invoice::where('vacancy_id', $post->id)->update(['status' => true]);
+        Invoice::where('vacancies_id', $post->id)->update(['status' => true]);
         return redirect()->back()->with('status', 'Berhasil menerima bukti pembayaran');
     }
     public function destroy(Vacancies $post){
-        Invoice::destroy('vacancy_id', $post->id);
+        Invoice::destroy('vacancies_id', $post->id);
         return redirect()->back()->with('status', 'Berhasil menolak bukti pembayaran');
     }
 }
