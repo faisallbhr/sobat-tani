@@ -61,14 +61,14 @@
                             <small class="text-gray-doang absolute bottom-4">Upload pada tanggal: {{ $invoice->updated_at->format('d-m-Y') }}</small>
                             <div class="flex gap-4 absolute bottom-12">
                                 @if (! $invoice->status)
-                                <form action="{{ url('/admin/posts/'.$post->id) }}" method="post">
+                                <form action="{{ url('/admin/payment/'.$post->id) }}" method="post">
                                     @method('put')
                                     @csrf
                                     <button id="btn-acc" class="bg-green-500 px-4 py-2 rounded text-white hover:bg-green-600"           
                                     onclick="return confirm('Apakah anda yakin akan menerima pendaftar?')">Setujui bukti pembayaran
                                     </button>
                                 </form>                        
-                                <form action="{{ url('/admin/posts/'.$post->id) }}" method="post">
+                                <form action="{{ url('/admin/payment/'.$post->id) }}" method="post">
                                     @method('delete')
                                     @csrf
                                     <button id="btn-reject" class="bg-red-500 px-4 py-2 rounded text-white hover:bg-red-600"           

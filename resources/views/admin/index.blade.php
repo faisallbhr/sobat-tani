@@ -39,7 +39,7 @@
                         <td class="px-6 py-4 text-slate-800">{{ $post->title }}</td>
                         <td class="px-6 py-4 text-slate-800">{{ $post->category->name }}</td>
                         <td class="px-6 py-4  text-slate-800 flex flex-col md:flex-row gap-2 items-center justify-center">
-                            <a href="{{ url('/admin/posts/'.$post->slug) }}" >
+                            <a href="{{ url('/admin/payment/'.$post->slug) }}" >
                                 <button class="bg-primary px-4 py-2 rounded text-white">Lihat detail</button>
                             </a>
                         </td>
@@ -69,7 +69,7 @@
                         <td class="px-6 py-4 text-slate-800">{{ $post->title }}</td>
                         <td class="px-6 py-4 text-slate-800">{{ $post->category->name }}</td>
                         <td class="px-6 py-4  text-slate-800 flex flex-col md:flex-row gap-2 items-center justify-center">
-                            <a href="{{ url('/admin/posts/'.$post->slug) }}" >
+                            <a href="{{ url('/admin/payment/'.$post->slug) }}" >
                                 <button class="bg-primary px-4 py-2 rounded text-white">Lihat detail</button>
                             </a>
                         </td>

@@ -13,13 +13,24 @@ class AdminController extends Controller
         $this->middleware('can:admin');
     }
     public function index(){
+        $posts = Vacancies::paginate(10);
+        return view('admin.posts', [
+            'posts' => $posts
+        ]);
+    }
+    public function show(Vacancies $post){
+        return view('admin.posts-show', [
+            'post' => $post
+        ]);
+    }
+    public function indexPayment(){
         $posts = Vacancies::where('status', true)
                             ->where('deadline', '<', now())->get();
         return view('admin.index', [
             'posts' => $posts
         ]);
     }
-    public function show(Vacancies $post){
+    public function showPayment(Vacancies $post){
         $accept = StatVacancies::where('vacancy_id', $post->id)
                                 ->where('status', true)->get();
         
