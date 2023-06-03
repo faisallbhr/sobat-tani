@@ -1,6 +1,4 @@
-@extends('layouts.main')
-
-@section('content')
+<x-app-layout>
 <div class="flex justify-center w-full ">
     <div class="px-4 sm:px-6 lg:px-8 py-8 max-w-9xl flex flex-col justify-center bg-white mt-10 rounded-md shadow-md">
         <div class="py-6 max-w-4xl relative w-full card-content ">
@@ -25,4 +23,4 @@
     </div>
 </div>
 
-@endsection
+</x-app-layout>

@@ -64,7 +64,7 @@
                 <div class=" flex flex-col gap-4">
                     <div>
                         <select name="province" id="province" class="w-1/2 rounded">
-                            <option value="{{ old('province', $post->address->district->regency->province->id) }}">{{ old('province', $post->address->district->regency->province->name) }}</option>
+                            <option value="{{ old('province', $post->address->district->regency->province->name) }}">{{ old('province', $post->address->district->regency->province->name) }}</option>
                             @foreach ($provinces as $province)
                                 <option value="{{ $province->id }}">{{ $province->name }}</option>
                             @endforeach

@@ -57,7 +57,7 @@
                     <div class="grid grid-cols-2 gap-8 py-8 mx-4 border-b">
                         <img src="{{ asset('storage/'.$invoice->invoice) }}" class="max-w-xl w-full rounded-md h-80 object-contain border p-4" alt="invoice-image">
                         <div class="relative w-full">
-                            <p class="font-bold mt-2">Total yang harus dibayar: <span class="font-normal">@currency((($post->salary)*(count($accept))+5000))</span></p>
+                            <p class="font-bold mt-2">Total yang harus dibayar: <span class="font-normal">@currency($post->salary+(($post->salary)*(count($accept))*1/10))</span></p>
                             <small class="text-gray-doang absolute bottom-4">Upload pada tanggal: {{ $invoice->updated_at->format('d-m-Y') }}</small>
                             <div class="flex gap-4 absolute bottom-12">
                                 @if (! $invoice->status)

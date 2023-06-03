@@ -64,7 +64,7 @@ class DashboardPostController extends Controller
         
         Vacancies::create($validatedData);
         
-        return redirect('/petani/posts');
+        return redirect('/petani/posts')->with('status', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -148,7 +148,7 @@ class DashboardPostController extends Controller
 
         StatVacancies::where('vacancy_id', $post->id)->delete();
         
-        return redirect('/petani/posts')->with('status', 'Berhasil mengubah lowongan!');
+        return redirect('/petani/posts')->with('status', 'Data berhasil diubah');
     }
     
     /**
@@ -159,7 +159,7 @@ class DashboardPostController extends Controller
         StatVacancies::where('vacancy_id', $post->id)->delete();
         Vacancies::destroy($post->id);
 
-        return redirect('/petani/posts')->with('status', 'Berhasil menghapus lowongan!');
+        return redirect('/petani/posts')->with('status', 'Lowongan berhasil dihapus');
     }
     
     // MEMULAI PEKERJAAN LOWONGAN

@@ -115,7 +115,7 @@
                   <i class="fa-regular fa-face-laugh-beam scale-150"></i>
                 </div>
                 <div>
-                  <span class="block text-2xl font-bold">{{ $admin_acc }}</span>
+                  <span class="block text-2xl font-bold">{{ count($admin_acc) }}</span>
                   <span class="block text-gray-500">Bukti pembayaran telah disetujui</span>
                 </div>
               </div>
@@ -127,7 +127,8 @@
                   <i class="fa-solid fa-sack-dollar scale-150"></i>
                 </div>
                 <div>
-                  <span class="block text-2xl font-bold">@currency($admin_acc*5000)</span>
+                  {{ $admin_acc }}
+                  <span class="block text-2xl font-bold">@currency(count($admin_acc)*5000)</span>
                   <span class="block text-gray-500">Total keuntungan</span>
                 </div>
               </div>

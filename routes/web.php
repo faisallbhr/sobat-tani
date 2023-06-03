@@ -41,10 +41,10 @@ Route::resource('/buruhtani/wait', DaftarLowonganController::class);
 Route::resource('/buruhtani/accept', DaftarPekerjaanController::class);
 
 // ADMIN
-Route::get('/admin/posts', [AdminController::class, 'index']);
-Route::get('/admin/posts/{post:slug}', [AdminController::class, 'show']);
-Route::get('/admin/payment', [AdminController::class, 'indexPayment']);
-Route::get('/admin/payment/{post:slug}', [AdminController::class, 'showPayment']);
+Route::get('/admin/posts', [AdminController::class, 'index'])->name('admin-posts.index');
+Route::get('/admin/posts/{post:slug}', [AdminController::class, 'show'])->name('admin-posts.show');
+Route::get('/admin/payment', [AdminController::class, 'indexPayment'])->name('admin-payment.index');
+Route::get('/admin/payment/{post:slug}', [AdminController::class, 'showPayment'])->name('admin-payment.showPayment');
 Route::put('/admin/payment/{post:id}', [AdminController::class, 'update']);
 Route::delete('/admin/payment/{post:id}', [AdminController::class, 'destroy']);
 

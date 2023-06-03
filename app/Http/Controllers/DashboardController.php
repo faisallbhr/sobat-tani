@@ -91,7 +91,7 @@ class DashboardController extends Controller
             'vacancies_open' => count($vacancies_open),
             'vacancies_closed' => count($vacancies_closed),
             'books' => ($books),
-            'admin_acc' => count($admin_acc),
+            'admin_acc' => ($admin_acc),
             'admin_wait' => count($admin_wait),
         ]);
     }
