@@ -35,6 +35,9 @@ class CreateNewUser implements CreatesNewUsers
             'gender_id' => ['required'],
             'profesi' => ['required'],
             'password' => $this->passwordRules(),
+        ], [
+            'no_handphone.unique' => 'hp terdaftar',
+            'no_rekening.unique' => 'rek terdaftar',
         ])->validate();
 
         $role = $input['profesi'];

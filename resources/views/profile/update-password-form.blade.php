@@ -33,7 +33,7 @@
         </x-jet-action-message>
 
         <x-jet-button>
-            {{ __('Save') }}
+            {{ __('Simpan') }}
         </x-jet-button>
     </x-slot>
 </x-jet-form-section>

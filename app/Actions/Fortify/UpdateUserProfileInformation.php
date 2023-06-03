@@ -24,10 +24,6 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'no_rekening' => ['required', 'numeric', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
         ])->validateWithBag('updateProfileInformation');
-
-        // if ($input['no_handphone'] !== $user->no_handphone ){
-        //     $this->updateVerifiedUser($user, $input);
-        // } else {
             $user->forceFill([
                 'name' => $input['name'],
                 'no_handphone' => $input['no_handphone'],

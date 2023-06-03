@@ -18,6 +18,7 @@
 
         <main class="w-full max-w-md m-auto rounded-lg shadow-xl py-10 px-16 bg-white">
             {{ $slot }}
-        </main>        
+        </main>  
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>      
     </body>
 </html>
