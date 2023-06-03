@@ -127,9 +127,8 @@
                   <i class="fa-solid fa-sack-dollar scale-150"></i>
                 </div>
                 <div>
-                  {{ $admin_acc }}
-                  <span class="block text-2xl font-bold">@currency(count($admin_acc)*5000)</span>
-                  <span class="block text-gray-500">Total keuntungan</span>
+                  <span class="block text-2xl font-bold">@currency(($profit))</span>
+                  <span class="block text-gray-500">Total keuntungan bulan ini</span>
                 </div>
               </div>
               <div class="w-[100%] action bg-slate-50 shadow-md h-full rounded-lg absolute left-2 -bottom-3 -z-10 transition-all"></div>

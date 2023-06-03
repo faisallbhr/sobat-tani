@@ -89,9 +89,10 @@
                         <label class="block mb-2 text-sm font-medium" for="file_input">Upload foto bukti pembayaran</label>
                         <input name="image" id="image" class="block w-full text-sm border border-gray-300 rounded cursor-pointer bg-gray-50 focus:outline-none" type="file">
                         <input type="text" value="{{ $post->id }}" class="hidden" name="vacancy_id">
+                        <input type="text" class="hidden" name="profit" value="{{ ($post->salary)*(count($accept))*1/10 }}">
                     </form>
-                    <small class="text-red-500">Total yang harus dibayarkan: @currency((($post->salary)*(count($accept)))+5000)</small>
-                    <small>(biaya admin: @currency(5000))</small>
+                    <small class="text-red-500">Total yang harus dibayarkan: @currency($post->salary+(($post->salary)*(count($accept))*1/10))</small>
+                    <small>(biaya admin: @currency(($post->salary)*(count($accept))*1/10))</small>
                     <div class="flex justify-end gap-2">
                         <button id="btnBack" class="mt-4 bg-white border border-primary text-primary px-4 py-2 font-medium rounded text-sm">Batal</button>
                         <button form="myForm" class="mt-4 bg-primary border border-primary text-white px-4 py-2 font-medium rounded text-sm">Kirim</button>

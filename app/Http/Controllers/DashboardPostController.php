@@ -197,6 +197,7 @@ class DashboardPostController extends Controller
             Invoice::create([
                 'vacancies_id' => $request->vacancy_id,
                 'invoice' => $request->file('image')->store('invoice-images'),
+                'profit' => $request->profit
             ]);
             return redirect()->back()->with('status', 'Berhasil mengirim bukti pembayaran');
         }

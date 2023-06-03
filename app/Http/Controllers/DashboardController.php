@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BookKeeping;
+use App\Models\Invoice;
 use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\Category;
@@ -81,6 +82,7 @@ class DashboardController extends Controller
         }
         $admin_acc = Vacancies::whereIn('id', $post_acc)->get();
         $admin_wait = Vacancies::whereIn('id', $post_wait)->get();
+        $profit = Invoice::whereMonth('created_at', now()->month)->sum('profit');
         // ADMIN END
 
         return view('pages.dashboard.dashboard', [
@@ -93,6 +95,7 @@ class DashboardController extends Controller
             'books' => ($books),
             'admin_acc' => ($admin_acc),
             'admin_wait' => count($admin_wait),
+            'profit' => $profit
         ]);
     }
 }
