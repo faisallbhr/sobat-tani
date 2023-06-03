@@ -82,7 +82,8 @@ class DashboardController extends Controller
         }
         $admin_acc = Vacancies::whereIn('id', $post_acc)->get();
         $admin_wait = Vacancies::whereIn('id', $post_wait)->get();
-        $profit = Invoice::whereMonth('created_at', now()->month)->sum('profit');
+        $profit = Invoice::where('status', true)
+                        ->whereMonth('created_at', now()->month)->sum('profit');
         // ADMIN END
 
         return view('pages.dashboard.dashboard', [
@@ -95,7 +96,19 @@ class DashboardController extends Controller
             'books' => ($books),
             'admin_acc' => ($admin_acc),
             'admin_wait' => count($admin_wait),
-            'profit' => $profit
+            'profit' => $profit,
+            'jan' => Invoice::whereMonth('created_at', '1')->sum('profit'),
+            'feb' => Invoice::whereMonth('created_at', '2')->sum('profit'),
+            'mar' => Invoice::whereMonth('created_at', '3')->sum('profit'),
+            'apr' => Invoice::whereMonth('created_at', '4')->sum('profit'),
+            'mei' => Invoice::whereMonth('created_at', '5')->sum('profit'),
+            'jun' => Invoice::whereMonth('created_at', '6')->sum('profit'),
+            'jul' => Invoice::whereMonth('created_at', '7')->sum('profit'),
+            'aug' => Invoice::whereMonth('created_at', '8')->sum('profit'),
+            'sep' => Invoice::whereMonth('created_at', '9')->sum('profit'),
+            'oct' => Invoice::whereMonth('created_at', '10')->sum('profit'),
+            'nov' => Invoice::whereMonth('created_at', '11')->sum('profit'),
+            'dec' => Invoice::whereMonth('created_at', '12')->sum('profit'),
         ]);
     }
 }

@@ -54,8 +54,6 @@
         <div id="chart" class="max-w-5xl bg-white my-20 p-4 rounded"></div>
     </div>
     <script>
-        
-      
         var options = {
             theme: {
                 mode: 'light', 

@@ -1,6 +1,5 @@
 <x-app-layout>
     <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl">
-
         <!-- Dashboard actions -->
         <div class="grid gap-8">
           @can('buruh tani')
@@ -58,83 +57,84 @@
 
           
           @can('petani')
-            <div class="relative min-w-80">
-              <div class="flex hover items-center p-8 bg-white shadow-lg rounded-lg z-10">
-                <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-primary bg-purple-100 rounded-full mr-6">
-                  <i class="fa-solid fa-door-open scale-150"></i>
-                </div>
-                <div>
-                  <span class="block text-2xl font-bold">{{ $vacancies_open }}</span>
-                  <span class="block text-gray-500">Lowongan dibuka</span>
-                </div>
+          <div class="relative min-w-80">
+            <div class="flex hover items-center p-8 bg-white shadow-lg rounded-lg z-10">
+              <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-primary bg-purple-100 rounded-full mr-6">
+                <i class="fa-solid fa-door-open scale-150"></i>
               </div>
-              <div class="w-[100%] action bg-slate-50 shadow-md h-full rounded-lg absolute left-2 -bottom-3 -z-10 transition-all"></div>
-            </div>
-            <div class="relative min-w-80">
-              <div class="flex hover items-center p-8 bg-white shadow-lg rounded-lg z-10">
-                <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-primary bg-purple-100 rounded-full mr-6">
-                  <i class="fa-solid fa-door-closed scale-150"></i>
-                </div>
-                <div>
-                  <span class="block text-2xl font-bold">{{ $vacancies_closed }}</span>
-                  <span class="block text-gray-500">Lowongan ditutup</span>
-                </div>
+              <div>
+                <span class="block text-2xl font-bold">{{ $vacancies_open }}</span>
+                <span class="block text-gray-500">Lowongan dibuka</span>
               </div>
-              <div class="w-[100%] action bg-slate-50 shadow-md h-full rounded-lg absolute left-2 -bottom-3 -z-10 transition-all"></div>
             </div>
-            <div class="relative min-w-80">
-              <div class="flex hover items-center p-8 bg-white shadow-lg rounded-lg z-10">
-                <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-primary bg-purple-100 rounded-full mr-6">
-                  <i class="fa-solid fa-book scale-150"></i>
-                </div>
-                <div>
-                  <span class="block text-2xl font-bold">@currency($books)</span>
-                  <span class="block text-gray-500">Pengeluaran bulan ini</span>
-                </div>
+            <div class="w-[100%] action bg-slate-50 shadow-md h-full rounded-lg absolute left-2 -bottom-3 -z-10 transition-all"></div>
+          </div>
+          <div class="relative min-w-80">
+            <div class="flex hover items-center p-8 bg-white shadow-lg rounded-lg z-10">
+              <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-primary bg-purple-100 rounded-full mr-6">
+                <i class="fa-solid fa-door-closed scale-150"></i>
               </div>
-              <div class="w-[100%] action bg-slate-50 shadow-md h-full rounded-lg absolute left-2 -bottom-3 -z-10 transition-all"></div>
+              <div>
+                <span class="block text-2xl font-bold">{{ $vacancies_closed }}</span>
+                <span class="block text-gray-500">Lowongan ditutup</span>
+              </div>
             </div>
-            @endcan
+            <div class="w-[100%] action bg-slate-50 shadow-md h-full rounded-lg absolute left-2 -bottom-3 -z-10 transition-all"></div>
+          </div>
+          <div class="relative min-w-80">
+            <div class="flex hover items-center p-8 bg-white shadow-lg rounded-lg z-10">
+              <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-primary bg-purple-100 rounded-full mr-6">
+                <i class="fa-solid fa-book scale-150"></i>
+              </div>
+              <div>
+                <span class="block text-2xl font-bold">@currency($books)</span>
+                <span class="block text-gray-500">Pengeluaran bulan ini</span>
+              </div>
+            </div>
+            <div class="w-[100%] action bg-slate-50 shadow-md h-full rounded-lg absolute left-2 -bottom-3 -z-10 transition-all"></div>
+          </div>
+          @endcan
 
-            @can('admin')
-            <div class="relative min-w-80">
-              <div class="flex hover items-center p-8 bg-white shadow-lg rounded-lg z-10">
-                <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-primary bg-purple-100 rounded-full mr-6">
-                  <i class="fa-regular fa-face-meh-blank scale-150"></i>
-                </div>
-                <div>
-                  <span class="block text-2xl font-bold">{{ $admin_wait }}</span>
-                  <span class="block text-gray-500">Menunggu persetujuan bukti pembayaran</span>
-                </div>
+          @can('admin')
+          <div class="relative min-w-80">
+            <div class="flex hover items-center p-8 bg-white shadow-lg rounded-lg z-10">
+              <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-primary bg-purple-100 rounded-full mr-6">
+                <i class="fa-regular fa-face-meh-blank scale-150"></i>
               </div>
-              <div class="w-[100%] action bg-slate-50 shadow-md h-full rounded-lg absolute left-2 -bottom-3 -z-10 transition-all"></div>
-            </div>
-            <div class="relative min-w-80">
-              <div class="flex hover items-center p-8 bg-white shadow-lg rounded-lg z-10">
-                <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-primary bg-purple-100 rounded-full mr-6">
-                  <i class="fa-regular fa-face-laugh-beam scale-150"></i>
-                </div>
-                <div>
-                  <span class="block text-2xl font-bold">{{ count($admin_acc) }}</span>
-                  <span class="block text-gray-500">Bukti pembayaran telah disetujui</span>
-                </div>
+              <div>
+                <span class="block text-2xl font-bold">{{ $admin_wait }}</span>
+                <span class="block text-gray-500">Menunggu persetujuan bukti pembayaran</span>
               </div>
-              <div class="w-[100%] action bg-slate-50 shadow-md h-full rounded-lg absolute left-2 -bottom-3 -z-10 transition-all"></div>
             </div>
-            <div class="relative min-w-80">
-              <div class="flex hover items-center p-8 bg-white shadow-lg rounded-lg z-10">
-                <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-primary bg-purple-100 rounded-full mr-6">
-                  <i class="fa-solid fa-sack-dollar scale-150"></i>
-                </div>
-                <div>
-                  <span class="block text-2xl font-bold">@currency(($profit))</span>
-                  <span class="block text-gray-500">Total keuntungan bulan ini</span>
-                </div>
+            <div class="w-[100%] action bg-slate-50 shadow-md h-full rounded-lg absolute left-2 -bottom-3 -z-10 transition-all"></div>
+          </div>
+          <div class="relative min-w-80">
+            <div class="flex hover items-center p-8 bg-white shadow-lg rounded-lg z-10">
+              <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-primary bg-purple-100 rounded-full mr-6">
+                <i class="fa-regular fa-face-laugh-beam scale-150"></i>
               </div>
-              <div class="w-[100%] action bg-slate-50 shadow-md h-full rounded-lg absolute left-2 -bottom-3 -z-10 transition-all"></div>
+              <div>
+                <span class="block text-2xl font-bold">{{ count($admin_acc) }}</span>
+                <span class="block text-gray-500">Bukti pembayaran telah disetujui</span>
+              </div>
             </div>
-            @endcan
-
+            <div class="w-[100%] action bg-slate-50 shadow-md h-full rounded-lg absolute left-2 -bottom-3 -z-10 transition-all"></div>
+          </div>
+          <div class="relative min-w-80">
+            <div class="flex hover items-center p-8 bg-white shadow-lg rounded-lg z-10">
+              <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-primary bg-purple-100 rounded-full mr-6">
+                <i class="fa-solid fa-sack-dollar scale-150"></i>
+              </div>
+              <div>
+                <span class="block text-2xl font-bold">@currency(($profit))</span>
+                <span class="block text-gray-500">Total keuntungan bulan ini</span>
+              </div>
+            </div>
+            <div class="w-[100%] action bg-slate-50 shadow-md h-full rounded-lg absolute left-2 -bottom-3 -z-10 transition-all"></div>
+          </div>
+          <div id="chart"></div>
+          @endcan
+        </div>
     </div>
 
     <script>
@@ -149,5 +149,69 @@
         })
       }
     </script>
+
+    {{-- CHART --}}
+    <script>
+        
+      
+      var options = {
+          theme: {
+              mode: 'light', 
+              palette: 'palette5', 
+              monochrome: {
+                  enabled: false,
+                  color: '#255aee',
+                  shadeTo: 'light',
+                  shadeIntensity: 0.65
+                  },
+          },
+          series: [{
+              name: "Pengeluaran",
+              data: [{{ $jan }}, {{ $feb }}, {{ $mar }}, {{ $apr }}, {{ $mei }}, {{ $jun }}, {{ $jul }}, {{ $aug }}, {{ $sep }}, {{ $oct }}, {{ $nov }}, {{ $dec }}]
+          }],
+          chart: {
+              height: 350,
+              type: 'line',
+              zoom: {
+                  enabled: false
+              },
+              
+          },
+          dataLabels: {
+              enabled: false
+          },
+          stroke: {
+              curve: 'straight'
+          },
+          title: {
+              text: 'Catatan pengeluaran',
+              align: 'left'
+          },
+          grid: {
+              row: {
+                  colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                  opacity: 0.5
+              },
+          },
+          xaxis: {
+              categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+          }, 
+          yaxis: {
+              labels: {
+                  formatter: (val)=>{return "Rp"+val}
+              }
+          },
+          tooltip: {
+              enabled: true,
+              y: {
+                  formatter: (val)=>{return "Rp"+val}
+              },
+          },
+          colors: ['#176419']
+      };
+
+      var chart = new ApexCharts(document.querySelector("#chart"), options);
+      chart.render();
+  </script>
     
 </x-app-layout>
