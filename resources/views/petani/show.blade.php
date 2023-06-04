@@ -1,6 +1,7 @@
 <x-app-layout>
 <div class="px-4 sm:px-6 lg:px-8 w-full max-w-9xl">
     <div class="max-w-9xl relative mt-10">
+        {{-- JIKA PEKERJAAN SUDAH DIMULAI --}}
         @if ($status)
             @if (($invoice))
             @if ($invoice->status)
@@ -44,7 +45,7 @@
                 <div class="px-4 sm:px-6 lg:px-8 py-8 max-w-9xl flex justify-center bg-white rounded-md shadow-md">
                     <div class="py-6 max-w-9xl relative w-full card-content"> 
                         <div class="grid grid-cols-2 gap-8 w-full">
-                            <img class="rounded-md overflow-hidden h-full" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.Ual-vkcNPMTwd_cYEZSY7AHaEj%26pid%3DApi&f=1&ipt=66ae6312bca7dc8a5ef391287898557c14f1114b754fb1c4cf6dd7a16546e548&ipo=images" alt="">
+                            <img class="rounded-md overflow-hidden h-full mx-auto" src="https://source.unsplash.com/400x400/?{{ $post->category->name == 'Jagung' ? 'corn':'paddy' }}" alt="">
                             <div class="text-gray-doang text-lg">
                                 <h1 class="font-medium text-5xl text-black">{{ $post->title }}</h1>
                                 <small>Upload pada tanggal: {{ $post->created_at->format('d-m-Y') }}</small>
@@ -101,6 +102,7 @@
             </div>
             {{-- MODAL KIRIM INVOICE --}}
             
+            {{-- MODAL BUKTI INVOICE --}}
             <div class=" mx-auto relative">
                 @if ($invoice)
                 <div class="bg-white w-full my-10 rounded shadow-md">
@@ -112,7 +114,9 @@
                 </div>
                 @endif
             </div>
+            {{-- MODAL BUKTI INVOICE --}}
 
+            {{-- DAFTAR PEKERJA --}}
             <div class="bg-white w-full rounded shadow-md px-4 py-10 my-10">
                 <h3 class="font-bold text-xl">Daftar pekerja:</h3>
                 <table class="text-left text-sm font-light overflow-hidden rounded-md w-full my-4">
@@ -132,10 +136,12 @@
                                 <td class="px-6 py-4 text-slate-800">{{ $acc->user->name }}</td>
                                 <td class="px-6 py-4 text-slate-800">{{ $acc->user->no_rekening }}</td>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            {{-- DAFTAR PEKERJA --}}
+
             {{-- LAPORAN --}}
             @if (count($reports) > 0)
             <div class="bg-white w-full my-10 rounded shadow-md">
@@ -153,7 +159,7 @@
             </div>
             @endif
 
-
+        {{-- JIKA PEKERJAAN BELUM DIMULAI --}}
         @else
             @if (session('status'))
             <div id="toast-success" class="flex items-center w-full p-4 text-primary bg-green-100 rounded shadow my-4" role="alert">
@@ -172,7 +178,7 @@
                 <div class="px-4 sm:px-6 lg:px-8 py-8 max-w-9xl flex justify-center bg-white rounded-md shadow-md">
                     <div class="py-6 max-w-9xl relative w-full"> 
                         <div class="grid grid-cols-2 gap-8 w-full">
-                            <img class="rounded-md overflow-hidden h-full" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.Ual-vkcNPMTwd_cYEZSY7AHaEj%26pid%3DApi&f=1&ipt=66ae6312bca7dc8a5ef391287898557c14f1114b754fb1c4cf6dd7a16546e548&ipo=images" alt="">
+                            <img class="rounded-md overflow-hidden h-full mx-auto" src="https://source.unsplash.com/400x400/?{{ $post->category->name == 'Jagung' ? 'corn':'paddy' }}" alt="">
                             <div class="text-gray-doang text-lg">
                                 <h1 class="font-medium text-5xl text-black">{{ $post->title }}</h1>
                                 <h3 class="font-semibold text-4xl pt-4 text-black">@currency($post->salary) <span class="text-2xl text-gray-doang">/orang</span></h3>

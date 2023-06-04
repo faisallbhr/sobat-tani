@@ -18,7 +18,7 @@
         @endif   
         <div class="py-6 max-w-4xl relative w-full card-content ">
             <div class="grid grid-cols-2 gap-8">
-                <img class="rounded-md overflow-hidden h-full" src="https://images.unsplash.com/photo-1624996379697-f01d168b1a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">
+                <img class="rounded-md overflow-hidden h-full" src="https://source.unsplash.com/400x400/?{{ $post->category->name == 'Jagung' ? 'corn':'paddy' }}" alt="">
                 <div class="text-gray-doang text-lg relative">
                     <h1 class="font-medium text-5xl text-black">{{ $post->title }}</h1>
                     <h3 class="font-semibold text-4xl pt-4 text-black">@currency($post->salary)<span class="text-2xl text-gray-doang">/orang</span></h3>

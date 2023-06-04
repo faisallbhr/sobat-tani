@@ -16,7 +16,7 @@
         <div class="grid md:grid-cols-3 lg:grid-cols-6 gap-8 justify-center mt-4">
             @foreach ($posts as $post)
                 <div class="rounded-md overflow-hidden shadow-md border bg-white ">
-                    <img class="" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.Ual-vkcNPMTwd_cYEZSY7AHaEj%26pid%3DApi&f=1&ipt=66ae6312bca7dc8a5ef391287898557c14f1114b754fb1c4cf6dd7a16546e548&ipo=images" alt="">
+                    <img class="" src="https://source.unsplash.com/400x400/?{{ $post->category->name == 'Jagung' ? 'corn':'paddy' }}" alt="">
                     <div class="px-4">
                         <h4 class="font-medium text-lg h-12">{{ $post->title }}</h4>
                         <p class="text-primary font-bold text-xl">Rp{{ $post->salary }}/<span class="text-sm">orang</span></p>

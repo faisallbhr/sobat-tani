@@ -31,7 +31,7 @@
                     <div class="px-4 sm:px-6 lg:px-8 py-8 max-w-9xl flex justify-center bg-white rounded-md shadow-md">
                         <div class="py-6 max-w-9xl relative w-full card-content"> 
                             <div class="grid grid-cols-2 gap-8 w-full">
-                                <img class="rounded-md overflow-hidden h-full" src="https://images.unsplash.com/photo-1624996379697-f01d168b1a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">
+                                <img class="rounded-md overflow-hidden h-full mx-auto" src="https://source.unsplash.com/400x400/?{{ $post->category->name == 'Jagung' ? 'corn':'paddy' }}" alt="">
                                 <div class="text-gray-doang text-lg">
                                     <h1 class="font-medium text-5xl text-black">{{ $post->title }}</h1>
                                     <small>Upload pada tanggal: {{ $post->created_at->format('d-m-Y') }}</small>
