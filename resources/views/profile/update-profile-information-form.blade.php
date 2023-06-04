@@ -75,11 +75,11 @@
     </x-slot>
 
     <x-slot name="actions">
-        <x-jet-action-message class="mr-3" on="saved">
+        <x-jet-action-message class="mr-3 bgprima" on="saved">
             {{ __('Saved.') }}
         </x-jet-action-message>
 
-        <x-jet-button wire:loading.attr="disabled" wire:target="photo">
+        <x-jet-button wire:loading.attr="disabled" wire:target="photo" class="bg-primary">
             {{ __('Simpan') }}
         </x-jet-button>
     </x-slot>
