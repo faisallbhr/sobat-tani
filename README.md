@@ -13,7 +13,7 @@
 
 ![Buruh tani](https://github.com/faisallbhr/sobat-tani/blob/main/public/screenshot/buruh-daftar-lowongan.png)
 
-![Buruh tani](https://github.com/faisallbhr/sobat-tani/blob/main/public/screenshot/buruh-kirim-laporan.png)
+![Buruh tani](https://github.com/faisallbhr/sobat-tani/blob/main/public/screenshot/buruh-kirim-laporan.jpeg)
 
 
 ## Petani
