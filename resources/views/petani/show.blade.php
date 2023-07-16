@@ -87,6 +87,7 @@
                     <form id="myForm" action="{{ url('invoice/') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="text" value="{{ $post->id }}" class="hidden" name="vacancies_id">
+                        <p class="block mb-2 text-sm font-medium">KIRIM BUKTI PEMBAYARAN KEPADA ADMIN: <span class="font-bold">{{ $admin->no_rekening }}</span></p>
                         <label class="block mb-2 text-sm font-medium" for="file_input">Upload foto bukti pembayaran</label>
                         <input name="image" id="image" class="block w-full text-sm border border-gray-300 rounded cursor-pointer bg-gray-50 focus:outline-none" type="file">
                         <input type="text" value="{{ $post->id }}" class="hidden" name="vacancy_id">
@@ -125,7 +126,7 @@
                         <tr>
                             <th class="px-6 py-4">No</th>
                             <th class="px-6 py-4">Nama</th>
-                            <th class="px-6 py-4">Nomor Rekening</th>
+                            <th class="px-6 py-4">Nomor Handphone</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -134,7 +135,7 @@
                             class="border-b border-neutral-500 bg-neutral-100">
                                 <td class="px-6 py-4 text-slate-800 font-medium w-[10px] text-center">{{ $loop->iteration }}</td>
                                 <td class="px-6 py-4 text-slate-800">{{ $acc->user->name }}</td>
-                                <td class="px-6 py-4 text-slate-800">{{ $acc->user->no_rekening }}</td>
+                                <td class="px-6 py-4 text-slate-800">{{ $acc->user->no_handphone }}</td>
                             </tr>
                             @endforeach
                         </tbody>

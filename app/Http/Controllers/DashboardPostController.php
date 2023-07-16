@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Report;
 use App\Models\Invoice;
 use App\Models\Regency;
-use App\Models\Report;
 use App\Models\Village;
 use App\Models\Category;
 use App\Models\District;
 use App\Models\Province;
 use App\Models\Vacancies;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\StatVacancies;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -77,6 +78,7 @@ class DashboardPostController extends Controller
         $accept = StatVacancies::where('vacancy_id', $post->id)
                     ->where('status', true)->get();
         $status = $post->status;
+        $admin = User::find(3);
 
         if($status){
             if(count($accept)>0){
@@ -95,15 +97,17 @@ class DashboardPostController extends Controller
                 'accept' => $accept,
                 'reports' => $reports,
                 'status' => $status,
-                'invoice' => $post->invoice
+                'invoice' => $post->invoice,
+                'admin'=>$admin
             ]);
         }
-
+        
         return view('petani.show', [
             'post' => $post,
             'waiting' => $waiting,
             'accept' => $accept,
-            'status' => $status
+            'status' => $status,
+            'admin'=>$admin
             ]);
     }
 
